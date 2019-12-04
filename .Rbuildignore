@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^R/kidney_tests.R$
+^R/liver_tests.R$
+^R/hello.R$
