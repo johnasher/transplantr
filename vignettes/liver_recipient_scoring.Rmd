@@ -1,0 +1,56 @@
+---
+title: "Liver recipient scoring"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{liver_recipient_scoring}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(transplantr)
+```
+
+
+# Introduction
+
+The **MELD** score was originally developed at the Mayo Clinic to risk stratify elective transhepatic porto-systemic shunt (TIPS) procedures in patients with liver cirrhosis. It has also been widely used as part of clinical urgency prioritisation in liver transplant matching algorithms, although UNOS changed to the alternative **MELD-Na** score, which incorporates serum sodium levels, in January 2016. The scores have been shown to predict short-term mortality after transhepatic porto-systemic shunt (TIPS) procedure, non-liver transplant surgery in cirrhotic patients, acute alcoholic hepatitis and acute variceal haemorrhage.
+
+The **UKELD** score was developed to risk stratify liver transplant recipients in the UK, is based on MELD and adds serum sodium.
+
+# MELD and MELD-Na scores
+
+The original MELD score uses serum creatinine, bilirubin and INR, but cannot be simply calculated as creatinine and bilirubin values are set to specific numbers when outside a set range. Creatinine <1mg/dl is entered as 1, or >4mg/dl as 4, and patients who are either on CVVH or have been dialysed twice in the week prior to the calculation are assigned a fixed value of 4mg/dl. Bilirubin levels less than 1mg/dl are also set to 1, as are INR values of less than 1. The final score ranges between 6 and 40.
+
+$$MELD = 10 \times (0.957 \times log_e creatinine \times 0.378 \times log_e~bilirubin + 1.120 \times  log_e INR + 0.643)$$
+
+To get the exact MELD score as recommended by UNOS, the part of the equation above in the brackets is rounded to the tenth decimal place before being multiplied by 10.
+
+The MELD-Na score adds serum sodium levels into the mix if the MELD score is greater than 11. The actual sodium level is only used if sodium is between 125 and 137 mmol/l. If the actual level is less than 125, the value 125 is used in the equation, and if more than 137, a fixed value of 137 is assigned.
+
+$$MELDNa = MELD + 1.32 \times (137 - Na) - [0.033 \times MELD \times (137 - Na)]$$
+
+The `meld()` function in _transplantr_ calculates the MELD score with these value assignments taken into account. Creatinine and bilirubin are both calculated from their values in µmol/l by default, and can be changed to mg/dl either by setting the optional `units` parameter to `"US"` or by using the `meld_US()` wrapper function instead.
+
+The `meld_Na()` function calculates the newer MELD-Na score using SI units for creatinine and bilirubin. Changing to US units can be done by setting `units` to `"US"` or using the `meld_Na_US()` wrapper function.
+
+It is worth noting that for liver allocation in the USA, additional points are added to the MELD score in the context of certain specified clinical conditions known as "standard MELD exceptions". These increase the MELD score by 10% every 3 months from diagnosis. Guidance on MELD, MELD-Na and PELD in US liver matching is available at the [https://optn.transplant.hrsa.gov](OPTN website).
+
+# UKELD score
+
+The UKELD score was developed in the UK before the MELD-Na had been published, and includes the same variables as MELD-Na: creatinine, bilirubin, INR and sodium. Although it has not been used in liver matching in the UK, a UKELD score greater than 49 has been a criterion for eligibility to join the liver transplant waiting list.
+
+The score can be calculated with the `ukeld()` function, using µmol/l as the default unit for creatinine and bilirubin. This can be changed to mg/dl by setting the `units` parameter to `"US"` or calling the `ukeld_US()` wrapper function.
+
+# PELD score
+
+The PELD score is a paediatric version of MELD, and used to predict mortality in children needing liver transplants. It is based on age, bilirubin, albumin, INR and whether there is growth failure.
+
+The `peld()` function in _transplantr_ calculates the PELD score. Bilirubin is calculated from their values in µmol/l by default, and can be changed to mg/dl either by setting the optional `units` parameter to `"US"` or by using the `peld_US()` wrapper function instead. Albumin is measured in g/dl on both sides of the Atlantic so does not need conversion!
