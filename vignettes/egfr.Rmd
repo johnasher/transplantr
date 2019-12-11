@@ -92,6 +92,7 @@ Using mg/dl as units or base R work in the same way as the `ckd_epi()` formula, 
 
 There is also a fuller six-variable MDRD formula which may be added to this package in the future. The six-variable formula includes albumin and either urea or blood urea nitrogen (BUN).
 
+
 # Schwartz formula
 
 The bedside Schwartz formula is used for children under 19 and is a simpler version of the original Schwartz formula published in 1984. It is calculated using the `schwartz()` function and uses serum creatinine in either µmol/l (by default) or mg/dl and height in cm. Like the other formulae in the package, the `units` parameter defines the units used for serum creatinine, taking a value of either `"SI"` for µmol/l or `"US"` for mg/dl; if the parameter is not provided, it defaults to `"SI"`. There is also a `schwartz_US()` wrapper function which uses mg/dl.
