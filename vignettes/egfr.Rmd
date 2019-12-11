@@ -92,7 +92,6 @@ Using mg/dl as units or base R work in the same way as the `ckd_epi()` formula, 
 
 There is also a fuller six-variable MDRD formula which may be added to this package in the future. The six-variable formula includes albumin and either urea or blood urea nitrogen (BUN).
 
-
 # Schwartz formula
 
 The bedside Schwartz formula is used for children under 19 and is a simpler version of the original Schwartz formula published in 1984. It is calculated using the `schwartz()` function and uses serum creatinine in either µmol/l (by default) or mg/dl and height in cm. Like the other formulae in the package, the `units` parameter defines the units used for serum creatinine, taking a value of either `"SI"` for µmol/l or `"US"` for mg/dl; if the parameter is not provided, it defaults to `"SI"`. There is also a `schwartz_US()` wrapper function which uses mg/dl.
@@ -103,6 +102,20 @@ paediatric_data <- paediatric_data %>%
 ```
 
 In the same way as the CKD-EPI and MDRD functions, using the optional offset parameter helps to generate serial results.
+
+# Cockcroft-Gault formula
+
+The Cockcroft-Gault formula provides a reasonably accurate estimation of creatinine clearance, but this is _not_ the same as glomerular filtration as creatinine is also cleared by tubular secretion, and so the equation tends to overestimate GFR by up to 25%. It is still used in renal dose calculations in the UK, although the US guidance is to use CKD-EPI or MDRD instead. It is also worth noting that the methodology from which it was derived assumes ideal body weight.
+
+In the _transplantr_ package, the creatinine clearance can be calculated with the `cockcroft()` function, which takes creatinine, age, sex and weight as core arguments. The creatinine is in µmol/l by default, but can be changed to mg/dl either by specifying `units` to be `"US"` or by calling the wrapper function `cockcroft_US()`. Ideal body weight can be calculated from height and sex using the `ibw()` function. An example using a _dplyr_ pipe:
+
+```{r, eval = F}
+mydata <- mydata %>%
+  mutate(Ideal.Weight = ibw(height = Patient.Height, sex = Patient.Sex),
+         CrClear = cockcroft(creat = Patient.SCr, age = Patient.Age, sex = Patient.Sex,
+                             weight = Ideal.Weight))
+```
+
 
 # Formulae to be added in future
 
