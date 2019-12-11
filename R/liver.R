@@ -6,13 +6,19 @@
 #' @param bili numeric vector of bilirubin in mcmol/l
 #' @param creat numeric vector of creatinine in mcmol/l
 #' @param Na numeric vector of sodium in mmol/l
+#' @param units Units for bilirubin and creatinine ("SI" for mcmol/l (default), "US" for mg/dl)
 #'
 #' @return numeric vector of UKELD scores
 #' @export
 #'
 #' @examples
 #' ukeld(INR = 1.0, bili = 212, creat = 54, Na = 126)
-ukeld = function(INR, bili, creat, Na) {
+ukeld = function(INR, bili, creat, Na, units = "SI") {
+  if (units == "US") {
+    bili = bili / 17.1
+    creat = creat / 88.4
+  }
+
   5.395 * log(INR) +
     1.485 * log(creat) +
     3.13 * log(bili) -
@@ -36,8 +42,8 @@ ukeld = function(INR, bili, creat, Na) {
 #' ukeld_US(INR = 2.0, bili = 1.8, creat = 170, Na = 130)
 ukeld_US = function(INR, bili, creat, Na) {
   5.395 * log(INR) +
-    1.485 * log(creat / 17.1) +
-    3.13 * log(bili) -
+    1.485 * log(creat / 88.4) +
+    3.13 * log(bili / 17.1) -
     81.565 * log(Na) +
     435
 }
@@ -72,13 +78,16 @@ meld = function(INR, bili, creat, dialysis, units = "SI") {
   # convert lab values to 1.0 if lower than 1.0
   bili = ifelse(bili < 1, 1, bili)
   creat = ifelse(creat < 1, 1, creat)
+  creat = ifelse(creat > 4, 4, creat)
   INR = ifelse(INR < 1, 1, INR)
 
   # convert creatinine to 4.0mg/dl if on dialysis/CVVH
   creat = ifelse(dialysis == 1, 4.0, creat)
 
   # calculate MELD score
-  10 * (0.957 * log(creat) + 0.378 * log(bili) + 1.12 * log(INR) + 0.643)
+  meldi = (0.957 * log(creat) + 0.378 * log(bili) + 1.12 * log(INR) + 0.643)
+  meld = 10 * round(meldi, digits = 10)
+  meld
 }
 
 #' MELD score (using US units)
@@ -138,10 +147,13 @@ meld_na = function(INR, bili, creat, Na, dialysis, units = "SI") {
   creat = ifelse(dialysis == 1, 4.0, creat)
 
   # calculate MELD score
-  meldscore = 10 * (0.957 * log(creat) + 0.378 * log(bili) + 1.12 * log(INR) + 0.643)
+  meldscore = 10 * round((0.957 * log(creat) + 0.378 * log(bili) + 1.12 * log(INR) + 0.643),
+                         digits = 10)
 
   # convert to MELD-Na
-  meldscore - Na - (0.025 * meldscore * (140 - Na)) + 140
+  meldna0 = meldscore - Na - (0.025 * meldscore * (140 - Na)) + 140
+  meldna = ifelse(meldscore > 11, meldna0, meldscore)
+  meldna
 }
 
 #' MELD-Na score (US units)

@@ -34,7 +34,7 @@ To start, load the transplantr library and I would also recommend using dplyr to
 
 ```{r setup}
 library(transplantr)
-library(dplyr)
+#library(dplyr)
 ```
 
 ## UK Kidney Donor and Recipient Risk Indices (2019)
@@ -99,3 +99,4 @@ mydata4 = mydata3 %>%
                          wait = Recipient.Waittime, dm = Recipient.Diabetes))
 ```
 
+## US Kidney Donor Risk Index

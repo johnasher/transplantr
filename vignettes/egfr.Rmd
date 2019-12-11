@@ -77,18 +77,18 @@ mydata <- mydata %>%
 
 # Abbreviated MDRD formula
 
-Using abbreviated MDRD formula eGFR is also calculated from age, sex and ethnicity as well as serum creatinine. The basic function to return its value is `mdrd_4v()` which takes creatinine in either µmol/l (by default) or mg/dl, age in years, sex as `0` for female or `1` for male, and ethnicity as `"black"` or `"non-black"`. The `units` parameter defines the units used for serum creatinine, taking a value of either `"SI"` for µmol/l or `"US"` for mg/dl; if the parameter is not provided, it defaults to `"SI"`.
+Using abbreviated MDRD formula eGFR is also calculated from age, sex and ethnicity as well as serum creatinine. The basic function to return its value is `mdrd()` which takes creatinine in either µmol/l (by default) or mg/dl, age in years, sex as `0` for female or `1` for male, and ethnicity as `"black"` or `"non-black"`. The `units` parameter defines the units used for serum creatinine, taking a value of either `"SI"` for µmol/l or `"US"` for mg/dl; if the parameter is not provided, it defaults to `"SI"`.
 
-Like CKD-EPI function, there is also a `mdrd_4v_US()` wrapper function which uses mg/dl as the creatinine unit.
+Like CKD-EPI function, there is also a `mdrd_US()` wrapper function which uses mg/dl as the creatinine unit.
 
 This is also vectorised function, and is generally called from within a `mutate()` call in a _dplyr_ pipe:
 
 ```{r, eval = F}
 mydata <- mydata %>%
-  mutate(eGFR = mdrd_4v(creat = SCr, age = Age, sex = Sex, eth = Ethnicity))
+  mutate(eGFR = mdrd(creat = SCr, age = Age, sex = Sex, eth = Ethnicity))
 ```
 
-Using mg/dl as units or base R work in the same way as the `ckd_epi()` formula, and the `mdrd_4v()` can also accept an optional `offset` parameter to facilitate serial results.
+Using mg/dl as units or base R work in the same way as the `ckd_epi()` formula, and the `mdrd()` can also accept an optional `offset` parameter to facilitate serial results.
 
 There is also a fuller six-variable MDRD formula which may be added to this package in the future. The six-variable formula includes albumin and either urea or blood urea nitrogen (BUN).
 

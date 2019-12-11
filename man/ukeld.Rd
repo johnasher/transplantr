@@ -4,7 +4,7 @@
 \alias{ukeld}
 \title{Calculate UKELD score}
 \usage{
-ukeld(INR, bili, creat, Na)
+ukeld(INR, bili, creat, Na, units = "SI")
 }
 \arguments{
 \item{INR}{numeric vector of INR}
@@ -14,6 +14,8 @@ ukeld(INR, bili, creat, Na)
 \item{creat}{numeric vector of creatinine in mcmol/l}
 
 \item{Na}{numeric vector of sodium in mmol/l}
+
+\item{units}{Units for bilirubin and creatinine ("SI" for mcmol/l (default), "US" for mg/dl)}
 }
 \value{
 numeric vector of UKELD scores
