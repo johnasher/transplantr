@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Calculating kidney risk indices
+# Introduction
 
 The transplantr package includes vectorised functions to calculate a number of different deceased donor kidney risk indices which are based on Cox models of transplant survival and can be used to audit or risk adjust transplant outcome data.
 
@@ -36,11 +36,11 @@ To start, load the transplantr library and I would also recommend using dplyr to
 library(transplantr)
 ```
 
-## UK Kidney Donor and Recipient Risk Indices (2019)
+# UK Kidney Donor and Recipient Risk Indices (2019)
 
 The current UK Kidney Donor and Recipient Risk Indices are based on transplant and recipient survival data from the UK National Transplant Database and have been incorporated into the new deceased donor kidney matching scheme launched in September 2019, which aims to match expected transplant and recipient survival (although a number of other factors are also used in the algorithm).
 
-### UK Kidney Donor Risk Index
+## UK Kidney Donor Risk Index
 
 The `ukkdri()` function calculates the donor risk and uses the following parameters:
 
@@ -49,7 +49,7 @@ Parameter | Description | Values
 age | donor age in years | numeric vector
 height | donor height in cm | numeric vector
 htn | donor history of hypertension | numeric vector of values of 1 (yes) or 0 (no)
-female | donor sex | character vector of values of "F" or "M"
+sex | donor sex | character vector of values of "F" or "M"
 cmv | whether donor is CMV seropositive | numeric vector of values of 1 (yes) or 0 (no)
 gfr | donor eGFR in ml/min | numeric vector
 hdays | length of donor hospital stay | numeric vector
@@ -69,17 +69,17 @@ Generating the results is also easy to do with dplyr:
 ```{r, eval = F}
 my_data3 = my_data2 %>%
   mutate(UKKDRI = ukkdri(age = Donor.Age, height = Donor.Height, htn = Donor.Hypertension,
-                         female = Donor.Sex, cmv = Donor.CMV, gfr = Donor.eGFR, 
+                         sex = Donor.Sex, cmv = Donor.CMV, gfr = Donor.eGFR, 
                          hdays = Donor.Hospital_Stay))
 ```
 
 Although it is a vectorised function, `ukkdri()` will also work with single values:
 
 ```{r}
-ukkdri(age = 50, height = 170, htn = 1, female = 1, cmv = 0, gfr = 90, hdays = 2)
+ukkdri(age = 50, height = 170, htn = 1, sex = "F", cmv = 0, gfr = 90, hdays = 2)
 ```
 
-### UK Recipient Risk Index
+## UK Recipient Risk Index
 
 The `ukkrri()` function calculates the UK Kidney Recipient Risk Index using the following parameters:
 
@@ -98,4 +98,33 @@ mydata4 = mydata3 %>%
                          wait = Recipient.Waittime, dm = Recipient.Diabetes))
 ```
 
-## US Kidney Donor Risk Index
+# US Kidney Donor Risk Index
+
+The US Kidney Donor Risk Index is a longer established risk stratification tool developed from American registry data, and can be calculated using the `uskdri()` function. The donor's serum creatinine is one of the parameters used, and like the other functions in _transplantr_ the default unit is µmol/l but can be changed to mg/dl either by setting the `units` parameter to `"US` or by calling the `uskdri_US()` wrapper function. The risk index function uses these variables:
+
+Parameter | Description | Values
+---|---|---
+age | donor age in years | numeric vector
+height | donor height in cm | numeric vector
+weight | donor weight in kg | numeric vector
+eth | donor ethnicity | character string vector of "black" or "non-black"
+htn | whether donor has history of hypertension | numeric vector of 1 = yes, 0 = no
+dm | whether donor has diabetes mellitus | numeric vector of 1 = yes, 0 = no
+cva | whether donor cause of death was CVA | numeric vector of 1 = yes, 0 = no
+creat | donor creatinine | numeric vector
+hcv | whether donor has hepatitis C seropositive | numeric vector of 1 = yes, 0 = no
+dcd | whether donor is DCD | numeric vector of 1 = DCD, 0 = DBD
+units | creatinine units | single string of "SI" for µmol/l or "US" for mg/dl
+
+The function can also be used for a single case:
+
+```{r}
+# with creatinine in µmol/l (units = "SI" can be omitted)
+uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
+    cva = 0, creat = 120, hcv = 0, dcd = 0, units = "SI")
+
+# with creatinine in mg/dl
+uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
+    cva = 0, creat = 1.4, hcv = 0, dcd = 0, units = "US")
+```
+

@@ -4,7 +4,7 @@
 \alias{ukkdri}
 \title{Calculate UK Kidney Donor Risk Index (NHSBT, 2019 version)}
 \usage{
-ukkdri(age, height, htn, female, cmv, gfr, hdays)
+ukkdri(age, height, htn, sex, cmv, gfr, hdays)
 }
 \arguments{
 \item{age}{numeric vector of donor age in years}
@@ -13,7 +13,7 @@ ukkdri(age, height, htn, female, cmv, gfr, hdays)
 
 \item{htn}{numeric vector of whether donor history of hypertension (1 = yes, 0 = no)}
 
-\item{female}{character vector of donor sex ("F" = female, "M" = male)}
+\item{sex}{character vector of donor sex ("F" = female, "M" = male)}
 
 \item{cmv}{numeric vector of whether donor CMV IgG positive (1 = yes, 0 = no)}
 
@@ -29,5 +29,5 @@ A vectorised function to calculate the UK Kidney Donor Risk Index as used in the
 national kidney matching scheme implemented in September 2019.
 }
 \examples{
-ukkdri(50, 170, 1, 1, 0, 90, 2)
+ukkdri(age = 50, height = 170, htn = 1, sex = "F", cmv = 0, gfr = 90, hdays = 2)
 }
