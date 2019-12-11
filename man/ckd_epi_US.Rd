@@ -7,7 +7,7 @@
 ckd_epi_US(creat, age, sex, ethnicity, offset = 0)
 }
 \arguments{
-\item{creat}{numeric vector of serum creatinine in mcmol/l (or mg/dl if units = "US")}
+\item{creat}{numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")}
 
 \item{age}{numeric vector of age in years (accepts integers or decimals)}
 

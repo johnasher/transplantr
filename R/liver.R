@@ -3,16 +3,22 @@
 #' A vectorised function to calculate the UKELD score using SI units for bilirubin and creatinine.
 #'
 #' @param INR numeric vector of INR
-#' @param bili numeric vector of bilirubin in mcmol/l
-#' @param creat numeric vector of creatinine in mcmol/l
+#' @param bili numeric vector of bilirubin in µmol/l
+#' @param creat numeric vector of creatinine in µmol/l
 #' @param Na numeric vector of sodium in mmol/l
+#' @param units Units for bilirubin and creatinine ("SI" for µmol/l (default), "US" for mg/dl)
 #'
 #' @return numeric vector of UKELD scores
 #' @export
 #'
 #' @examples
 #' ukeld(INR = 1.0, bili = 212, creat = 54, Na = 126)
-ukeld = function(INR, bili, creat, Na) {
+ukeld = function(INR, bili, creat, Na, units = "SI") {
+  if (units == "US") {
+    bili = bili / 17.1
+    creat = creat / 88.4
+  }
+
   5.395 * log(INR) +
     1.485 * log(creat) +
     3.13 * log(bili) -
@@ -36,26 +42,26 @@ ukeld = function(INR, bili, creat, Na) {
 #' ukeld_US(INR = 2.0, bili = 1.8, creat = 170, Na = 130)
 ukeld_US = function(INR, bili, creat, Na) {
   5.395 * log(INR) +
-    1.485 * log(creat / 17.1) +
-    3.13 * log(bili) -
+    1.485 * log(creat / 88.4) +
+    3.13 * log(bili / 17.1) -
     81.565 * log(Na) +
     435
 }
 
 #' MELD score
 #'
-#' A vectorised function to calculate the MELD score using mcmol/l for bilirubin and creatinine.
+#' A vectorised function to calculate the MELD score using µmol/l for bilirubin and creatinine.
 #' The units can be changed to mg/dl by setting the optional units parameter to "US". If the
 #' patient is on CVVH or has been dialysed at least twice in the same week, the dialysis argument
-#' should be set to 1, which changes the creatinine level used in the formula to 4mg/dl (353mcmol/l).
+#' should be set to 1, which changes the creatinine level used in the formula to 4mg/dl (353µmol/l).
 #' Following UNOS guidelines, the values for INR as well bilirubin and creatinine (in mg/dl) are
 #' set to a minimum value of 1 if less than 1.0
 #'
 #' @param INR numeric vector of INR
-#' @param bili numeric vector of bilirubin (mcmol/l)
-#' @param creat numeric vector of creatinine (mcmol/l)
+#' @param bili numeric vector of bilirubin (µmol/l)
+#' @param creat numeric vector of creatinine (µmol/l)
 #' @param dialysis numeric vector of whether on dialysis/CVVH (1 = yes, 2 = no)
-#' @param units Units for bilirubin and creatinine ("SI" for mcmol/l (default), "US" for mg/dl)
+#' @param units Units for bilirubin and creatinine ("SI" for µmol/l (default), "US" for mg/dl)
 #' @return MELD score
 #' @export
 #'
@@ -72,13 +78,16 @@ meld = function(INR, bili, creat, dialysis, units = "SI") {
   # convert lab values to 1.0 if lower than 1.0
   bili = ifelse(bili < 1, 1, bili)
   creat = ifelse(creat < 1, 1, creat)
+  creat = ifelse(creat > 4, 4, creat)
   INR = ifelse(INR < 1, 1, INR)
 
   # convert creatinine to 4.0mg/dl if on dialysis/CVVH
   creat = ifelse(dialysis == 1, 4.0, creat)
 
   # calculate MELD score
-  10 * (0.957 * log(creat) + 0.378 * log(bili) + 1.12 * log(INR) + 0.643)
+  meldi = (0.957 * log(creat) + 0.378 * log(bili) + 1.12 * log(INR) + 0.643)
+  meld = 10 * round(meldi, digits = 10)
+  meld
 }
 
 #' MELD score (using US units)
@@ -106,15 +115,15 @@ meld_US = function(INR, bili, creat, dialysis) {
 #' MELD-Na score
 #'
 #' A vectorised function to calculate the MELD-Na score, a variant of the MELD score incorporating
-#' serum sodium levels. By default, bilirubin and creatinine are in mcmol/l but this can be
+#' serum sodium levels. By default, bilirubin and creatinine are in µmol/l but this can be
 #' changed to mg/dl by setting the optional units parameter to "US".
 #'
 #' @param INR numeric vector of INR
-#' @param bili numeric vector of bilirubin (mcmol/l)
-#' @param creat numeric vector of creatinine (mcmol/l)
+#' @param bili numeric vector of bilirubin (µmol/l)
+#' @param creat numeric vector of creatinine (µmol/l)
 #' @param Na numeric vector of sodium (mmol/l)
 #' @param dialysis whether on dialysis/CVVH (1 = yes, 0 = no)
-#' @param units Units for bilirubin and creatinine ("SI" for mcmol/l (default), "US" for mg/dl)
+#' @param units Units for bilirubin and creatinine ("SI" for µmol/l (default), "US" for mg/dl)
 #'
 #' @return numeric vector of MELD-Na scores
 #' @export
@@ -138,10 +147,13 @@ meld_na = function(INR, bili, creat, Na, dialysis, units = "SI") {
   creat = ifelse(dialysis == 1, 4.0, creat)
 
   # calculate MELD score
-  meldscore = 10 * (0.957 * log(creat) + 0.378 * log(bili) + 1.12 * log(INR) + 0.643)
+  meldscore = 10 * round((0.957 * log(creat) + 0.378 * log(bili) + 1.12 * log(INR) + 0.643),
+                         digits = 10)
 
   # convert to MELD-Na
-  meldscore - Na - (0.025 * meldscore * (140 - Na)) + 140
+  meldna0 = meldscore - Na - (0.025 * meldscore * (140 - Na)) + 140
+  meldna = ifelse(meldscore > 11, meldna0, meldscore)
+  meldna
 }
 
 #' MELD-Na score (US units)
@@ -168,15 +180,15 @@ meld_na_US = function(INR, bili, creat, Na, dialysis) {
 #' PELD score
 #'
 #' A vectorised function to generate a PELD score for paediatric liver transplant candidates.
-#' The default unit for bilirubin is mcmol/l but this can be changed to mg/dl by setting the
+#' The default unit for bilirubin is µmol/l but this can be changed to mg/dl by setting the
 #' optional units parameter to "US".
 #'
 #' @param INR INR
-#' @param bili serum biliruin (mcmol/l)
+#' @param bili serum biliruin (µmol/l)
 #' @param albumin serum albumin
 #' @param listing_age age at the time of listing (years; integer or decimal)
 #' @param growth_failure whether there is growth failure (1 = yes, 0 = no)
-#' @param units units used for bilirubin ("SI" for mcmol/l (default), "US" for mg/dl)
+#' @param units units used for bilirubin ("SI" for µmol/l (default), "US" for mg/dl)
 #'
 #' @return numeric vector of PELD scores
 #' @export

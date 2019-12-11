@@ -7,7 +7,7 @@
 ckd_epi(creat, age, sex, ethnicity = NULL, units = "SI", offset = 0)
 }
 \arguments{
-\item{creat}{numeric vector of serum creatinine in mcmol/l (or mg/dl if units = "US")}
+\item{creat}{numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")}
 
 \item{age}{numeric vector of age in years (accepts integers or decimals)}
 
@@ -15,7 +15,7 @@ ckd_epi(creat, age, sex, ethnicity = NULL, units = "SI", offset = 0)
 
 \item{ethnicity}{character vector of patient ethnicity, one of "black" or "non-black"}
 
-\item{units}{non-vectorised optional parameter for creatinine unit ("SI" for mcmol/l (default), "US" for mg/dl)}
+\item{units}{non-vectorised optional parameter for creatinine unit ("SI" for µmol/l (default), "US" for mg/dl)}
 
 \item{offset}{non-vectorised optional numeric parameter for offset in years}
 }
@@ -24,7 +24,7 @@ a numeric vector of eGFR values
 }
 \description{
 A vectorised function to calculate estimated glomerular filtration rate using the CKD-EPI
-equation. By default the equation accepts serum creatinine in mcmol/l but can be changed to
+equation. By default the equation accepts serum creatinine in µmol/l but can be changed to
 mg/dl by setting the units parameter to "US". To allow for serial measurements over time, such as
 for transplant follow-up data, there is an optional offset = n parameter which increases the age
 value used in the equation by n years.

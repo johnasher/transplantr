@@ -12,7 +12,7 @@ pdri(age, sex, creat, eth, bmi, height, cva, cit, dcd, intent = c("SPK",
 
 \item{sex}{character vector of patient sex ("F" for female, "M" for male)}
 
-\item{creat}{numeric vector of serum creatinine (mcmol/l by default)}
+\item{creat}{numeric vector of serum creatinine (µmol/l by default)}
 
 \item{eth}{character vector of ethnicity, one of "asian", "black" or "other" in each case}
 
@@ -28,7 +28,7 @@ pdri(age, sex, creat, eth, bmi, height, cva, cit, dcd, intent = c("SPK",
 
 \item{intent}{character vector of implant intent, "PAK" for pancreas after kidney or "other"}
 
-\item{units}{single character string for creatinine units: one of "SI" (for mcmol/l) or "US" (for mg/dl)}
+\item{units}{single character string for creatinine units: one of "SI" (for µmol/l) or "US" (for mg/dl)}
 }
 \value{
 numeric vector of pancreas donor risk index values

@@ -1,7 +1,7 @@
 #' US Kidney Donor Risk Index
 #'
 #' Vectorised function to calculate US Kidney Donor Risk Index as published by UNOS. Please note
-#' that this function uses creatinine measured in mcmol/l by default, but can be changed to
+#' that this function uses creatinine measured in µmol/l by default, but can be changed to
 #' mg/dl if the optional units parameter is set to "US".
 #'
 #' @param age numeric vector of donor ages in years
@@ -11,16 +11,16 @@
 #' @param htn numeric vector of donor hypertension history (1 = yes, 0 = no)
 #' @param dm numeric vector of donor diabetes history (1 = yes, 0 = no)
 #' @param cva numeric vector of whether donor death due to CVA (1 = yes, 0 = no)
-#' @param creat numeric vector of donor serum creatinine (mcmol/l)
+#' @param creat numeric vector of donor serum creatinine (µmol/l)
 #' @param hcv numeric vector of donor hepatitis C history (1 = yes, 0 = no)
 #' @param dcd numeric vector of type of donor (1 = DCD, 0 = DBD)
-#' @param units single string value to indicate creatinine units ("SI" for mcmol/l, "US" for mg/dl)
+#' @param units single string value to indicate creatinine units ("SI" for µmol/l, "US" for mg/dl)
 #'
 #' @return numeric vector of US KDRI values
 #' @export
 #'
 #' @examples
-#' # with creatinine in mcmol/l (units = "SI" can be omitted)
+#' # with creatinine in µmol/l (units = "SI" can be omitted)
 #' uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
 #'     cva = 0, creat = 120, hcv = 0, dcd = 0, units = "SI") # 1.08
 #'

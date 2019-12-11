@@ -1,0 +1,8 @@
+pandoc: 2.3.1
+pkgdown: 1.4.1
+pkgdown_sha: ~
+articles:
+  egfr: egfr.html
+  kidney_risk_scores: kidney_risk_scores.html
+  liver_recipient_scoring: liver_recipient_scoring.html
+

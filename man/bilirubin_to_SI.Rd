@@ -2,7 +2,7 @@
 % Please edit documentation in R/unit_conversion.R
 \name{bilirubin_to_SI}
 \alias{bilirubin_to_SI}
-\title{Bilirubin unit converter (mg/dl -> mcmol/l)}
+\title{Bilirubin unit converter (mg/dl -> µmol/l)}
 \usage{
 bilirubin_to_SI(bili)
 }
@@ -10,10 +10,10 @@ bilirubin_to_SI(bili)
 \item{bili}{numeric vector of bilirubin levels (mg/dl)}
 }
 \value{
-numeric vector of bilirubin levels in mcmol/l
+numeric vector of bilirubin levels in µmol/l
 }
 \description{
-A vectorised function to convert serum bilirubin levels from mg/dl to mcmol/l
+A vectorised function to convert serum bilirubin levels from mg/dl to µmol/l
 }
 \examples{
 bilirubin_to_SI(bili = 3.1)

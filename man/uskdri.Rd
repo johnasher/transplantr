@@ -22,24 +22,24 @@ uskdri(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd,
 
 \item{cva}{numeric vector of whether donor death due to CVA (1 = yes, 0 = no)}
 
-\item{creat}{numeric vector of donor serum creatinine (mcmol/l)}
+\item{creat}{numeric vector of donor serum creatinine (µmol/l)}
 
 \item{hcv}{numeric vector of donor hepatitis C history (1 = yes, 0 = no)}
 
 \item{dcd}{numeric vector of type of donor (1 = DCD, 0 = DBD)}
 
-\item{units}{single string value to indicate creatinine units ("SI" for mcmol/l, "US" for mg/dl)}
+\item{units}{single string value to indicate creatinine units ("SI" for µmol/l, "US" for mg/dl)}
 }
 \value{
 numeric vector of US KDRI values
 }
 \description{
 Vectorised function to calculate US Kidney Donor Risk Index as published by UNOS. Please note
-that this function uses creatinine measured in mcmol/l by default, but can be changed to
+that this function uses creatinine measured in µmol/l by default, but can be changed to
 mg/dl if the optional units parameter is set to "US".
 }
 \examples{
-# with creatinine in mcmol/l (units = "SI" can be omitted)
+# with creatinine in µmol/l (units = "SI" can be omitted)
 uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
     cva = 0, creat = 120, hcv = 0, dcd = 0, units = "SI") # 1.08
 

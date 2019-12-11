@@ -9,7 +9,7 @@ peld(INR, bili, albumin, listing_age, growth_failure, units = "SI")
 \arguments{
 \item{INR}{INR}
 
-\item{bili}{serum biliruin (mcmol/l)}
+\item{bili}{serum biliruin (µmol/l)}
 
 \item{albumin}{serum albumin}
 
@@ -17,14 +17,14 @@ peld(INR, bili, albumin, listing_age, growth_failure, units = "SI")
 
 \item{growth_failure}{whether there is growth failure (1 = yes, 0 = no)}
 
-\item{units}{units used for bilirubin ("SI" for mcmol/l (default), "US" for mg/dl)}
+\item{units}{units used for bilirubin ("SI" for µmol/l (default), "US" for mg/dl)}
 }
 \value{
 numeric vector of PELD scores
 }
 \description{
 A vectorised function to generate a PELD score for paediatric liver transplant candidates.
-The default unit for bilirubin is mcmol/l but this can be changed to mg/dl by setting the
+The default unit for bilirubin is µmol/l but this can be changed to mg/dl by setting the
 optional units parameter to "US".
 }
 \examples{

@@ -9,22 +9,22 @@ meld_na(INR, bili, creat, Na, dialysis, units = "SI")
 \arguments{
 \item{INR}{numeric vector of INR}
 
-\item{bili}{numeric vector of bilirubin (mcmol/l)}
+\item{bili}{numeric vector of bilirubin (µmol/l)}
 
-\item{creat}{numeric vector of creatinine (mcmol/l)}
+\item{creat}{numeric vector of creatinine (µmol/l)}
 
 \item{Na}{numeric vector of sodium (mmol/l)}
 
 \item{dialysis}{whether on dialysis/CVVH (1 = yes, 0 = no)}
 
-\item{units}{Units for bilirubin and creatinine ("SI" for mcmol/l (default), "US" for mg/dl)}
+\item{units}{Units for bilirubin and creatinine ("SI" for µmol/l (default), "US" for mg/dl)}
 }
 \value{
 numeric vector of MELD-Na scores
 }
 \description{
 A vectorised function to calculate the MELD-Na score, a variant of the MELD score incorporating
-serum sodium levels. By default, bilirubin and creatinine are in mcmol/l but this can be
+serum sodium levels. By default, bilirubin and creatinine are in µmol/l but this can be
 changed to mg/dl by setting the optional units parameter to "US".
 }
 \examples{

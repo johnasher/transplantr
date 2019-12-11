@@ -9,22 +9,22 @@ meld(INR, bili, creat, dialysis, units = "SI")
 \arguments{
 \item{INR}{numeric vector of INR}
 
-\item{bili}{numeric vector of bilirubin (mcmol/l)}
+\item{bili}{numeric vector of bilirubin (µmol/l)}
 
-\item{creat}{numeric vector of creatinine (mcmol/l)}
+\item{creat}{numeric vector of creatinine (µmol/l)}
 
 \item{dialysis}{numeric vector of whether on dialysis/CVVH (1 = yes, 2 = no)}
 
-\item{units}{Units for bilirubin and creatinine ("SI" for mcmol/l (default), "US" for mg/dl)}
+\item{units}{Units for bilirubin and creatinine ("SI" for µmol/l (default), "US" for mg/dl)}
 }
 \value{
 MELD score
 }
 \description{
-A vectorised function to calculate the MELD score using mcmol/l for bilirubin and creatinine.
+A vectorised function to calculate the MELD score using µmol/l for bilirubin and creatinine.
 The units can be changed to mg/dl by setting the optional units parameter to "US". If the
 patient is on CVVH or has been dialysed at least twice in the same week, the dialysis argument
-should be set to 1, which changes the creatinine level used in the formula to 4mg/dl (353mcmol/l).
+should be set to 1, which changes the creatinine level used in the formula to 4mg/dl (353µmol/l).
 Following UNOS guidelines, the values for INR as well bilirubin and creatinine (in mg/dl) are
 set to a minimum value of 1 if less than 1.0
 }

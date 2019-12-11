@@ -2,7 +2,7 @@
 % Please edit documentation in R/unit_conversion.R
 \name{creatinine_to_SI}
 \alias{creatinine_to_SI}
-\title{Creatinine unit converter (mg/dl -> mcmol/l)}
+\title{Creatinine unit converter (mg/dl -> µmol/l)}
 \usage{
 creatinine_to_SI(creat)
 }
@@ -10,10 +10,10 @@ creatinine_to_SI(creat)
 \item{creat}{numeric vector of creatinine levels (mg/dl)}
 }
 \value{
-numeric vector of creatinine levels in mcmol/l
+numeric vector of creatinine levels in µmol/l
 }
 \description{
-A vectorised function to convert serum creatinine levels from mg/dl to mcmol/l
+A vectorised function to convert serum creatinine levels from mg/dl to µmol/l
 }
 \examples{
 creatinine_to_SI(creat = 2.0)

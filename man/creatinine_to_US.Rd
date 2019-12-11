@@ -2,18 +2,18 @@
 % Please edit documentation in R/unit_conversion.R
 \name{creatinine_to_US}
 \alias{creatinine_to_US}
-\title{Creatinine unit converter (mcmol/l -> mg/dl)}
+\title{Creatinine unit converter (µmol/l -> mg/dl)}
 \usage{
 creatinine_to_US(creat)
 }
 \arguments{
-\item{creat}{numeric vector of creatinine levels (mcmol/l)}
+\item{creat}{numeric vector of creatinine levels (µmol/l)}
 }
 \value{
 numeric vector of creatinine levels in mg/dl
 }
 \description{
-A vectorised function to convert serum creatinine levels from mcmol/l to mg/dl
+A vectorised function to convert serum creatinine levels from µmol/l to mg/dl
 }
 \examples{
 creatinine_to_US(creat = 176)

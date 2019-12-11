@@ -1,8 +1,8 @@
-#' Bilirubin unit converter (mcmol/l -> mg/dl)
+#' Bilirubin unit converter (µmol/l -> mg/dl)
 #'
-#' A vectorised function to convert serum bilirubin levels from mcmol/l to mg/dl
+#' A vectorised function to convert serum bilirubin levels from µmol/l to mg/dl
 #'
-#' @param bili numeric vector of bilirubin levels (mcmol/l)
+#' @param bili numeric vector of bilirubin levels (µmol/l)
 #'
 #' @return numeric vector of bilirubin levels in mg/dl
 #' @export
@@ -13,13 +13,13 @@ bilirubin_to_US = function(bili) {
   bili / 17.1
 }
 
-#' Bilirubin unit converter (mg/dl -> mcmol/l)
+#' Bilirubin unit converter (mg/dl -> µmol/l)
 #'
-#' A vectorised function to convert serum bilirubin levels from mg/dl to mcmol/l
+#' A vectorised function to convert serum bilirubin levels from mg/dl to µmol/l
 #'
 #' @param bili numeric vector of bilirubin levels (mg/dl)
 #'
-#' @return numeric vector of bilirubin levels in mcmol/l
+#' @return numeric vector of bilirubin levels in µmol/l
 #' @export
 #'
 #' @examples
@@ -28,11 +28,11 @@ bilirubin_to_SI = function(bili) {
   bili * 17.1
 }
 
-#' Creatinine unit converter (mcmol/l -> mg/dl)
+#' Creatinine unit converter (µmol/l -> mg/dl)
 #'
-#' A vectorised function to convert serum creatinine levels from mcmol/l to mg/dl
+#' A vectorised function to convert serum creatinine levels from µmol/l to mg/dl
 #'
-#' @param creat numeric vector of creatinine levels (mcmol/l)
+#' @param creat numeric vector of creatinine levels (µmol/l)
 #'
 #' @return numeric vector of creatinine levels in mg/dl
 #' @export
@@ -43,13 +43,13 @@ creatinine_to_US = function(creat) {
   creat / 88.4
 }
 
-#' Creatinine unit converter (mg/dl -> mcmol/l)
+#' Creatinine unit converter (mg/dl -> µmol/l)
 #'
-#' A vectorised function to convert serum creatinine levels from mg/dl to mcmol/l
+#' A vectorised function to convert serum creatinine levels from mg/dl to µmol/l
 #'
 #' @param creat numeric vector of creatinine levels (mg/dl)
 #'
-#' @return numeric vector of creatinine levels in mcmol/l
+#' @return numeric vector of creatinine levels in µmol/l
 #' @export
 #'
 #' @examples

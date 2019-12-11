@@ -3,3 +3,8 @@
 ^R/kidney_tests.R$
 ^R/liver_tests.R$
 ^R/hello.R$
+^README.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^LICENSE$

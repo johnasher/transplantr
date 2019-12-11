@@ -6,7 +6,7 @@
 #'
 #' @param age numeric vector of ages in years
 #' @param sex character vector of patient sex ("F" for female, "M" for male)
-#' @param creat numeric vector of serum creatinine (mcmol/l by default)
+#' @param creat numeric vector of serum creatinine (µmol/l by default)
 #' @param eth character vector of ethnicity, one of "asian", "black" or "other" in each case
 #' @param bmi numeric vector of body mass index (BMI)
 #' @param height numeric vector of heights in centimetres
@@ -14,7 +14,7 @@
 #' @param cit numeric vector of cold ischaemic times in hours
 #' @param dcd numeric vector of whether donor after circulatory death (1 = DCD, 0 = DBD)
 #' @param intent character vector of implant intent, "PAK" for pancreas after kidney or "other"
-#' @param units single character string for creatinine units: one of "SI" (for mcmol/l) or "US" (for mg/dl)
+#' @param units single character string for creatinine units: one of "SI" (for µmol/l) or "US" (for mg/dl)
 #'
 #' @return numeric vector of pancreas donor risk index values
 #' @export
@@ -26,7 +26,7 @@
 #' pdri(age = 45, sex = "M", creat = 88.4, eth = "other", bmi = 24,
 #' height = 173, cva = 0, cit = 12, dcd = 0, units = "SI") # 1.56
 pdri = function(age, sex, creat, eth, bmi, height, cva, cit, dcd, intent = c("SPK", "PAK", "Other"), units = "SI") {
-  # convert creatinine mcmol/l to mg/dl
+  # convert creatinine µmol/l to mg/dl
   if (units == "SI") {
     creat = creat / 88.4
   }

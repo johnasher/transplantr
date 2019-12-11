@@ -1,16 +1,16 @@
 #' eGFR by CKD-EPI equation
 #'
 #' A vectorised function to calculate estimated glomerular filtration rate using the CKD-EPI
-#' equation. By default the equation accepts serum creatinine in mcmol/l but can be changed to
+#' equation. By default the equation accepts serum creatinine in µmol/l but can be changed to
 #' mg/dl by setting the units parameter to "US". To allow for serial measurements over time, such as
 #' for transplant follow-up data, there is an optional offset = n parameter which increases the age
 #' value used in the equation by n years.
 #'
-#' @param creat numeric vector of serum creatinine in mcmol/l (or mg/dl if units = "US")
+#' @param creat numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")
 #' @param age numeric vector of age in years (accepts integers or decimals)
 #' @param sex character vector of sex ("F" for female, "M" for male)
 #' @param ethnicity character vector of patient ethnicity, one of "black" or "non-black"
-#' @param units non-vectorised optional parameter for creatinine unit ("SI" for mcmol/l (default), "US" for mg/dl)
+#' @param units non-vectorised optional parameter for creatinine unit ("SI" for µmol/l (default), "US" for mg/dl)
 #' @param offset non-vectorised optional numeric parameter for offset in years
 #'
 #' @return a numeric vector of eGFR values
@@ -48,25 +48,25 @@ ckd_epi <- function(creat, age, sex, ethnicity = NULL, units = "SI", offset = 0)
 #'
 #' A vectorised function to calculate estimated glomerular filtration rate using the
 #' abbreviated (four variable) MDRD equation. By default the equation accepts serum creatinine
-#' in mcmol/l but can be changed to mg/dl by setting the units parameter to "US".
+#' in µmol/l but can be changed to mg/dl by setting the units parameter to "US".
 #' To allow for serial measurements over time, such as
 #' for transplant follow-up data, there is an optional offset = n parameter which increases the age
 #' value used in the equation by n years.
 #'
-#' @param creat numeric vector of serum creatinine in mcmol/l (or mg/dl if units = "US")
+#' @param creat numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")
 #' @param age numeric vector of age in years (accepts integers or decimals)
 #' @param sex character vector of sex ("F" for female, "M" for male)
 #' @param ethnicity character vector of patient ethnicity, one of "black" or "non-black"
-#' @param units non-vectorised optional parameter for creatinine unit ("SI" for mcmol/l (default), "US" for mg/dl)
+#' @param units non-vectorised optional parameter for creatinine unit ("SI" for µmol/l (default), "US" for mg/dl)
 #' @param offset non-vectorised optional parameter for offset in years
 #'
 #' @return a numeric vector of eGFR values
 #' @export
 #'
 #' @examples
-#' mdrd4v(creat = 120, age = 45.2, sex = "M", ethnicity = "non-black")
-#' mdrd4v(creat = 1.5, age = 64.3, sex = "F", ethnicity = "black", units = "US")
-mdrd4v <- function (creat, age, sex, ethnicity, units = "SI", offset = 0) {
+#' mdrd(creat = 120, age = 45.2, sex = "M", ethnicity = "non-black")
+#' mdrd(creat = 1.5, age = 64.3, sex = "F", ethnicity = "black", units = "US")
+mdrd <- function (creat, age, sex, ethnicity, units = "SI", offset = 0) {
   # determine level of sexvar
   sexvar = ifelse(sex == "M", 1, 0.742)
 
@@ -86,6 +86,33 @@ mdrd4v <- function (creat, age, sex, ethnicity, units = "SI", offset = 0) {
   gfr
 }
 
+#' eGFR by bedside Schwartz formula
+#'
+#' A vectorised formula to calculate estimate glomerular filtration rate in children using the bedside Schwartz formula. By default this uses
+#' serum creatinine in µmol/l but this can be changed to mg/dl by setting the optional units parameter to "US".
+#'
+#' @param creat numeric vector of creatinine levels in µmol/l (or mg/dl if units = "US")
+#' @param height numeric vector of heights in cm
+#' @param units non-vectorised optional parameter for creatinine unit ("SI" for µmol/l (default), "US" for mg/dl)
+#'
+#' @return numeric vector of eGFR values
+#' @export
+#'
+#' @examples
+#' # calculate using creatinine in µmol/l
+#' schwartz(creat = 64, height = 101)
+#'
+#' # calculate using mg/dl
+#' schwartz(creat = 0.7, height = 101, units = "US")
+schwartz = function(creat, height, units = "SI") {
+  if (units == "SI") {
+    gfr = 36.2 * height / creat
+  } else {
+    gfr = 0.41 * height / creat
+  }
+  gfr
+}
+
 #' eGFR by CKD-EPI equation (US units)
 #'
 #' A wrapper function for the ckd_epi() vectorised function to calculate estimated glomerular
@@ -94,7 +121,7 @@ mdrd4v <- function (creat, age, sex, ethnicity, units = "SI", offset = 0) {
 #' for transplant follow-up data, there is an optional offset = n parameter which increases the age
 #' value used in the equation by n years.
 #'
-#' @param creat numeric vector of serum creatinine in mcmol/l (or mg/dl if units = "US")
+#' @param creat numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")
 #' @param age numeric vector of age in years (accepts integers or decimals)
 #' @param sex character vector of sex ("F" for female, "M" for male)
 #' @param ethnicity character vector of patient ethnicity, one of "black" or "non-black"
@@ -117,7 +144,7 @@ ckd_epi_US <- function (creat, age, sex, ethnicity, offset = 0) {
 #' for transplant follow-up data, there is an optional offset = n parameter which increases the age
 #' value used in the equation by n years.
 #'
-#' @param creat numeric vector of serum creatinine in mcmol/l (or mg/dl if units = "US")
+#' @param creat numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")
 #' @param age numeric vector of age in years (accepts integers or decimals)
 #' @param sex character vector of sex ("F" for female, "M" for male)
 #' @param ethnicity character vector of patient ethnicity, one of "black" or "non-black"
@@ -127,7 +154,25 @@ ckd_epi_US <- function (creat, age, sex, ethnicity, offset = 0) {
 #' @export
 #'
 #' @examples
-#' mdrd4v(creat = 1.5, age = 64.3, sex = "F", ethnicity = "black")
-mdrd4v_US <- function (creat, age, sex, ethnicity, offset = 0) {
-  mdrd4v(creat, age, sex, ethnicity, units = "US", offset = offset)
+#' mdrd_US(creat = 1.5, age = 64.3, sex = "F", ethnicity = "black")
+mdrd_US <- function (creat, age, sex, ethnicity, offset = 0) {
+  mdrd(creat, age, sex, ethnicity, units = "US", offset = offset)
+}
+
+#' eGFR by bedside Schwartz formula (US units)
+#'
+#' A wrapper function for the schwartz() vectorised formula to calculate estimate glomerular filtration rate in children using the bedside Schwartz formula, using
+#' serum creatinine in mg/dl. Use the schwartz() function instead for µmol/l.
+#'
+#' @param creat numeric vector of creatinine levels in µmol/l (or mg/dl if units = "US")
+#' @param height numeric vector of heights in cm
+#'
+#' @return numeric vector of eGFR values
+#' @export
+#'
+#' @examples
+#' # calculate using creatinine in -mg/dl
+#' schwartz_US(creat = 0.7, height = 101)
+schwartz_US = function(creat, height) {
+  schwartz(creat = creat, height = height, units = "US")
 }
