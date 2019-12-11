@@ -8,7 +8,8 @@ Description: A set of functions to calculate medical equations used in transplan
 Suggests:
     stringr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
