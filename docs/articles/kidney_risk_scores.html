@@ -224,7 +224,7 @@
 <div id="uk-kidney-donor-risk-index-2012" class="section level1">
 <h1 class="hasAnchor">
 <a href="#uk-kidney-donor-risk-index-2012" class="anchor"></a>UK Kidney Donor Risk Index (2012)</h1>
-<p>The first version of the UK Kidney Donor Risk Index was published by Watson et al. in 2012 and based on Cox regression of kidney transplant survival from the UK National Transplant Registry. It is simpler than the US KDRI and slighly outperforms the US KDRI when applied to the UK transpant series. It can be calculated using the <code><a href="../reference/watson_ukkdri.html">watson_ukkdri()</a></code> function, which includes these variables:</p>
+<p>The first version of the UK Kidney Donor Risk Index was published by Watson et al. in 2012 and based on Cox regression of kidney transplant survival from the UK National Transplant Registry. It is simpler than the US KDRI and slightly outperforms the US KDRI when applied to the UK transpant series. It can be calculated using the <code><a href="../reference/watson_ukkdri.html">watson_ukkdri()</a></code> function, which includes these variables:</p>
 <table class="table">
 <colgroup>
 <col width="33%">
@@ -346,7 +346,7 @@
 </tr>
 </tbody>
 </table>
-<p>The Scaling Factor is the median KDRI for kidney donors in the USA in the previous year, and is published each year on the <a href="OPTN%20website">https://optn.transplant.hrsa.gov/resources/allocation-calculators/kdpi-calculator/</a>, together with a table for converting KDRI to KDPI, which gives a percentile of risk. For 2019 the scaling factor is approximately 1.2507. This normalises the donor risk within each year, but I think it obscures inter-year comparisons. The <code>scaling</code> parameter defaults to 1 so can be left out when a non-scaled KDRI is desired.</p>
+<p>The Scaling Factor is the median KDRI for kidney donors in the USA in the previous year, and is published each year on the <a href="https://optn.transplant.hrsa.gov/resources/allocation-calculators/kdpi-calculator/">OPTN website</a>, together with a table for converting KDRI to KDPI, which gives a percentile of risk. For 2019 the scaling factor is approximately 1.2507. This normalises the donor risk within each year, but I think it obscures inter-year comparisons. The <code>scaling</code> parameter defaults to 1 so can be left out when a non-scaled KDRI is desired.</p>
 <p>As a vectorised function, this works well when calculating US KDRI for a large series using a <em>dplyr</em> pipe with code like this:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">my_data5 =<span class="st"> </span>my_data2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">USKDRI =</span> <span class="kw"><a href="../reference/uskdri.html">uskdri</a></span>(<span class="dt">age =</span> Donor.Age, <span class="dt">height =</span> Donor.Height, <span class="dt">weight =</span> Donor.Weight,</a>

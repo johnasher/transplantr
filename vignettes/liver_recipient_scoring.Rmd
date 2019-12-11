@@ -52,7 +52,7 @@ meld(INR = 2.0, bili = 3.1, creat = 1.9, dialysis = 0, units = "US")
 
 The `meld_na()` function calculates the newer MELD-Na score using SI units for creatinine and bilirubin. Changing to US units can be done by setting `units` to `"US"` or using the `meld_na_US()` wrapper function. `meld_na()` is also a vectorised function and can be called from within a _dplyr_ pipe or for single cases in the same way as the `meld()` function.
 
-It is worth noting that for liver allocation in the USA, additional points are added to the MELD score in the context of certain specified clinical conditions known as "standard MELD exceptions". These increase the MELD score by 10% every 3 months from diagnosis. Guidance on MELD, MELD-Na and PELD in US liver matching is available at the [https://optn.transplant.hrsa.gov](OPTN website).
+It is worth noting that for liver allocation in the USA, additional points are added to the MELD score in the context of certain specified clinical conditions known as "standard MELD exceptions". These increase the MELD score by 10% every 3 months from diagnosis. Guidance on MELD, MELD-Na and PELD in US liver matching is available at the [OPTN website](https://optn.transplant.hrsa.gov).
 
 # UKELD score
 

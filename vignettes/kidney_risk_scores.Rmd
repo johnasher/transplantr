@@ -99,7 +99,7 @@ my_data4 = my_data3 %>%
 
 # UK Kidney Donor Risk Index (2012)
 
-The first version of the UK Kidney Donor Risk Index was published by Watson et al. in 2012 and based on Cox regression of kidney transplant survival from the UK National Transplant Registry. It is simpler than the US KDRI and slighly outperforms the US KDRI when applied to the UK transpant series. It can be calculated using the `watson_ukkdri()` function, which includes these variables:
+The first version of the UK Kidney Donor Risk Index was published by Watson et al. in 2012 and based on Cox regression of kidney transplant survival from the UK National Transplant Registry. It is simpler than the US KDRI and slightly outperforms the US KDRI when applied to the UK transpant series. It can be calculated using the `watson_ukkdri()` function, which includes these variables:
 
 Parameter | Description | Values
 ---|---|---
@@ -136,7 +136,7 @@ dcd | whether donor is DCD | numeric vector of 1 = DCD, 0 = DBD
 scaling | OPTN Scaling Factor | single number (defaults to 1)
 units | creatinine units | single string of "SI" for µmol/l or "US" for mg/dl
 
-The Scaling Factor is the median KDRI for kidney donors in the USA in the previous year, and is published each year on the [https://optn.transplant.hrsa.gov/resources/allocation-calculators/kdpi-calculator/](OPTN website), 
+The Scaling Factor is the median KDRI for kidney donors in the USA in the previous year, and is published each year on the [OPTN website](https://optn.transplant.hrsa.gov/resources/allocation-calculators/kdpi-calculator/), 
 together with a table for converting KDRI to KDPI, which gives a percentile of risk. For 2019 the scaling factor is approximately 1.2507. This normalises the donor risk within each year, but I think it obscures inter-year comparisons. The `scaling` parameter defaults to 1 so can be left out when a non-scaled KDRI is desired.
 
 As a vectorised function, this works well when calculating US KDRI for a large series using a _dplyr_ pipe with code like this:
