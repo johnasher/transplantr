@@ -16,7 +16,6 @@ ukeld(INR, bili, creat, Na, units = "SI")
 \item{Na}{numeric vector of sodium in mmol/l}
 
 \item{units}{Units for bilirubin and creatinine ("SI" for µmol/l (default), "US" for mg/dl)}
-
 }
 \value{
 numeric vector of UKELD scores
