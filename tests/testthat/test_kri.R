@@ -15,10 +15,9 @@ test_that("Watson UKKDRI is correct", {
 })
 
 test_that("USKDRI is correct", {
-  expect_equal(round(uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-                            cva = 0, creat = 120, hcv = 0, dcd = 0, units = "SI"), 3), 1.082)
-  expect_equal(round(uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-                            cva = 0, creat = 1.4, hcv = 0, dcd = 0, units = "US"), 3), 1.092)
   expect_equal(round(uskdri(age = 52, height = 183, weight = 81, eth = "non-black", htn = 1, dm = 0,
-                            cva = 1, creat = 1.7, hcv = 0, dcd = 1, units = "US"), 3), 1.775)
+                            cva = 1, creat = 1.7, hcv = 0, dcd = 1, scaling = 1.250609, units = "US"), 2), 1.42)
+  expect_equal(round(uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
+                            cva = 0, creat = 120, hcv = 0, dcd = 0, scaling = 1.250609, units = "SI"), 2), 0.87)
 })
+

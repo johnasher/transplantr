@@ -4,7 +4,8 @@
 \alias{uskdri_US}
 \title{US Kidney Donor Risk Index (US units)}
 \usage{
-uskdri_US(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd)
+uskdri_US(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd,
+  scaling = 1)
 }
 \arguments{
 \item{age}{numeric vector of donor ages in years}
@@ -26,6 +27,8 @@ uskdri_US(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd)
 \item{hcv}{numeric vector of donor hepatitis C history (1 = yes, 0 = no)}
 
 \item{dcd}{numeric vector of type of donor (1 = DCD, 0 = DBD)}
+
+\item{scaling}{single numeric value for OPTN scaling factor (optional, defaults to 1)}
 }
 \value{
 numeric vector of US KDRI values
@@ -33,6 +36,11 @@ numeric vector of US KDRI values
 \description{
 Wrapper function for the uskdri() vectorised function to calculate US Kidney Donor Risk Index
 as published by UNOS but using mg/dl as the units for creatinine.
+}
+\details{
+The KDRI is normalised by a scaling factor based on the median KDRI in the previous year. For 2018, this was
+approximately 1.250609 as is published on the OPTN website. The scaling parameter in this function defaults to 1,
+so can be left out to calculate the KDRI without scaling.
 }
 \examples{
 uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,

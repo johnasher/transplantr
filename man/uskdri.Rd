@@ -5,7 +5,7 @@
 \title{US Kidney Donor Risk Index}
 \usage{
 uskdri(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd,
-  units = "SI")
+  scaling = 1, units = "SI")
 }
 \arguments{
 \item{age}{numeric vector of donor ages in years}
@@ -28,6 +28,8 @@ uskdri(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd,
 
 \item{dcd}{numeric vector of type of donor (1 = DCD, 0 = DBD)}
 
+\item{scaling}{single numeric value for OPTN scaling factor (optional, defaults to 1)}
+
 \item{units}{single string value to indicate creatinine units ("SI" for µmol/l, "US" for mg/dl)}
 }
 \value{
@@ -38,12 +40,17 @@ Vectorised function to calculate US Kidney Donor Risk Index as published by UNOS
 that this function uses creatinine measured in µmol/l by default, but can be changed to
 mg/dl if the optional units parameter is set to "US".
 }
+\details{
+The KDRI is normalised by a scaling factor based on the median KDRI in the previous year. For 2018, this was
+approximately 1.250609 as is published on the OPTN website. The scaling parameter in this function defaults to 1,
+so can be left out to calculate the KDRI without scaling.
+}
 \examples{
 # with creatinine in µmol/l (units = "SI" can be omitted)
 uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-    cva = 0, creat = 120, hcv = 0, dcd = 0, units = "SI") # 1.08
+    cva = 0, creat = 120, hcv = 0, dcd = 0, scaling = 1.250609, units = "SI") # 0.87
 
 # with creatinine in mg/dl
 uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-    cva = 0, creat = 1.4, hcv = 0, dcd = 0, units = "US") # 1.09
+    cva = 0, creat = 1.4, hcv = 0, dcd = 0, scaling = 1.250609, units = "US") # 0.87
 }
