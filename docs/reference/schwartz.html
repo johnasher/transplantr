@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pancreas donor risk index — pdri • transplantr</title>
+<title>eGFR by bedside Schwartz formula — schwartz • transplantr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,11 +32,10 @@
 
 
 
-<meta property="og:title" content="Pancreas donor risk index — pdri" />
+<meta property="og:title" content="eGFR by bedside Schwartz formula — schwartz" />
 
-<meta property="og:description" content="A vectorised function to calculate the Pancreas Donor Risk Index as published by Axelrod et al.
-By default, the serum creatinine is used in mcmmol/l but this can be changed to mg/dl by setting
-the optional units parameter to &quot;US&quot;" />
+<meta property="og:description" content="A vectorised formula to calculate estimate glomerular filtration rate in children using the bedside Schwartz formula. By default this uses
+serum creatinine in µmol/l but this can be changed to mg/dl by setting the optional units parameter to &quot;US&quot;." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,81 +117,47 @@ the optional units parameter to &quot;US&quot;" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pancreas donor risk index</h1>
+    <h1>eGFR by bedside Schwartz formula</h1>
     
-    <div class="hidden name"><code>pdri.Rd</code></div>
+    <div class="hidden name"><code>schwartz.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A vectorised function to calculate the Pancreas Donor Risk Index as published by Axelrod et al.
-By default, the serum creatinine is used in mcmmol/l but this can be changed to mg/dl by setting
-the optional units parameter to "US"</p>
+    <p>A vectorised formula to calculate estimate glomerular filtration rate in children using the bedside Schwartz formula. By default this uses
+serum creatinine in µmol/l but this can be changed to mg/dl by setting the optional units parameter to "US".</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>pdri</span>(<span class='no'>age</span>, <span class='no'>sex</span>, <span class='no'>creat</span>, <span class='no'>eth</span>, <span class='no'>bmi</span>, <span class='no'>height</span>, <span class='no'>cva</span>, <span class='no'>cit</span>, <span class='no'>dcd</span>, <span class='kw'>intent</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"SPK"</span>,
-  <span class='st'>"PAK"</span>, <span class='st'>"Other"</span>), <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"SI"</span>)</pre>
+    <pre class="usage"><span class='fu'>schwartz</span>(<span class='no'>creat</span>, <span class='no'>height</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"SI"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>age</th>
-      <td><p>numeric vector of ages in years</p></td>
-    </tr>
-    <tr>
-      <th>sex</th>
-      <td><p>character vector of patient sex ("F" for female, "M" for male)</p></td>
-    </tr>
-    <tr>
       <th>creat</th>
-      <td><p>numeric vector of serum creatinine (µmol/l by default)</p></td>
-    </tr>
-    <tr>
-      <th>eth</th>
-      <td><p>character vector of ethnicity, one of "asian", "black" or "other" in each case</p></td>
-    </tr>
-    <tr>
-      <th>bmi</th>
-      <td><p>numeric vector of body mass index (BMI)</p></td>
+      <td><p>numeric vector of creatinine levels in µmol/l (or mg/dl if units = "US")</p></td>
     </tr>
     <tr>
       <th>height</th>
-      <td><p>numeric vector of heights in centimetres</p></td>
-    </tr>
-    <tr>
-      <th>cva</th>
-      <td><p>numeric vector of whether CVA is cause of death (1 = yes, 0 = no)</p></td>
-    </tr>
-    <tr>
-      <th>cit</th>
-      <td><p>numeric vector of cold ischaemic times in hours</p></td>
-    </tr>
-    <tr>
-      <th>dcd</th>
-      <td><p>numeric vector of whether donor after circulatory death (1 = DCD, 0 = DBD)</p></td>
-    </tr>
-    <tr>
-      <th>intent</th>
-      <td><p>character vector of implant intent, "PAK" for pancreas after kidney or "other"</p></td>
+      <td><p>numeric vector of heights in cm</p></td>
     </tr>
     <tr>
       <th>units</th>
-      <td><p>single character string for creatinine units: one of "SI" (for µmol/l) or "US" (for mg/dl)</p></td>
+      <td><p>non-vectorised optional parameter for creatinine unit ("SI" for µmol/l (default), "US" for mg/dl)</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>numeric vector of pancreas donor risk index values</p>
+    <p>numeric vector of eGFR values</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>pdri</span>(<span class='kw'>age</span> <span class='kw'>=</span> <span class='fl'>28</span>, <span class='kw'>sex</span> <span class='kw'>=</span> <span class='st'>"M"</span>, <span class='kw'>creat</span> <span class='kw'>=</span> <span class='fl'>1.0</span>, <span class='kw'>eth</span> <span class='kw'>=</span> <span class='st'>"other"</span>, <span class='kw'>bmi</span> <span class='kw'>=</span> <span class='fl'>24</span>,
-<span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>173</span>, <span class='kw'>cva</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>cit</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>dcd</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"US"</span>) <span class='co'># 1.00</span></div><div class='output co'>#&gt; [1] 1</div><div class='input'>
-<span class='fu'>pdri</span>(<span class='kw'>age</span> <span class='kw'>=</span> <span class='fl'>45</span>, <span class='kw'>sex</span> <span class='kw'>=</span> <span class='st'>"M"</span>, <span class='kw'>creat</span> <span class='kw'>=</span> <span class='fl'>88.4</span>, <span class='kw'>eth</span> <span class='kw'>=</span> <span class='st'>"other"</span>, <span class='kw'>bmi</span> <span class='kw'>=</span> <span class='fl'>24</span>,
-<span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>173</span>, <span class='kw'>cva</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>cit</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>dcd</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"SI"</span>) <span class='co'># 1.56</span></div><div class='output co'>#&gt; [1] 1.559762</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># calculate using creatinine in µmol/l</span>
+<span class='fu'>schwartz</span>(<span class='kw'>creat</span> <span class='kw'>=</span> <span class='fl'>64</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>101</span>)</div><div class='output co'>#&gt; [1] 57.12813</div><div class='input'>
+<span class='co'># calculate using mg/dl</span>
+<span class='fu'>schwartz</span>(<span class='kw'>creat</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>101</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"US"</span>)</div><div class='output co'>#&gt; [1] 59.15714</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

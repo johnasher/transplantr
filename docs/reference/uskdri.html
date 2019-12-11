@@ -35,7 +35,7 @@
 <meta property="og:title" content="US Kidney Donor Risk Index — uskdri" />
 
 <meta property="og:description" content="Vectorised function to calculate US Kidney Donor Risk Index as published by UNOS. Please note
-that this function uses creatinine measured in mcmol/l by default, but can be changed to
+that this function uses creatinine measured in µmol/l by default, but can be changed to
 mg/dl if the optional units parameter is set to &quot;US&quot;." />
 <meta name="twitter:card" content="summary" />
 
@@ -126,7 +126,7 @@ mg/dl if the optional units parameter is set to &quot;US&quot;." />
     <div class="ref-description">
     
     <p>Vectorised function to calculate US Kidney Donor Risk Index as published by UNOS. Please note
-that this function uses creatinine measured in mcmol/l by default, but can be changed to
+that this function uses creatinine measured in µmol/l by default, but can be changed to
 mg/dl if the optional units parameter is set to "US".</p>
     
     </div>
@@ -167,7 +167,7 @@ mg/dl if the optional units parameter is set to "US".</p>
     </tr>
     <tr>
       <th>creat</th>
-      <td><p>numeric vector of donor serum creatinine (mcmol/l)</p></td>
+      <td><p>numeric vector of donor serum creatinine (µmol/l)</p></td>
     </tr>
     <tr>
       <th>hcv</th>
@@ -179,7 +179,7 @@ mg/dl if the optional units parameter is set to "US".</p>
     </tr>
     <tr>
       <th>units</th>
-      <td><p>single string value to indicate creatinine units ("SI" for mcmol/l, "US" for mg/dl)</p></td>
+      <td><p>single string value to indicate creatinine units ("SI" for µmol/l, "US" for mg/dl)</p></td>
     </tr>
     </table>
     
@@ -189,7 +189,7 @@ mg/dl if the optional units parameter is set to "US".</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># with creatinine in mcmol/l (units = "SI" can be omitted)</span>
+    <pre class="examples"><div class='input'><span class='co'># with creatinine in µmol/l (units = "SI" can be omitted)</span>
 <span class='fu'>uskdri</span>(<span class='kw'>age</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>170</span>, <span class='kw'>weight</span> <span class='kw'>=</span> <span class='fl'>80</span>, <span class='kw'>eth</span> <span class='kw'>=</span> <span class='st'>"non-black"</span>, <span class='kw'>htn</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>dm</span> <span class='kw'>=</span> <span class='fl'>0</span>,
     <span class='kw'>cva</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>creat</span> <span class='kw'>=</span> <span class='fl'>120</span>, <span class='kw'>hcv</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>dcd</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"SI"</span>) <span class='co'># 1.08</span></div><div class='output co'>#&gt; [1] 1.081818</div><div class='input'>
 <span class='co'># with creatinine in mg/dl</span>

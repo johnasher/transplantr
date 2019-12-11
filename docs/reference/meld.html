@@ -34,10 +34,10 @@
 
 <meta property="og:title" content="MELD score — meld" />
 
-<meta property="og:description" content="A vectorised function to calculate the MELD score using mcmol/l for bilirubin and creatinine.
+<meta property="og:description" content="A vectorised function to calculate the MELD score using µmol/l for bilirubin and creatinine.
 The units can be changed to mg/dl by setting the optional units parameter to &quot;US&quot;. If the
 patient is on CVVH or has been dialysed at least twice in the same week, the dialysis argument
-should be set to 1, which changes the creatinine level used in the formula to 4mg/dl (353mcmol/l).
+should be set to 1, which changes the creatinine level used in the formula to 4mg/dl (353µmol/l).
 Following UNOS guidelines, the values for INR as well bilirubin and creatinine (in mg/dl) are
 set to a minimum value of 1 if less than 1.0" />
 <meta name="twitter:card" content="summary" />
@@ -128,10 +128,10 @@ set to a minimum value of 1 if less than 1.0" />
 
     <div class="ref-description">
     
-    <p>A vectorised function to calculate the MELD score using mcmol/l for bilirubin and creatinine.
+    <p>A vectorised function to calculate the MELD score using µmol/l for bilirubin and creatinine.
 The units can be changed to mg/dl by setting the optional units parameter to "US". If the
 patient is on CVVH or has been dialysed at least twice in the same week, the dialysis argument
-should be set to 1, which changes the creatinine level used in the formula to 4mg/dl (353mcmol/l).
+should be set to 1, which changes the creatinine level used in the formula to 4mg/dl (353µmol/l).
 Following UNOS guidelines, the values for INR as well bilirubin and creatinine (in mg/dl) are
 set to a minimum value of 1 if less than 1.0</p>
     
@@ -148,11 +148,11 @@ set to a minimum value of 1 if less than 1.0</p>
     </tr>
     <tr>
       <th>bili</th>
-      <td><p>numeric vector of bilirubin (mcmol/l)</p></td>
+      <td><p>numeric vector of bilirubin (µmol/l)</p></td>
     </tr>
     <tr>
       <th>creat</th>
-      <td><p>numeric vector of creatinine (mcmol/l)</p></td>
+      <td><p>numeric vector of creatinine (µmol/l)</p></td>
     </tr>
     <tr>
       <th>dialysis</th>
@@ -160,7 +160,7 @@ set to a minimum value of 1 if less than 1.0</p>
     </tr>
     <tr>
       <th>units</th>
-      <td><p>Units for bilirubin and creatinine ("SI" for mcmol/l (default), "US" for mg/dl)</p></td>
+      <td><p>Units for bilirubin and creatinine ("SI" for µmol/l (default), "US" for mg/dl)</p></td>
     </tr>
     </table>
     
