@@ -13,7 +13,7 @@ ukkdri(age, height, htn, female, cmv, gfr, hdays)
 
 \item{htn}{numeric vector of whether donor history of hypertension (1 = yes, 0 = no)}
 
-\item{female}{numeric vector of whether donor is female (1 = yes, 0 = no)}
+\item{female}{character vector of donor sex ("F" = female, "M" = male)}
 
 \item{cmv}{numeric vector of whether donor CMV IgG positive (1 = yes, 0 = no)}
 

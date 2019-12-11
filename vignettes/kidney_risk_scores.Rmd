@@ -34,7 +34,6 @@ To start, load the transplantr library and I would also recommend using dplyr to
 
 ```{r setup}
 library(transplantr)
-#library(dplyr)
 ```
 
 ## UK Kidney Donor and Recipient Risk Indices (2019)
@@ -50,7 +49,7 @@ Parameter | Description | Values
 age | donor age in years | numeric vector
 height | donor height in cm | numeric vector
 htn | donor history of hypertension | numeric vector of values of 1 (yes) or 0 (no)
-female | whether donor is female | numeric vector of values of 1 (yes) or 0 (no)
+female | donor sex | character vector of values of "F" or "M"
 cmv | whether donor is CMV seropositive | numeric vector of values of 1 (yes) or 0 (no)
 gfr | donor eGFR in ml/min | numeric vector
 hdays | length of donor hospital stay | numeric vector

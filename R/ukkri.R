@@ -29,7 +29,7 @@ ukkrri = function(age, dx, wait, dm) {
 #' @param age numeric vector of donor age in years
 #' @param height numeric vector of donor height in cm
 #' @param htn numeric vector of whether donor history of hypertension (1 = yes, 0 = no)
-#' @param female numeric vector of whether donor is female (1 = yes, 0 = no)
+#' @param female character vector of donor sex ("F" = female, "M" = male)
 #' @param cmv numeric vector of whether donor CMV IgG positive (1 = yes, 0 = no)
 #' @param gfr numeric vector of donor eGFR at time of donation
 #' @param hdays numeric vector of number of days donor in hospital before donation
@@ -42,7 +42,7 @@ ukkrri = function(age, dx, wait, dm) {
 ukkdri = function(age, height, htn, female, cmv, gfr, hdays) {
   agevar = 0.023 * (age - 50)
   heightvar = -0.152 * (height - 170) / 10
-  femvar = -0.184 * female
+  femvar = ifelse(sex == "F", -0.184, 0)
   cmvvar = 0.190 * cmv
   gfrvar = -0.023 * (gfr - 90) / 10
   hdaysvar = 0.015 * hdays
