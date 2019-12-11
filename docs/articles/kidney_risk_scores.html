@@ -88,9 +88,9 @@
 
     
     
-<div id="calculating-kidney-risk-indices" class="section level1">
+<div id="introduction" class="section level1">
 <h1 class="hasAnchor">
-<a href="#calculating-kidney-risk-indices" class="anchor"></a>Calculating kidney risk indices</h1>
+<a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>The transplantr package includes vectorised functions to calculate a number of different deceased donor kidney risk indices which are based on Cox models of transplant survival and can be used to audit or risk adjust transplant outcome data.</p>
 <p>The models included in version 0.1.0 are:</p>
 <ul>
@@ -105,15 +105,15 @@
 </ul>
 <p>The US risk index uses donor creatinine as a parameter, and the <code><a href="../reference/uskdri.html">uskdri()</a></code> function in this package uses creatinine measured in mcmol/l as the default for all functions, but creatinine can be entered in mg/dl either by setting the optional <code>units</code> parameter to “SI” or by calling the wrapper function <code><a href="../reference/uskdri_US.html">uskdri_US()</a></code> instead. All of the functions in transplantr using creatinine or bilirubin use units in the same way - for mg/dl either use <code>units == "US"</code> or call the <code>..._US()</code> wrapper function.</p>
 <p>To start, load the transplantr library and I would also recommend using dplyr to incorporate the results of these functions into your datasets:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(transplantr)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#library(dplyr)</span></a></code></pre></div>
-<div id="uk-kidney-donor-and-recipient-risk-indices-2019" class="section level2">
-<h2 class="hasAnchor">
-<a href="#uk-kidney-donor-and-recipient-risk-indices-2019" class="anchor"></a>UK Kidney Donor and Recipient Risk Indices (2019)</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(transplantr)</a></code></pre></div>
+</div>
+<div id="uk-kidney-donor-and-recipient-risk-indices-2019" class="section level1">
+<h1 class="hasAnchor">
+<a href="#uk-kidney-donor-and-recipient-risk-indices-2019" class="anchor"></a>UK Kidney Donor and Recipient Risk Indices (2019)</h1>
 <p>The current UK Kidney Donor and Recipient Risk Indices are based on transplant and recipient survival data from the UK National Transplant Database and have been incorporated into the new deceased donor kidney matching scheme launched in September 2019, which aims to match expected transplant and recipient survival (although a number of other factors are also used in the algorithm).</p>
-<div id="uk-kidney-donor-risk-index" class="section level3">
-<h3 class="hasAnchor">
-<a href="#uk-kidney-donor-risk-index" class="anchor"></a>UK Kidney Donor Risk Index</h3>
+<div id="uk-kidney-donor-risk-index" class="section level2">
+<h2 class="hasAnchor">
+<a href="#uk-kidney-donor-risk-index" class="anchor"></a>UK Kidney Donor Risk Index</h2>
 <p>The <code><a href="../reference/ukkdri.html">ukkdri()</a></code> function calculates the donor risk and uses the following parameters:</p>
 <table class="table">
 <colgroup>
@@ -143,9 +143,9 @@
 <td>numeric vector of values of 1 (yes) or 0 (no)</td>
 </tr>
 <tr class="even">
-<td>female</td>
-<td>whether donor is female</td>
-<td>numeric vector of values of 1 (yes) or 0 (no)</td>
+<td>sex</td>
+<td>donor sex</td>
+<td>character vector of values of “F” or “M”</td>
 </tr>
 <tr class="odd">
 <td>cmv</td>
@@ -166,21 +166,20 @@
 </table>
 <p>Using vectors of 1 and 0 is more efficient than TRUE/FALSE or “Male”/“Female”, but if your dataset uses these values instead, it is easy enough to convert them with the dplyr::mutate() verb:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">my_data2 =<span class="st"> </span>my_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Sex =</span> <span class="kw">if_else</span>(Sex <span class="op">==</span><span class="st"> "F"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">         <span class="dt">Hypertension =</span> <span class="kw">if_else</span>(Hypertension <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>, <span class="dv">1</span>, <span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">         <span class="dt">CMV =</span> <span class="kw">if_else</span>(CMV <span class="op">==</span><span class="st"> "Pos"</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a></code></pre></div>
-<p>Generating the results is also easy to do with dplyr:</p>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Donor.Hypertension =</span> <span class="kw">if_else</span>(Donor.Hypertension <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>, <span class="dv">1</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">         <span class="dt">Donor.CMV =</span> <span class="kw">if_else</span>(Donor.CMV <span class="op">==</span><span class="st"> "Pos"</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a></code></pre></div>
+<p>Generating the results is also easy to do with <em>dplyr</em>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">my_data3 =<span class="st"> </span>my_data2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">UKKDRI =</span> <span class="kw"><a href="../reference/ukkdri.html">ukkdri</a></span>(<span class="dt">age =</span> Donor.Age, <span class="dt">height =</span> Donor.Height, <span class="dt">htn =</span> Donor.Hypertension,</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">                         <span class="dt">female =</span> Donor.Sex, <span class="dt">cmv =</span> Donor.CMV, <span class="dt">gfr =</span> Donor.eGFR, </a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">                         <span class="dt">sex =</span> Donor.Sex, <span class="dt">cmv =</span> Donor.CMV, <span class="dt">gfr =</span> Donor.eGFR, </a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">                         <span class="dt">hdays =</span> Donor.Hospital_Stay))</a></code></pre></div>
 <p>Although it is a vectorised function, <code><a href="../reference/ukkdri.html">ukkdri()</a></code> will also work with single values:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/ukkdri.html">ukkdri</a></span>(<span class="dt">age =</span> <span class="dv">50</span>, <span class="dt">height =</span> <span class="dv">170</span>, <span class="dt">htn =</span> <span class="dv">1</span>, <span class="dt">female =</span> <span class="dv">1</span>, <span class="dt">cmv =</span> <span class="dv">0</span>, <span class="dt">gfr =</span> <span class="dv">90</span>, <span class="dt">hdays =</span> <span class="dv">2</span>)</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/ukkdri.html">ukkdri</a></span>(<span class="dt">age =</span> <span class="dv">50</span>, <span class="dt">height =</span> <span class="dv">170</span>, <span class="dt">htn =</span> <span class="dv">1</span>, <span class="dt">sex =</span> <span class="st">"F"</span>, <span class="dt">cmv =</span> <span class="dv">0</span>, <span class="dt">gfr =</span> <span class="dv">90</span>, <span class="dt">hdays =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; [1] 0.857272</span></a></code></pre></div>
 </div>
-<div id="uk-recipient-risk-index" class="section level3">
-<h3 class="hasAnchor">
-<a href="#uk-recipient-risk-index" class="anchor"></a>UK Recipient Risk Index</h3>
+<div id="uk-recipient-risk-index" class="section level2">
+<h2 class="hasAnchor">
+<a href="#uk-recipient-risk-index" class="anchor"></a>UK Recipient Risk Index</h2>
 <p>The <code><a href="../reference/ukkrri.html">ukkrri()</a></code> function calculates the UK Kidney Recipient Risk Index using the following parameters:</p>
 <table class="table">
 <colgroup>
@@ -217,15 +216,147 @@
 </tbody>
 </table>
 <p>The easiest way to generate the UKKRRI data column is again to use dplyr::mutate() verb:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">mydata4 =<span class="st"> </span>mydata3 <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">my_data4 =<span class="st"> </span>my_data3 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">UKKRRI =</span> <span class="kw"><a href="../reference/ukkrri.html">ukkrri</a></span>(<span class="dt">age =</span> Recipient.Age, <span class="dt">dx =</span> Recipient.OnDialysis, </a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">                         <span class="dt">wait =</span> Recipient.Waittime, <span class="dt">dm =</span> Recipient.Diabetes))</a></code></pre></div>
 </div>
 </div>
-<div id="us-kidney-donor-risk-index" class="section level2">
-<h2 class="hasAnchor">
-<a href="#us-kidney-donor-risk-index" class="anchor"></a>US Kidney Donor Risk Index</h2>
+<div id="uk-kidney-donor-risk-index-2012" class="section level1">
+<h1 class="hasAnchor">
+<a href="#uk-kidney-donor-risk-index-2012" class="anchor"></a>UK Kidney Donor Risk Index (2012)</h1>
+<p>The first version of the UK Kidney Donor Risk Index was published by Watson et al. in 2012 and based on Cox regression of kidney transplant survival from the UK National Transplant Registry. It is simpler than the US KDRI and slighly outperforms the US KDRI when applied to the UK transpant series. It can be calculated using the <code><a href="../reference/watson_ukkdri.html">watson_ukkdri()</a></code> function, which includes these variables:</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>age</td>
+<td>donor age in years</td>
+<td>numeric vector</td>
+</tr>
+<tr class="even">
+<td>htn</td>
+<td>whether donor has history of hypertension</td>
+<td>numeric vector of 1 = yes, 0 = no</td>
+</tr>
+<tr class="odd">
+<td>weight</td>
+<td>donor weight in kg</td>
+<td>numeric vector</td>
+</tr>
+<tr class="even">
+<td>hdays</td>
+<td>length of donor hospital stay</td>
+<td>numeric vector</td>
+</tr>
+<tr class="odd">
+<td>adrenaline</td>
+<td>whether donor treated with adrenaline infusion</td>
+<td>numeric vector of 1 = yes, 0 = no</td>
+</tr>
+</tbody>
+</table>
+<p>It can be called within a <em>dplyr</em> pipe as above, or as a single calculation:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/watson_ukkdri.html">watson_ukkdri</a></span>(<span class="dt">age =</span> <span class="dv">40</span>, <span class="dt">htn =</span> <span class="dv">0</span>, <span class="dt">weight =</span> <span class="dv">75</span>, <span class="dt">hdays =</span> <span class="dv">0</span>, <span class="dt">adrenaline =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; [1] 1</span></a></code></pre></div>
 </div>
+<div id="us-kidney-donor-risk-index" class="section level1">
+<h1 class="hasAnchor">
+<a href="#us-kidney-donor-risk-index" class="anchor"></a>US Kidney Donor Risk Index</h1>
+<p>The US Kidney Donor Risk Index is a longer established risk stratification tool developed from American registry data, and can be calculated using the <code><a href="../reference/uskdri.html">uskdri()</a></code> function. The donor’s serum creatinine is one of the parameters used, and like the other functions in <em>transplantr</em> the default unit is µmol/l but can be changed to mg/dl either by setting the <code>units</code> parameter to <code>"US</code> or by calling the <code><a href="../reference/uskdri_US.html">uskdri_US()</a></code> wrapper function. The risk index function uses these variables:</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>age</td>
+<td>donor age in years</td>
+<td>numeric vector</td>
+</tr>
+<tr class="even">
+<td>height</td>
+<td>donor height in cm</td>
+<td>numeric vector</td>
+</tr>
+<tr class="odd">
+<td>weight</td>
+<td>donor weight in kg</td>
+<td>numeric vector</td>
+</tr>
+<tr class="even">
+<td>eth</td>
+<td>donor ethnicity</td>
+<td>character string vector of “black” or “non-black”</td>
+</tr>
+<tr class="odd">
+<td>htn</td>
+<td>whether donor has history of hypertension</td>
+<td>numeric vector of 1 = yes, 0 = no</td>
+</tr>
+<tr class="even">
+<td>dm</td>
+<td>whether donor has diabetes mellitus</td>
+<td>numeric vector of 1 = yes, 0 = no</td>
+</tr>
+<tr class="odd">
+<td>cva</td>
+<td>whether donor cause of death was CVA</td>
+<td>numeric vector of 1 = yes, 0 = no</td>
+</tr>
+<tr class="even">
+<td>creat</td>
+<td>donor creatinine</td>
+<td>numeric vector</td>
+</tr>
+<tr class="odd">
+<td>hcv</td>
+<td>whether donor has hepatitis C seropositive</td>
+<td>numeric vector of 1 = yes, 0 = no</td>
+</tr>
+<tr class="even">
+<td>dcd</td>
+<td>whether donor is DCD</td>
+<td>numeric vector of 1 = DCD, 0 = DBD</td>
+</tr>
+<tr class="odd">
+<td>units</td>
+<td>creatinine units</td>
+<td>single string of “SI” for µmol/l or “US” for mg/dl</td>
+</tr>
+</tbody>
+</table>
+<p>As a vectorised function, this works well when calculating US KDRI for a large series using a <em>dplyr</em> pipe with code like this:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">my_data5 =<span class="st"> </span>my_data2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">USKDRI =</span> <span class="kw"><a href="../reference/uskdri.html">uskdri</a></span>(<span class="dt">age =</span> Donor.Age, <span class="dt">height =</span> Donor.Height, <span class="dt">weight =</span> Donor.Weight,</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">                         <span class="dt">eth =</span> Donor.Race, <span class="dt">htn =</span> Donor.Hypertension, <span class="dt">dm =</span> Donor.Diabetes,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">                         <span class="dt">cva =</span> Donor.CVA, <span class="dt">creat =</span> Donor.Creatinine,</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">                         <span class="dt">hcv =</span> Donor.HepatitisC, <span class="dt">dcd =</span> Donor.Type, <span class="dt">units =</span> <span class="st">"US"</span>))</a></code></pre></div>
+<p>The function can also be used for a single case:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># with creatinine in µmol/l (units = "SI" can be omitted)</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="../reference/uskdri.html">uskdri</a></span>(<span class="dt">age =</span> <span class="dv">40</span>, <span class="dt">height =</span> <span class="dv">170</span>, <span class="dt">weight =</span> <span class="dv">80</span>, <span class="dt">eth =</span> <span class="st">"non-black"</span>, <span class="dt">htn =</span> <span class="dv">0</span>, <span class="dt">dm =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">    <span class="dt">cva =</span> <span class="dv">0</span>, <span class="dt">creat =</span> <span class="dv">120</span>, <span class="dt">hcv =</span> <span class="dv">0</span>, <span class="dt">dcd =</span> <span class="dv">0</span>, <span class="dt">units =</span> <span class="st">"SI"</span>)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">#&gt; [1] 1.081818</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co"># with creatinine in mg/dl</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="kw"><a href="../reference/uskdri.html">uskdri</a></span>(<span class="dt">age =</span> <span class="dv">40</span>, <span class="dt">height =</span> <span class="dv">170</span>, <span class="dt">weight =</span> <span class="dv">80</span>, <span class="dt">eth =</span> <span class="st">"non-black"</span>, <span class="dt">htn =</span> <span class="dv">0</span>, <span class="dt">dm =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">    <span class="dt">cva =</span> <span class="dv">0</span>, <span class="dt">creat =</span> <span class="fl">1.4</span>, <span class="dt">hcv =</span> <span class="dv">0</span>, <span class="dt">dcd =</span> <span class="dv">0</span>, <span class="dt">units =</span> <span class="st">"US"</span>)</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; [1] 1.091988</span></a></code></pre></div>
 </div>
   </div>
 
@@ -234,12 +365,15 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#calculating-kidney-risk-indices">Calculating kidney risk indices</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#uk-kidney-donor-and-recipient-risk-indices-2019">UK Kidney Donor and Recipient Risk Indices (2019)</a></li>
-      <li><a href="#us-kidney-donor-risk-index">US Kidney Donor Risk Index</a></li>
+<li><a href="#introduction">Introduction</a></li>
+      <li>
+<a href="#uk-kidney-donor-and-recipient-risk-indices-2019">UK Kidney Donor and Recipient Risk Indices (2019)</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#uk-kidney-donor-risk-index">UK Kidney Donor Risk Index</a></li>
+      <li><a href="#uk-recipient-risk-index">UK Recipient Risk Index</a></li>
       </ul>
 </li>
+      <li><a href="#uk-kidney-donor-risk-index-2012">UK Kidney Donor Risk Index (2012)</a></li>
+      <li><a href="#us-kidney-donor-risk-index">US Kidney Donor Risk Index</a></li>
       </ul>
 </div>
       </div>

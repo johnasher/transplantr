@@ -2,7 +2,7 @@
 % Please edit documentation in R/ukkri.R
 \name{ukkdri}
 \alias{ukkdri}
-\title{Calculate UK Kidney Donor Risk Index (NHSBT, 2019 version)}
+\title{UK Kidney Donor Risk Index (NHSBT, 2019 version)}
 \usage{
 ukkdri(age, height, htn, sex, cmv, gfr, hdays)
 }

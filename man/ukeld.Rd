@@ -2,7 +2,7 @@
 % Please edit documentation in R/liver.R
 \name{ukeld}
 \alias{ukeld}
-\title{Calculate UKELD score}
+\title{UKELD score}
 \usage{
 ukeld(INR, bili, creat, Na, units = "SI")
 }

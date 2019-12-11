@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>UKELD score — ukeld • transplantr</title>
+<title>Creatinine clearance by Cockcroft-Gault equation (US units) — cockcroft_US • transplantr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,10 @@
 
 
 
-<meta property="og:title" content="UKELD score — ukeld" />
+<meta property="og:title" content="Creatinine clearance by Cockcroft-Gault equation (US units) — cockcroft_US" />
 
-<meta property="og:description" content="A vectorised function to calculate the UKELD score using SI units for bilirubin and creatinine." />
+<meta property="og:description" content="A wrapper function for cockcroft(), a vectorised function to estimate creatinine clearance using the Cockcroft-Gault equation,
+but using creatinine in mg/dl" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -116,51 +117,48 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>UKELD score</h1>
+    <h1>Creatinine clearance by Cockcroft-Gault equation (US units)</h1>
     
-    <div class="hidden name"><code>ukeld.Rd</code></div>
+    <div class="hidden name"><code>cockcroft_US.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A vectorised function to calculate the UKELD score using SI units for bilirubin and creatinine.</p>
+    <p>A wrapper function for cockcroft(), a vectorised function to estimate creatinine clearance using the Cockcroft-Gault equation,
+but using creatinine in mg/dl</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ukeld</span>(<span class='no'>INR</span>, <span class='no'>bili</span>, <span class='no'>creat</span>, <span class='no'>Na</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"SI"</span>)</pre>
+    <pre class="usage"><span class='fu'>cockcroft_US</span>(<span class='no'>creat</span>, <span class='no'>age</span>, <span class='no'>sex</span>, <span class='no'>weight</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>INR</th>
-      <td><p>numeric vector of INR</p></td>
-    </tr>
-    <tr>
-      <th>bili</th>
-      <td><p>numeric vector of bilirubin in µmol/l</p></td>
-    </tr>
-    <tr>
       <th>creat</th>
-      <td><p>numeric vector of creatinine in µmol/l</p></td>
+      <td><p>numeric vector of creatinine levels in mg/dl</p></td>
     </tr>
     <tr>
-      <th>Na</th>
-      <td><p>numeric vector of sodium in mmol/l</p></td>
+      <th>age</th>
+      <td><p>numeric vector of ages in years</p></td>
     </tr>
     <tr>
-      <th>units</th>
-      <td><p>Units for bilirubin and creatinine ("SI" for µmol/l (default), "US" for mg/dl)</p></td>
+      <th>sex</th>
+      <td><p>character vector of sex ("F" = female, "M" = male)</p></td>
+    </tr>
+    <tr>
+      <th>weight</th>
+      <td><p>numeric vector of weights in kilograms</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>numeric vector of UKELD scores</p>
+    <p>numeric vector of creatinine clearances in ml/min</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ukeld</span>(<span class='kw'>INR</span> <span class='kw'>=</span> <span class='fl'>1.0</span>, <span class='kw'>bili</span> <span class='kw'>=</span> <span class='fl'>212</span>, <span class='kw'>creat</span> <span class='kw'>=</span> <span class='fl'>54</span>, <span class='kw'>Na</span> <span class='kw'>=</span> <span class='fl'>126</span>)</div><div class='output co'>#&gt; [1] 63.21842</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>cockcroft_US</span>(<span class='kw'>creat</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>age</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>sex</span> <span class='kw'>=</span> <span class='st'>"F"</span>, <span class='kw'>weight</span> <span class='kw'>=</span> <span class='fl'>60</span>)</div><div class='output co'>#&gt; [1] 81.45833</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

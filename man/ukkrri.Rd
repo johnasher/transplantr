@@ -2,7 +2,7 @@
 % Please edit documentation in R/ukkri.R
 \name{ukkrri}
 \alias{ukkrri}
-\title{Calculate UK Kidney Recipient Risk Index (NHSBT, 2019 version)}
+\title{UK Kidney Recipient Risk Index (NHSBT, 2019 version)}
 \usage{
 ukkrri(age, dx, wait, dm)
 }

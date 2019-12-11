@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate UK Kidney Donor Risk Index (NHSBT, 2019 version) — ukkdri • transplantr</title>
+<title>UK Kidney Donor Risk Index (NHSBT, 2019 version) — ukkdri • transplantr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
 
 
-<meta property="og:title" content="Calculate UK Kidney Donor Risk Index (NHSBT, 2019 version) — ukkdri" />
+<meta property="og:title" content="UK Kidney Donor Risk Index (NHSBT, 2019 version) — ukkdri" />
 
 <meta property="og:description" content="A vectorised function to calculate the UK Kidney Donor Risk Index as used in the new
 national kidney matching scheme implemented in September 2019." />
@@ -117,7 +117,7 @@ national kidney matching scheme implemented in September 2019." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate UK Kidney Donor Risk Index (NHSBT, 2019 version)</h1>
+    <h1>UK Kidney Donor Risk Index (NHSBT, 2019 version)</h1>
     
     <div class="hidden name"><code>ukkdri.Rd</code></div>
     </div>
@@ -129,7 +129,7 @@ national kidney matching scheme implemented in September 2019.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ukkdri</span>(<span class='no'>age</span>, <span class='no'>height</span>, <span class='no'>htn</span>, <span class='no'>female</span>, <span class='no'>cmv</span>, <span class='no'>gfr</span>, <span class='no'>hdays</span>)</pre>
+    <pre class="usage"><span class='fu'>ukkdri</span>(<span class='no'>age</span>, <span class='no'>height</span>, <span class='no'>htn</span>, <span class='no'>sex</span>, <span class='no'>cmv</span>, <span class='no'>gfr</span>, <span class='no'>hdays</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,8 +147,8 @@ national kidney matching scheme implemented in September 2019.</p>
       <td><p>numeric vector of whether donor history of hypertension (1 = yes, 0 = no)</p></td>
     </tr>
     <tr>
-      <th>female</th>
-      <td><p>numeric vector of whether donor is female (1 = yes, 0 = no)</p></td>
+      <th>sex</th>
+      <td><p>character vector of donor sex ("F" = female, "M" = male)</p></td>
     </tr>
     <tr>
       <th>cmv</th>
@@ -170,7 +170,7 @@ national kidney matching scheme implemented in September 2019.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ukkdri</span>(<span class='fl'>50</span>, <span class='fl'>170</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>90</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] 0.857272</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>ukkdri</span>(<span class='kw'>age</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>170</span>, <span class='kw'>htn</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sex</span> <span class='kw'>=</span> <span class='st'>"F"</span>, <span class='kw'>cmv</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>gfr</span> <span class='kw'>=</span> <span class='fl'>90</span>, <span class='kw'>hdays</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] 0.857272</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

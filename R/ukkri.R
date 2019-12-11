@@ -1,4 +1,4 @@
-#' Calculate UK Kidney Recipient Risk Index (NHSBT, 2019 version)
+#' UK Kidney Recipient Risk Index (NHSBT, 2019 version)
 #'
 #' A vectorised function to calculate the UK Kidney Recipient Risk Index as used in the new
 #' national kidney matching scheme implemented in September 2019.
@@ -21,7 +21,7 @@ ukkrri = function(age, dx, wait, dm) {
   exp(agevar + dxvar + wtvar + dmvar)
 }
 
-#' Calculate UK Kidney Donor Risk Index (NHSBT, 2019 version)
+#' UK Kidney Donor Risk Index (NHSBT, 2019 version)
 #'
 #' A vectorised function to calculate the UK Kidney Donor Risk Index as used in the new
 #' national kidney matching scheme implemented in September 2019.

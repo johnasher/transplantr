@@ -59,12 +59,11 @@ uses these values instead, it is easy enough to convert them with the dplyr::mut
 
 ```{r, eval = F}
 my_data2 = my_data %>%
-  mutate(Sex = if_else(Sex == "F", 1, 0),
-         Hypertension = if_else(Hypertension == TRUE, 1, 0),
-         CMV = if_else(CMV == "Pos", 1, 0))
+  mutate(Donor.Hypertension = if_else(Donor.Hypertension == TRUE, 1, 0),
+         Donor.CMV = if_else(Donor.CMV == "Pos", 1, 0))
 ```
 
-Generating the results is also easy to do with dplyr:
+Generating the results is also easy to do with _dplyr_:
 
 ```{r, eval = F}
 my_data3 = my_data2 %>%
@@ -93,10 +92,30 @@ dm | whether recipient has diabetes | numeric vector of 1 (yes) and 0 (no)
 The easiest way to generate the UKKRRI data column is again to use dplyr::mutate() verb:
 
 ```{r, eval = F}
-mydata4 = mydata3 %>%
+my_data4 = my_data3 %>%
   mutate(UKKRRI = ukkrri(age = Recipient.Age, dx = Recipient.OnDialysis, 
                          wait = Recipient.Waittime, dm = Recipient.Diabetes))
 ```
+
+# UK Kidney Donor Risk Index (2012)
+
+The first version of the UK Kidney Donor Risk Index was published by Watson et al. in 2012 and based on Cox regression of kidney transplant survival from the UK National Transplant Registry. It is simpler than the US KDRI and slighly outperforms the US KDRI when applied to the UK transpant series. It can be calculated using the `watson_ukkdri()` function, which includes these variables:
+
+Parameter | Description | Values
+---|---|---
+age | donor age in years | numeric vector
+htn | whether donor has history of hypertension | numeric vector of 1 = yes, 0 = no
+weight | donor weight in kg | numeric vector
+hdays | length of donor hospital stay | numeric vector
+adrenaline | whether donor treated with adrenaline infusion | numeric vector of 1 = yes, 0 = no
+
+It can be called within a _dplyr_ pipe as above, or as a single calculation:
+
+
+```{r}
+watson_ukkdri(age = 40, htn = 0, weight = 75, hdays = 0, adrenaline = 0)
+```
+
 
 # US Kidney Donor Risk Index
 
@@ -116,6 +135,16 @@ hcv | whether donor has hepatitis C seropositive | numeric vector of 1 = yes, 0 
 dcd | whether donor is DCD | numeric vector of 1 = DCD, 0 = DBD
 units | creatinine units | single string of "SI" for µmol/l or "US" for mg/dl
 
+As a vectorised function, this works well when calculating US KDRI for a large series using a _dplyr_ pipe with code like this:
+
+```{r, eval = F}
+my_data5 = my_data2 %>%
+  mutate(USKDRI = uskdri(age = Donor.Age, height = Donor.Height, weight = Donor.Weight,
+                         eth = Donor.Race, htn = Donor.Hypertension, dm = Donor.Diabetes,
+                         cva = Donor.CVA, creat = Donor.Creatinine,
+                         hcv = Donor.HepatitisC, dcd = Donor.Type, units = "US"))
+```
+
 The function can also be used for a single case:
 
 ```{r}
@@ -127,4 +156,3 @@ uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
 uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
     cva = 0, creat = 1.4, hcv = 0, dcd = 0, units = "US")
 ```
-

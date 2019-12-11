@@ -148,6 +148,16 @@
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">eGFR =</span> <span class="kw"><a href="../reference/schwartz.html">schwartz</a></span>(<span class="dt">creat =</span> SCr, <span class="dt">height =</span> Height))</a></code></pre></div>
 <p>In the same way as the CKD-EPI and MDRD functions, using the optional offset parameter helps to generate serial results.</p>
 </div>
+<div id="cockcroft-gault-formula" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cockcroft-gault-formula" class="anchor"></a>Cockcroft-Gault formula</h1>
+<p>The Cockcroft-Gault formula provides a reasonably accurate estimation of creatinine clearance, but this is <em>not</em> the same as glomerular filtration as creatinine is also cleared by tubular secretion, and so the equation tends to overestimate GFR by up to 25%. It is still used in renal dose calculations in the UK, although the US guidance is to use CKD-EPI or MDRD instead. It is also worth noting that the methodology from which it was derived assumes ideal body weight.</p>
+<p>In the <em>transplantr</em> package, the creatinine clearance can be calculated with the <code><a href="../reference/cockcroft.html">cockcroft()</a></code> function, which takes creatinine, age, sex and weight as core arguments. The creatinine is in µmol/l by default, but can be changed to mg/dl either by specifying <code>units</code> to be <code>"US"</code> or by calling the wrapper function <code><a href="../reference/cockcroft_US.html">cockcroft_US()</a></code>. Ideal body weight can be calculated from height and sex using the <code><a href="../reference/ibw.html">ibw()</a></code> function. An example using a <em>dplyr</em> pipe:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">mydata &lt;-<span class="st"> </span>mydata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Ideal.Weight =</span> <span class="kw"><a href="../reference/ibw.html">ibw</a></span>(<span class="dt">height =</span> Patient.Height, <span class="dt">sex =</span> Patient.Sex),</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">         <span class="dt">CrClear =</span> <span class="kw"><a href="../reference/cockcroft.html">cockcroft</a></span>(<span class="dt">creat =</span> Patient.SCr, <span class="dt">age =</span> Patient.Age, <span class="dt">sex =</span> Patient.Sex,</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">                             <span class="dt">weight =</span> Ideal.Weight))</a></code></pre></div>
+</div>
 <div id="formulae-to-be-added-in-future" class="section level1">
 <h1 class="hasAnchor">
 <a href="#formulae-to-be-added-in-future" class="anchor"></a>Formulae to be added in future</h1>
@@ -168,6 +178,7 @@
 </li>
       <li><a href="#abbreviated-mdrd-formula">Abbreviated MDRD formula</a></li>
       <li><a href="#schwartz-formula">Schwartz formula</a></li>
+      <li><a href="#cockcroft-gault-formula">Cockcroft-Gault formula</a></li>
       <li><a href="#formulae-to-be-added-in-future">Formulae to be added in future</a></li>
       </ul>
 </div>

@@ -1,4 +1,4 @@
-#' Calculate UKELD score
+#' UKELD score
 #'
 #' A vectorised function to calculate the UKELD score using SI units for bilirubin and creatinine.
 #'
@@ -26,7 +26,7 @@ ukeld = function(INR, bili, creat, Na, units = "SI") {
     435
 }
 
-#' Calculate UKELD score (US units)
+#' UKELD score (US units)
 #'
 #' A vectorised function to calculate the UKELD score using US units for bilirubin and creatinine.
 #'
