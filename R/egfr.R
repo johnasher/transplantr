@@ -19,7 +19,7 @@
 #' @examples
 #' ckd_epi(creat = 120, age = 45.2, sex = "M", ethnicity = "non-black")
 #' ckd_epi(creat = 1.5, age = 64.3, sex = "F", ethnicity = "black", units = "US")
-ckd_epi <- function(creat, age, sex, ethnicity = NULL, units = "SI", offset = 0) {
+ckd_epi <- function(creat, age, sex, ethnicity, units = "SI", offset = 0) {
 
   # determine level of sexvar, alpha and kappa
   sexvar = ifelse(sex == "M", 1, 1.018)
@@ -106,9 +106,9 @@ mdrd <- function (creat, age, sex, ethnicity, units = "SI", offset = 0) {
 #' schwartz(creat = 0.7, height = 101, units = "US")
 schwartz = function(creat, height, units = "SI") {
   if (units == "SI") {
-    gfr = 36.2 * height / creat
+    gfr = 36.5 * height / creat
   } else {
-    gfr = 0.41 * height / creat
+    gfr = 0.413 * height / creat
   }
   gfr
 }

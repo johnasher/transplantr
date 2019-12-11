@@ -11,7 +11,7 @@ peld(INR, bili, albumin, listing_age, growth_failure, units = "SI")
 
 \item{bili}{serum biliruin (µmol/l)}
 
-\item{albumin}{serum albumin}
+\item{albumin}{serum albumin (g/l)}
 
 \item{listing_age}{age at the time of listing (years; integer or decimal)}
 
@@ -26,6 +26,10 @@ numeric vector of PELD scores
 A vectorised function to generate a PELD score for paediatric liver transplant candidates.
 The default unit for bilirubin is µmol/l but this can be changed to mg/dl by setting the
 optional units parameter to "US".
+}
+\details{
+Some labs report albumin in g/dl rather than the g/l used in this function. Take care to
+multiply the lab albumin by 10 if the lab output is in g/dl.
 }
 \examples{
 peld(INR = 2, bili = 54, albumin = 25, listing_age = 2, growth_failure = 1)

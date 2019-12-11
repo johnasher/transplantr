@@ -4,7 +4,7 @@
 \alias{ckd_epi}
 \title{eGFR by CKD-EPI equation}
 \usage{
-ckd_epi(creat, age, sex, ethnicity = NULL, units = "SI", offset = 0)
+ckd_epi(creat, age, sex, ethnicity, units = "SI", offset = 0)
 }
 \arguments{
 \item{creat}{numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")}

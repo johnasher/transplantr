@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">transplantr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.900</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -88,12 +88,12 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(transplantr)</a></code></pre></div>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>The <strong>MELD</strong> score was originally developed at the Mayo Clinic to risk stratify elective transhepatic porto-systemic shunt (TIPS) procedures in patients with liver cirrhosis. It has also been widely used as part of clinical urgency prioritisation in liver transplant matching algorithms, although UNOS changed to the alternative <strong>MELD-Na</strong> score, which incorporates serum sodium levels, in January 2016. The scores have been shown to predict short-term mortality after transhepatic porto-systemic shunt (TIPS) procedure, non-liver transplant surgery in cirrhotic patients, acute alcoholic hepatitis and acute variceal haemorrhage.</p>
 <p>The <strong>UKELD</strong> score was developed to risk stratify liver transplant recipients in the UK, is based on MELD and adds serum sodium.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(transplantr)</a></code></pre></div>
 </div>
 <div id="meld-and-meld-na-scores" class="section level1">
 <h1 class="hasAnchor">
@@ -103,8 +103,13 @@
 <p>To get the exact MELD score as recommended by UNOS, the part of the equation above in the brackets is rounded to the tenth decimal place before being multiplied by 10.</p>
 <p>The MELD-Na score adds serum sodium levels into the mix if the MELD score is greater than 11. The actual sodium level is only used if sodium is between 125 and 137 mmol/l. If the actual level is less than 125, the value 125 is used in the equation, and if more than 137, a fixed value of 137 is assigned.</p>
 <p><span class="math display">\[MELDNa = MELD + 1.32 \times (137 - Na) - [0.033 \times MELD \times (137 - Na)]\]</span></p>
-<p>The <code><a href="../reference/meld.html">meld()</a></code> function in <em>transplantr</em> calculates the MELD score with these value assignments taken into account. Creatinine and bilirubin are both calculated from their values in µmol/l by default, and can be changed to mg/dl either by setting the optional <code>units</code> parameter to <code>"US"</code> or by using the <code><a href="../reference/meld_US.html">meld_US()</a></code> wrapper function instead.</p>
-<p>The <code>meld_Na()</code> function calculates the newer MELD-Na score using SI units for creatinine and bilirubin. Changing to US units can be done by setting <code>units</code> to <code>"US"</code> or using the <code>meld_Na_US()</code> wrapper function.</p>
+<p>The <code><a href="../reference/meld.html">meld()</a></code> function in <em>transplantr</em> calculates the MELD score with these value assignments taken into account. Creatinine and bilirubin are both calculated from their values in µmol/l by default, and can be changed to mg/dl either by setting the optional <code>units</code> parameter to <code>"US"</code> or by using the <code><a href="../reference/meld_US.html">meld_US()</a></code> wrapper function instead. It is a vectorised function and can therefore be applied to a whole series at once, for example in a <em>dplyr</em> pipe:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">oltx_data =<span class="st"> </span>oltx_data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MELD =</span> <span class="kw"><a href="../reference/meld.html">meld</a></span>(<span class="dt">INR =</span> Patient.INR, <span class="dt">age =</span> Patient.Age, <span class="dt">creat =</span> Patient.SCr,</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">                     <span class="dt">dialysis =</span> Patient.Dialysed))</a></code></pre></div>
+<p>It will also work to calculate MELD score for a single case:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/meld.html">meld</a></span>(<span class="dt">INR =</span> <span class="fl">2.0</span>, <span class="dt">bili =</span> <span class="fl">3.1</span>, <span class="dt">creat =</span> <span class="fl">1.9</span>, <span class="dt">dialysis =</span> <span class="dv">0</span>, <span class="dt">units =</span> <span class="st">"US"</span>)</a></code></pre></div>
+<p>The <code><a href="../reference/meld_na.html">meld_na()</a></code> function calculates the newer MELD-Na score using SI units for creatinine and bilirubin. Changing to US units can be done by setting <code>units</code> to <code>"US"</code> or using the <code><a href="../reference/meld_na_US.html">meld_na_US()</a></code> wrapper function. <code><a href="../reference/meld_na.html">meld_na()</a></code> is also a vectorised function and can be called from within a <em>dplyr</em> pipe or for single cases in the same way as the <code><a href="../reference/meld.html">meld()</a></code> function.</p>
 <p>It is worth noting that for liver allocation in the USA, additional points are added to the MELD score in the context of certain specified clinical conditions known as “standard MELD exceptions”. These increase the MELD score by 10% every 3 months from diagnosis. Guidance on MELD, MELD-Na and PELD in US liver matching is available at the <a href="OPTN%20website">https://optn.transplant.hrsa.gov</a>.</p>
 </div>
 <div id="ukeld-score" class="section level1">
@@ -117,7 +122,13 @@
 <h1 class="hasAnchor">
 <a href="#peld-score" class="anchor"></a>PELD score</h1>
 <p>The PELD score is a paediatric version of MELD, and used to predict mortality in children needing liver transplants. It is based on age, bilirubin, albumin, INR and whether there is growth failure.</p>
-<p>The <code><a href="../reference/peld.html">peld()</a></code> function in <em>transplantr</em> calculates the PELD score. Bilirubin is calculated from their values in µmol/l by default, and can be changed to mg/dl either by setting the optional <code>units</code> parameter to <code>"US"</code> or by using the <code><a href="../reference/peld_US.html">peld_US()</a></code> wrapper function instead. Albumin is measured in g/dl on both sides of the Atlantic so does not need conversion!</p>
+<p>The <code><a href="../reference/peld.html">peld()</a></code> function in <em>transplantr</em> calculates the PELD score. Bilirubin is calculated from their values in µmol/l by default, and can be changed to mg/dl either by setting the optional <code>units</code> parameter to <code>"US"</code> or by using the <code><a href="../reference/peld_US.html">peld_US()</a></code> wrapper function instead. Albumin is measured in g/l in the formula, so take care to convert it by multiplying by 10 if your lab reports in g/dl. The conversion is easily done for a series in a vectorised way by including it in a <em>dplyr</em> pipe:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># calculate PELD where lab reports albumin in g/dl and bilirubin in mg/dl</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">paed.oltx.df =<span class="st"> </span>paed.oltx.df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">AlbuminX10 =</span> Patient.Albumin <span class="op">*</span><span class="st"> </span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">         <span class="dt">PELD =</span> <span class="kw"><a href="../reference/peld.html">peld</a></span>(<span class="dt">INR =</span> Patient.INR, <span class="dt">bili =</span> Patient.Bilirubin, <span class="dt">albumin =</span> AlbuminX10,</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">                     <span class="dt">listing_age =</span> Patient.ListAge, <span class="dt">growth_failure =</span> Patient.GrowthFailure,</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">                     <span class="dt">units =</span> <span class="st">"US"</span>))</a></code></pre></div>
 </div>
   </div>
 

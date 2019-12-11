@@ -136,7 +136,8 @@ dcd | whether donor is DCD | numeric vector of 1 = DCD, 0 = DBD
 scaling | OPTN Scaling Factor | single number (defaults to 1)
 units | creatinine units | single string of "SI" for µmol/l or "US" for mg/dl
 
-The Scaling Factor is the median KDRI for kidney donors in the USA in the previous year, and is published each year on the OPTN website. For 2019 the scaling factor is approximately 1.250609. This normalises the donor risk within each year, but I think it obscures inter-year comparisons. The `scaling` parameter defaults to 1 so can be left out when a non-scaled KDRI is desired.
+The Scaling Factor is the median KDRI for kidney donors in the USA in the previous year, and is published each year on the [https://optn.transplant.hrsa.gov/resources/allocation-calculators/kdpi-calculator/](OPTN website), 
+together with a table for converting KDRI to KDPI, which gives a percentile of risk. For 2019 the scaling factor is approximately 1.2507. This normalises the donor risk within each year, but I think it obscures inter-year comparisons. The `scaling` parameter defaults to 1 so can be left out when a non-scaled KDRI is desired.
 
 As a vectorised function, this works well when calculating US KDRI for a large series using a _dplyr_ pipe with code like this:
 
@@ -145,7 +146,7 @@ my_data5 = my_data2 %>%
   mutate(USKDRI = uskdri(age = Donor.Age, height = Donor.Height, weight = Donor.Weight,
                          eth = Donor.Race, htn = Donor.Hypertension, dm = Donor.Diabetes,
                          cva = Donor.CVA, creat = Donor.Creatinine,
-                         hcv = Donor.HepatitisC, dcd = Donor.Type, scaling = 1.250609, units = "US"))
+                         hcv = Donor.HepatitisC, dcd = Donor.Type, scaling = 1.250697, units = "US"))
 ```
 
 The function can also be used for a single case:
@@ -153,9 +154,9 @@ The function can also be used for a single case:
 ```{r}
 # with creatinine in µmol/l (units = "SI" can be omitted)
 uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-    cva = 0, creat = 120, hcv = 0, dcd = 0, scaling = 1.250609, units = "SI")
+    cva = 0, creat = 120, hcv = 0, dcd = 0, scaling = 1.250697, units = "SI")
 
-# with creatinine in mg/dl
+# with creatinine in mg/dl and omitting scaling factor
 uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
     cva = 0, creat = 1.4, hcv = 0, dcd = 0, units = "US")
 ```

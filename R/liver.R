@@ -183,9 +183,12 @@ meld_na_US = function(INR, bili, creat, Na, dialysis) {
 #' The default unit for bilirubin is µmol/l but this can be changed to mg/dl by setting the
 #' optional units parameter to "US".
 #'
+#' Some labs report albumin in g/dl rather than the g/l used in this function. Take care to
+#' multiply the lab albumin by 10 if the lab output is in g/dl.
+#'
 #' @param INR INR
 #' @param bili serum biliruin (µmol/l)
-#' @param albumin serum albumin
+#' @param albumin serum albumin (g/l)
 #' @param listing_age age at the time of listing (years; integer or decimal)
 #' @param growth_failure whether there is growth failure (1 = yes, 0 = no)
 #' @param units units used for bilirubin ("SI" for µmol/l (default), "US" for mg/dl)
@@ -203,7 +206,7 @@ peld = function(INR, bili, albumin, listing_age, growth_failure, units = "SI") {
   }
 
   # calculate PELD score
-  peld1 = 4.80 * log(bili) + 18.57 * log(INR) - 6.87 * log(albumin)
+  peld1 = 4.80 * log(bili) + 18.57 * log(INR) - 6.87 * log(albumin / 10)
   peld2 = ifelse(listing_age < 1, 4.36, 0)
   peld3 = ifelse(growth_failure, 6.67, 0)
   peld1 + peld2 + peld3

@@ -14,16 +14,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(transplantr)
-```
-
-
 # Introduction
 
 The **MELD** score was originally developed at the Mayo Clinic to risk stratify elective transhepatic porto-systemic shunt (TIPS) procedures in patients with liver cirrhosis. It has also been widely used as part of clinical urgency prioritisation in liver transplant matching algorithms, although UNOS changed to the alternative **MELD-Na** score, which incorporates serum sodium levels, in January 2016. The scores have been shown to predict short-term mortality after transhepatic porto-systemic shunt (TIPS) procedure, non-liver transplant surgery in cirrhotic patients, acute alcoholic hepatitis and acute variceal haemorrhage.
 
 The **UKELD** score was developed to risk stratify liver transplant recipients in the UK, is based on MELD and adds serum sodium.
+
+```{r setup}
+library(transplantr)
+```
 
 # MELD and MELD-Na scores
 
@@ -37,9 +36,21 @@ The MELD-Na score adds serum sodium levels into the mix if the MELD score is gre
 
 $$MELDNa = MELD + 1.32 \times (137 - Na) - [0.033 \times MELD \times (137 - Na)]$$
 
-The `meld()` function in _transplantr_ calculates the MELD score with these value assignments taken into account. Creatinine and bilirubin are both calculated from their values in µmol/l by default, and can be changed to mg/dl either by setting the optional `units` parameter to `"US"` or by using the `meld_US()` wrapper function instead.
+The `meld()` function in _transplantr_ calculates the MELD score with these value assignments taken into account. Creatinine and bilirubin are both calculated from their values in µmol/l by default, and can be changed to mg/dl either by setting the optional `units` parameter to `"US"` or by using the `meld_US()` wrapper function instead. It is a vectorised function and can therefore be applied to a whole series at once, for example in a _dplyr_ pipe:
 
-The `meld_Na()` function calculates the newer MELD-Na score using SI units for creatinine and bilirubin. Changing to US units can be done by setting `units` to `"US"` or using the `meld_Na_US()` wrapper function.
+```{r, eval = F}
+oltx_data = oltx_data %>%
+  mutate(MELD = meld(INR = Patient.INR, age = Patient.Age, creat = Patient.SCr,
+                     dialysis = Patient.Dialysed))
+```
+
+It will also work to calculate MELD score for a single case:
+
+```{r, eval = F}
+meld(INR = 2.0, bili = 3.1, creat = 1.9, dialysis = 0, units = "US")
+```
+
+The `meld_na()` function calculates the newer MELD-Na score using SI units for creatinine and bilirubin. Changing to US units can be done by setting `units` to `"US"` or using the `meld_na_US()` wrapper function. `meld_na()` is also a vectorised function and can be called from within a _dplyr_ pipe or for single cases in the same way as the `meld()` function.
 
 It is worth noting that for liver allocation in the USA, additional points are added to the MELD score in the context of certain specified clinical conditions known as "standard MELD exceptions". These increase the MELD score by 10% every 3 months from diagnosis. Guidance on MELD, MELD-Na and PELD in US liver matching is available at the [https://optn.transplant.hrsa.gov](OPTN website).
 
@@ -53,4 +64,15 @@ The score can be calculated with the `ukeld()` function, using µmol/l as the de
 
 The PELD score is a paediatric version of MELD, and used to predict mortality in children needing liver transplants. It is based on age, bilirubin, albumin, INR and whether there is growth failure.
 
-The `peld()` function in _transplantr_ calculates the PELD score. Bilirubin is calculated from their values in µmol/l by default, and can be changed to mg/dl either by setting the optional `units` parameter to `"US"` or by using the `peld_US()` wrapper function instead. Albumin is measured in g/dl on both sides of the Atlantic so does not need conversion!
+The `peld()` function in _transplantr_ calculates the PELD score. Bilirubin is calculated from their values in µmol/l by default, and can be changed to mg/dl either by setting the optional `units` parameter to `"US"` or by using the `peld_US()` wrapper function instead. Albumin is measured in g/l in the formula, so take care to convert it by multiplying by 10 if your lab reports in g/dl. The conversion is easily done for a series in a vectorised way by including it in a _dplyr_ pipe:
+
+```{r, eval = F}
+# calculate PELD where lab reports albumin in g/dl and bilirubin in mg/dl
+paed.oltx.df = paed.oltx.df %>%
+  mutate(AlbuminX10 = Patient.Albumin * 10,
+         PELD = peld(INR = Patient.INR, bili = Patient.Bilirubin, albumin = AlbuminX10,
+                     listing_age = Patient.ListAge, growth_failure = Patient.GrowthFailure,
+                     units = "US"))
+
+```
+

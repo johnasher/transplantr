@@ -68,7 +68,7 @@ optional units parameter to &quot;US&quot;." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">transplantr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.900</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -146,7 +146,7 @@ optional units parameter to "US".</p>
     </tr>
     <tr>
       <th>albumin</th>
-      <td><p>serum albumin</p></td>
+      <td><p>serum albumin (g/l)</p></td>
     </tr>
     <tr>
       <th>listing_age</th>
@@ -166,9 +166,14 @@ optional units parameter to "US".</p>
 
     <p>numeric vector of PELD scores</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Some labs report albumin in g/dl rather than the g/l used in this function. Take care to
+multiply the lab albumin by 10 if the lab output is in g/dl.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>peld</span>(<span class='kw'>INR</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>bili</span> <span class='kw'>=</span> <span class='fl'>54</span>, <span class='kw'>albumin</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>listing_age</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>growth_failure</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] 2.947613</div><div class='input'><span class='fu'>peld</span>(<span class='kw'>INR</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>bili</span> <span class='kw'>=</span> <span class='fl'>3.1</span>, <span class='kw'>albumin</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>listing_age</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>growth_failure</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"US"</span>)</div><div class='output co'>#&gt; [1] 2.858796</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>peld</span>(<span class='kw'>INR</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>bili</span> <span class='kw'>=</span> <span class='fl'>54</span>, <span class='kw'>albumin</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>listing_age</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>growth_failure</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] 18.76637</div><div class='input'><span class='fu'>peld</span>(<span class='kw'>INR</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>bili</span> <span class='kw'>=</span> <span class='fl'>3.1</span>, <span class='kw'>albumin</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>listing_age</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>growth_failure</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"US"</span>)</div><div class='output co'>#&gt; [1] 18.67756</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -176,6 +181,8 @@ optional units parameter to "US".</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

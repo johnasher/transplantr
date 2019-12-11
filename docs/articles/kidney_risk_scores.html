@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">transplantr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.900</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -346,20 +346,20 @@
 </tr>
 </tbody>
 </table>
-<p>The Scaling Factor is the median KDRI for kidney donors in the USA in the previous year, and is published each year on the OPTN website. For 2019 the scaling factor is approximately 1.250609. This normalises the donor risk within each year, but I think it obscures inter-year comparisons. The <code>scaling</code> parameter defaults to 1 so can be left out when a non-scaled KDRI is desired.</p>
+<p>The Scaling Factor is the median KDRI for kidney donors in the USA in the previous year, and is published each year on the <a href="OPTN%20website">https://optn.transplant.hrsa.gov/resources/allocation-calculators/kdpi-calculator/</a>, together with a table for converting KDRI to KDPI, which gives a percentile of risk. For 2019 the scaling factor is approximately 1.2507. This normalises the donor risk within each year, but I think it obscures inter-year comparisons. The <code>scaling</code> parameter defaults to 1 so can be left out when a non-scaled KDRI is desired.</p>
 <p>As a vectorised function, this works well when calculating US KDRI for a large series using a <em>dplyr</em> pipe with code like this:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">my_data5 =<span class="st"> </span>my_data2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">USKDRI =</span> <span class="kw"><a href="../reference/uskdri.html">uskdri</a></span>(<span class="dt">age =</span> Donor.Age, <span class="dt">height =</span> Donor.Height, <span class="dt">weight =</span> Donor.Weight,</a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">                         <span class="dt">eth =</span> Donor.Race, <span class="dt">htn =</span> Donor.Hypertension, <span class="dt">dm =</span> Donor.Diabetes,</a>
 <a class="sourceLine" id="cb7-4" data-line-number="4">                         <span class="dt">cva =</span> Donor.CVA, <span class="dt">creat =</span> Donor.Creatinine,</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">                         <span class="dt">hcv =</span> Donor.HepatitisC, <span class="dt">dcd =</span> Donor.Type, <span class="dt">scaling =</span> <span class="fl">1.250609</span>, <span class="dt">units =</span> <span class="st">"US"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb7-5" data-line-number="5">                         <span class="dt">hcv =</span> Donor.HepatitisC, <span class="dt">dcd =</span> Donor.Type, <span class="dt">scaling =</span> <span class="fl">1.250697</span>, <span class="dt">units =</span> <span class="st">"US"</span>))</a></code></pre></div>
 <p>The function can also be used for a single case:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># with creatinine in µmol/l (units = "SI" can be omitted)</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="../reference/uskdri.html">uskdri</a></span>(<span class="dt">age =</span> <span class="dv">40</span>, <span class="dt">height =</span> <span class="dv">170</span>, <span class="dt">weight =</span> <span class="dv">80</span>, <span class="dt">eth =</span> <span class="st">"non-black"</span>, <span class="dt">htn =</span> <span class="dv">0</span>, <span class="dt">dm =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">    <span class="dt">cva =</span> <span class="dv">0</span>, <span class="dt">creat =</span> <span class="dv">120</span>, <span class="dt">hcv =</span> <span class="dv">0</span>, <span class="dt">dcd =</span> <span class="dv">0</span>, <span class="dt">scaling =</span> <span class="fl">1.250609</span>, <span class="dt">units =</span> <span class="st">"SI"</span>)</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">#&gt; [1] 0.8650326</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">    <span class="dt">cva =</span> <span class="dv">0</span>, <span class="dt">creat =</span> <span class="dv">120</span>, <span class="dt">hcv =</span> <span class="dv">0</span>, <span class="dt">dcd =</span> <span class="dv">0</span>, <span class="dt">scaling =</span> <span class="fl">1.250697</span>, <span class="dt">units =</span> <span class="st">"SI"</span>)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">#&gt; [1] 0.8649717</span></a>
 <a class="sourceLine" id="cb8-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co"># with creatinine in mg/dl</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co"># with creatinine in mg/dl and omitting scaling factor</span></a>
 <a class="sourceLine" id="cb8-7" data-line-number="7"><span class="kw"><a href="../reference/uskdri.html">uskdri</a></span>(<span class="dt">age =</span> <span class="dv">40</span>, <span class="dt">height =</span> <span class="dv">170</span>, <span class="dt">weight =</span> <span class="dv">80</span>, <span class="dt">eth =</span> <span class="st">"non-black"</span>, <span class="dt">htn =</span> <span class="dv">0</span>, <span class="dt">dm =</span> <span class="dv">0</span>,</a>
 <a class="sourceLine" id="cb8-8" data-line-number="8">    <span class="dt">cva =</span> <span class="dv">0</span>, <span class="dt">creat =</span> <span class="fl">1.4</span>, <span class="dt">hcv =</span> <span class="dv">0</span>, <span class="dt">dcd =</span> <span class="dv">0</span>, <span class="dt">units =</span> <span class="st">"US"</span>)</a>
 <a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; [1] 1.091988</span></a></code></pre></div>
