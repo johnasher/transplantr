@@ -6,7 +6,12 @@
 #' @param bili numeric vector of bilirubin in µmol/l
 #' @param creat numeric vector of creatinine in µmol/l
 #' @param Na numeric vector of sodium in mmol/l
+<<<<<<< HEAD
 #' @param units Units for bilirubin and creatinine ("SI" for µmol/l (default), "US" for mg/dl)
+||||||| merged common ancestors
+=======
+#' @param units Units for bilirubin and creatinine ("SI" for mcmol/l (default), "US" for mg/dl)
+>>>>>>> 71ed3aa8261462b612e8aed904e134497ed25950
 #'
 #' @return numeric vector of UKELD scores
 #' @export

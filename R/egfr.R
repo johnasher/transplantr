@@ -154,6 +154,7 @@ ckd_epi_US <- function (creat, age, sex, ethnicity, offset = 0) {
 #' @export
 #'
 #' @examples
+
 #' mdrd_US(creat = 1.5, age = 64.3, sex = "F", ethnicity = "black")
 mdrd_US <- function (creat, age, sex, ethnicity, offset = 0) {
   mdrd(creat, age, sex, ethnicity, units = "US", offset = offset)
