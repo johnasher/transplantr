@@ -162,7 +162,8 @@ mdrd_US <- function (creat, age, sex, ethnicity, offset = 0) {
 
 #' eGFR by bedside Schwartz formula (US units)
 #'
-#' A wrapper function for the schwartz() vectorised formula to calculate estimate glomerular filtration rate in children using the bedside Schwartz formula, using
+#' A wrapper function for the schwartz() vectorised formula to calculate estimate glomerular filtration rate in children
+#' using the bedside Schwartz formula, using
 #' serum creatinine in mg/dl. Use the schwartz() function instead for µmol/l.
 #'
 #' @param creat numeric vector of creatinine levels in µmol/l (or mg/dl if units = "US")
@@ -176,4 +177,73 @@ mdrd_US <- function (creat, age, sex, ethnicity, offset = 0) {
 #' schwartz_US(creat = 0.7, height = 101)
 schwartz_US = function(creat, height) {
   schwartz(creat = creat, height = height, units = "US")
+}
+
+#' Creatinine clearance by Cockcroft-Gault equation
+#'
+#' A vectorised function to estimate creatinine clearance using the Cockcroft-Gault equation.
+#' By default this uses serum creatinine in µmol/l but can be changed to mg/dl by setting the
+#' units parameter to "US"
+#'
+#' @param creat numeric vector of creatinine levels in µmol/l (or mg/dl if units = "US")
+#' @param age numeric vector of ages in years
+#' @param sex character vector of sex ("F" = female, "M" = male)
+#' @param weight numeric vector of weights in kilograms
+#' @param units non-vectorised parameter for creatinine units ("SI" for µmol/l (default) or "US" for mg/dl)
+#'
+#' @return numeric vector of creatinine clearances in ml/min
+#' @export
+#'
+#' @examples
+#' # calculate creatinine clearance using creatinine in µmol/l
+#' cockcroft(creat = 88.4, age = 25, sex = "F", weight = 60)
+#'
+#' # calculate using creatinine in mg/dl
+#' cockcroft(creat = 1, age = 25, sex = "F", weight = 60, units = "US")
+cockcroft = function(creat, age, sex, weight, units = "SI"){
+  if (units == "SI") {
+    creat = creat / 88.4
+  }
+
+  sexvar = ifelse(sex == "M", 1, 0.85)
+  sexvar * (140 - age) * weight / creat / 72
+}
+
+
+#' Creatinine clearance by Cockcroft-Gault equation (US units)
+#'
+#' A wrapper function for cockcroft(), a vectorised function to estimate creatinine clearance using the Cockcroft-Gault equation,
+#' but using creatinine in mg/dl
+#'
+#' @param creat numeric vector of creatinine levels in mg/dl
+#' @param age numeric vector of ages in years
+#' @param sex character vector of sex ("F" = female, "M" = male)
+#' @param weight numeric vector of weights in kilograms
+#'
+#' @return numeric vector of creatinine clearances in ml/min
+#' @export
+#'
+#' @examples
+#' cockcroft_US(creat = 1, age = 25, sex = "F", weight = 60)
+cockcroft_US = function(creat, age, sex, weight){
+  cockcroft(creat = creat, age = age, sex = sex, weight = weight, units = "US")
+}
+
+#' Ideal body weight
+#'
+#' A vectorised function to calculate adult ideal body weight based on height and sex.
+#' This function assumes ideal BMI of 21.5 for females and 23 for males.
+#'
+#' @param height numeric vector of heights in cm
+#' @param sex character vector of sex ("F" for female or "M" for male)
+#'
+#' @return numeric vector of ideal body weights in kg
+#' @export
+#'
+#' @examples
+#' ibw(height = 183, sex = "M")
+ibw = function(height, sex) {
+  bmivar = ifelse(sex == "M", 23, 21.5)
+  height = height / 100
+  height ^ 2 * bmivar
 }

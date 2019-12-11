@@ -15,7 +15,8 @@ schwartz_US(creat, height)
 numeric vector of eGFR values
 }
 \description{
-A wrapper function for the schwartz() vectorised formula to calculate estimate glomerular filtration rate in children using the bedside Schwartz formula, using
+A wrapper function for the schwartz() vectorised formula to calculate estimate glomerular filtration rate in children
+using the bedside Schwartz formula, using
 serum creatinine in mg/dl. Use the schwartz() function instead for µmol/l.
 }
 \examples{
