@@ -48,9 +48,9 @@ so can be left out to calculate the KDRI without scaling.
 \examples{
 # with creatinine in µmol/l (units = "SI" can be omitted)
 uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-    cva = 0, creat = 120, hcv = 0, dcd = 0, scaling = 1.250609, units = "SI") # 0.87
+    cva = 0, creat = 120, hcv = 0, dcd = 0, scaling = 1.250609, units = "SI")
 
 # with creatinine in mg/dl
 uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-    cva = 0, creat = 1.4, hcv = 0, dcd = 0, scaling = 1.250609, units = "US") # 0.87
+    cva = 0, creat = 1.4, hcv = 0, dcd = 0, scaling = 1.250609, units = "US")
 }

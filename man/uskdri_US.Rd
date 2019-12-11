@@ -44,5 +44,5 @@ so can be left out to calculate the KDRI without scaling.
 }
 \examples{
 uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-    cva = 0, creat = 1.4, hcv = 0, dcd = 0) # 1.09
+    cva = 0, creat = 1.4, hcv = 0, dcd = 0)
 }

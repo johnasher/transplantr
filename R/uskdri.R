@@ -27,11 +27,11 @@
 #' @examples
 #' # with creatinine in µmol/l (units = "SI" can be omitted)
 #' uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-#'     cva = 0, creat = 120, hcv = 0, dcd = 0, scaling = 1.250609, units = "SI") # 0.87
+#'     cva = 0, creat = 120, hcv = 0, dcd = 0, scaling = 1.250609, units = "SI")
 #'
 #' # with creatinine in mg/dl
 #' uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-#'     cva = 0, creat = 1.4, hcv = 0, dcd = 0, scaling = 1.250609, units = "US") # 0.87
+#'     cva = 0, creat = 1.4, hcv = 0, dcd = 0, scaling = 1.250609, units = "US")
 uskdri = function(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd, scaling = 1, units = "SI"){
   # convert creatinine to mg/dl
   if (units == "SI") {
@@ -79,7 +79,7 @@ uskdri = function(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd, scali
 #'
 #' @examples
 #' uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-#'     cva = 0, creat = 1.4, hcv = 0, dcd = 0) # 1.09
+#'     cva = 0, creat = 1.4, hcv = 0, dcd = 0)
 uskdri_US = function(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd, scaling = 1) {
   uskdri(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd, units = "US")
 }

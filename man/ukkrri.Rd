@@ -23,5 +23,5 @@ A vectorised function to calculate the UK Kidney Recipient Risk Index as used in
 national kidney matching scheme implemented in September 2019.
 }
 \examples{
-ukkrri(45, 0, 750, 0)
+ukkrri(age = 45, dx = 0, wait = 750, dm = 0)
 }

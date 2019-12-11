@@ -129,7 +129,8 @@ as published by UNOS but using mg/dl as the units for creatinine.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>uskdri_US</span>(<span class='no'>age</span>, <span class='no'>height</span>, <span class='no'>weight</span>, <span class='no'>eth</span>, <span class='no'>htn</span>, <span class='no'>dm</span>, <span class='no'>cva</span>, <span class='no'>creat</span>, <span class='no'>hcv</span>, <span class='no'>dcd</span>)</pre>
+    <pre class="usage"><span class='fu'>uskdri_US</span>(<span class='no'>age</span>, <span class='no'>height</span>, <span class='no'>weight</span>, <span class='no'>eth</span>, <span class='no'>htn</span>, <span class='no'>dm</span>, <span class='no'>cva</span>, <span class='no'>creat</span>, <span class='no'>hcv</span>, <span class='no'>dcd</span>,
+  <span class='kw'>scaling</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,11 +175,21 @@ as published by UNOS but using mg/dl as the units for creatinine.</p>
       <th>dcd</th>
       <td><p>numeric vector of type of donor (1 = DCD, 0 = DBD)</p></td>
     </tr>
+    <tr>
+      <th>scaling</th>
+      <td><p>single numeric value for OPTN scaling factor (optional, defaults to 1)</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>numeric vector of US KDRI values</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The KDRI is normalised by a scaling factor based on the median KDRI in the previous year. For 2018, this was
+approximately 1.250609 as is published on the OPTN website. The scaling parameter in this function defaults to 1,
+so can be left out to calculate the KDRI without scaling.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -191,6 +202,8 @@ as published by UNOS but using mg/dl as the units for creatinine.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
