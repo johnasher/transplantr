@@ -24,11 +24,15 @@ numeric vector of PELD scores
 }
 \description{
 A vectorised function to generate a PELD score for paediatric liver transplant candidates.
-The default unit for bilirubin is µmol/l but this can be changed to mg/dl by setting the
+The default unit for bilirubin is µmol/l and albumin in g/l, but these can be changed to
+mg/dl and g/dl respectively by setting the
 optional units parameter to "US".
 }
 \details{
-Some labs report albumin in g/dl rather than the g/l used in this function. Take care to
+Some labs report albumin in g/dl rather than the g/l used in this function.
+If units are set to "US" then g/dl is assumed and albumin should be divided by 10 if the
+lab reports are in g/l. If using SI units,
+take care to
 multiply the lab albumin by 10 if the lab output is in g/dl.
 }
 \examples{

@@ -78,11 +78,106 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
+
 <div id="transplantr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#transplantr" class="anchor"></a>transplantr</h1></div>
-<p>This is the in-development transplantr package for R. More details to follow.</p>
+<p>The <em>transplantr</em> package provides a set of vectorised functions for audit and clinical research in solid organ transplantation. These are particularly intended to work well with multiple datapoints in large series of data, where manual calculations would be particularly tedious.</p>
+<p>The functions provided fall into three groups:</p>
+<ul>
+<li>Donor and recipient risk indices</li>
+<li>Estimated GFR calculators</li>
+<li>Biochemical unit converters</li>
+</ul>
+<p>Although the package was built with unit tests, inaccuracies cannot be completely excluded. it is not a medical device and should not be used for making clinical decisions.</p>
 </div>
+<div id="installation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h1>
+<p>transplantr can be installed from CRAN:</p>
+<pre class="{r}"><code><a href="https://rdrr.io/r/utils/install.packages.html"># install transplantr
+install.packages("transplantr")
+
+# load transplantr once installed
+library(transplantr)</a></code></pre>
+<div id="development-version" class="section level2">
+<h2 class="hasAnchor">
+<a href="#development-version" class="anchor"></a>Development version</h2>
+<p>The development version can be installed from GitHub, if you want all the latest features, together with all the latest bugs and errors. Installing from CRAN is the best option for most users as the submitted packages have to pass some very pedantic automated tests before they can be hosted on CRAN. If you do want the <em>caveat emptor</em>, you have been warned version, this is how:</p>
+<pre class="{r}"><code># install from GitHub
+devtools::install_packages("johnasher/transplantr")</code></pre>
+</div>
+</div>
+<div id="tips-on-using-transplantr" class="section level1">
+<h1 class="hasAnchor">
+<a href="#tips-on-using-transplantr" class="anchor"></a>Tips on using <em>transplantr</em>
+</h1>
+<p>As vectorised functions, the functions can be applied across a whole dataset fairly rapidly. I find that the easiest way to do this is using a “pipe” of functions from the <em>dplyr</em> package. <em>dplyr</em> can be installed on its own or, as I would recommend, by installing the whole <em>tidyverse</em> family of packages - a family which includes the legendary <em>ggplot2</em> graphing package.</p>
+<pre class="{r}"><code><a href="https://rdrr.io/r/utils/install.packages.html"># install whole tidyverse
+install.packages("tidyverse")
+
+# install just dplyr
+install.packages("dplyr")</a></code></pre>
+<p>Although recommended, <em>dplyr</em> is not necessary for <em>transplantr</em> to work. The only required package is <em>stringr</em> which is only needed for the <code><a href="reference/chi2dob.html">chi2dob()</a></code> function, one unlikely to be needed by anyone working outside Scotland!</p>
+<div id="biochemical-units" class="section level2">
+<h2 class="hasAnchor">
+<a href="#biochemical-units" class="anchor"></a>Biochemical units</h2>
+<p>By default, all the functions work with the units most commonly used in the UK, which for creatinine and bilirubin is µmol/l, but each function using either of these can be used with mg/dl instead by changing an optional <code>units</code> parameter to <code>"US"</code> or by calling a wrapper function suffixed with <code>_US()</code>; e.g. when calculating eGFR, the <code><a href="reference/ckd_epi_US.html">ckd_epi_US()</a></code> function calls <code><a href="reference/ckd_epi.html">ckd_epi()</a></code> using creatinine in mg/dl.</p>
+<p>Albumin is generally reported in g/l in the UK, but more commonly as g/dl in the US. The few functions using albumin default to g/l but change to g/dl if the <code>units</code> parameter is set to <code>"US"</code> or the <code>_US()</code> wrapper function is called.</p>
+<p>Which is the best option to use? Calling the wrapper function uses fewer keystrokes so is quicker to type, but as it is a function calling another function, there is a slight increase in computational overhead.</p>
+</div>
+<div id="using-transplantr-functions-with-dplyr" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-transplantr-functions-with-dplyr" class="anchor"></a>Using <em>transplantr</em> functions with <em>dplyr</em>
+</h2>
+<p>Let’s say you want to calculate MELD scores for a series of liver transplant candidates. OK, you probably actually want MELD-Na, but let’s go with MELD as it has fewer variables! The data is in a dataframe or tibble called “oltx.assessments” and the relevant variables are Patient.INR, Patient.Bilirubin, Patient.Creatinine and Patient.Dialysed. To add a new Patient.MELD variable to the dataframe, you would use a <em>dplyr</em> pipe with the <code>mutate()</code> verb:</p>
+<pre class="{r}"><code>oltx.assessments &lt;- oltx.assessments %&gt;%
+  mutate(Patient.MELD = meld(INR = Patient.INR, bili = Patient.Bilirubin,
+        creat = Patient.Creatinine, dialysis = Patient.Dialysed, units = "SI"))</code></pre>
+<p>The <code>units = "SI"</code> can be left out provided that creatinine and bilirubin are both in µmol/l. To switch to mg/dl, use <code>units = "US"</code> or call <code><a href="reference/meld_US.html">meld_US()</a></code> instead.</p>
+</div>
+<div id="using-transplantr-functions-with-base-r" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-transplantr-functions-with-base-r" class="anchor"></a>Using <em>transplantr</em> functions with base R</h2>
+<p>Although I think <em>dplyr</em> makes life much easier when organising data, I concede that some people prefer to use base R functions instead. Using a vectorised function with multiple vector inputs is not easy in base R but can be done with the <code><a href="https://rdrr.io/r/base/mapply.html">mapply()</a></code>, or more easily with the <code>pmap_dbl()</code> from the <em>purrr</em> package.</p>
+<pre class="{r}"><code><a href="https://rdrr.io/r/base/attach.html"># attach oltx.assessments to save a lot of typing!
+attach(oltx.assessments)
+
+# method using pmap_dbl()
+oltx.assessments$Patient.MELD = pmap_dbl(list(Patient.INR, Patient.Bilirubin,
+                                              Patient.Creatinine, Patient.Dialysed),
+                                          meld, units = "SI")
+
+# alternative method using mapply()
+oltx.assessments$Patient.MELD = mapply(FUN = meld, Patient.INR, Patient.Bilirubin,
+                                        Patient.Creatinine, Patient.Dialysed,
+                                        MoreArgs = list(units = "SI"),
+                                        SIMPLIFY = TRUE)
+
+# detach oltx.assessments to avoid namespace errors
+detach(oltx.assessments)</a></code></pre>
+<p>The advantage of using a <em>dplyr</em> pipe, apart from easier code, is speed. Benchmarking on a basic Linux laptop showed that the median time to perform vectorised calculation of 100,000 MELD scores was 115 milliseconds, compared with 6007 milliseconds using `<code>pmap_dbl()</code> and 6484 with <code><a href="https://rdrr.io/r/base/mapply.html">mapply()</a></code>.</p>
+</div>
+<div id="using-the-functions-with-a-single-case" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-the-functions-with-a-single-case" class="anchor"></a>Using the functions with a single case</h2>
+<p>Although vectorised functions for multiple calculations are one of the best features of R, you might just want to collect data on a single case. This is very straightforward:</p>
+<pre class="{r}"><code><a href="reference/meld.html"># using µmol/l
+meld(INR = 2.1, bili = 34, creat = 201, dialysis = 0)
+
+# using mg/dl
+meld(INR =  2.1, bili = 2.0, creat = 2.3, dialysis = 0, units = "US")
+
+# using mg/dl with wrapper function
+meld_US(INR =  2.1, bili = 2.0, creat = 2.3, dialysis = 0)</a></code></pre>
+</div>
+</div>
+<div id="bug-reports-and-feature-requests" class="section level1">
+<h1 class="hasAnchor">
+<a href="#bug-reports-and-feature-requests" class="anchor"></a>Bug reports and feature requests</h1>
+<p>Due to rounding errors, functions may return slightly different values to those from other calculators, including online calculators and even using R and <em>transplantr</em> on different computers. But if you encounter a definite bug, please file a report with minimal reproducible example of your R code at <a href="https://www.github.com/johnasher/transplantr/issues">GitHub</a>. Requests for new features can also be made on GitHub.</p>
+</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

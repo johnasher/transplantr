@@ -35,7 +35,8 @@
 <meta property="og:title" content="PELD score — peld" />
 
 <meta property="og:description" content="A vectorised function to generate a PELD score for paediatric liver transplant candidates.
-The default unit for bilirubin is µmol/l but this can be changed to mg/dl by setting the
+The default unit for bilirubin is µmol/l and albumin in g/l, but these can be changed to
+mg/dl and g/dl respectively by setting the
 optional units parameter to &quot;US&quot;." />
 <meta name="twitter:card" content="summary" />
 
@@ -126,7 +127,8 @@ optional units parameter to &quot;US&quot;." />
     <div class="ref-description">
     
     <p>A vectorised function to generate a PELD score for paediatric liver transplant candidates.
-The default unit for bilirubin is µmol/l but this can be changed to mg/dl by setting the
+The default unit for bilirubin is µmol/l and albumin in g/l, but these can be changed to
+mg/dl and g/dl respectively by setting the
 optional units parameter to "US".</p>
     
     </div>
@@ -168,12 +170,15 @@ optional units parameter to "US".</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Some labs report albumin in g/dl rather than the g/l used in this function. Take care to
+    <p>Some labs report albumin in g/dl rather than the g/l used in this function.
+If units are set to "US" then g/dl is assumed and albumin should be divided by 10 if the
+lab reports are in g/l. If using SI units,
+take care to
 multiply the lab albumin by 10 if the lab output is in g/dl.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>peld</span>(<span class='kw'>INR</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>bili</span> <span class='kw'>=</span> <span class='fl'>54</span>, <span class='kw'>albumin</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>listing_age</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>growth_failure</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] 18.76637</div><div class='input'><span class='fu'>peld</span>(<span class='kw'>INR</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>bili</span> <span class='kw'>=</span> <span class='fl'>3.1</span>, <span class='kw'>albumin</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>listing_age</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>growth_failure</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"US"</span>)</div><div class='output co'>#&gt; [1] 18.67756</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>peld</span>(<span class='kw'>INR</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>bili</span> <span class='kw'>=</span> <span class='fl'>54</span>, <span class='kw'>albumin</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>listing_age</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>growth_failure</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] 18.76637</div><div class='input'><span class='fu'>peld</span>(<span class='kw'>INR</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>bili</span> <span class='kw'>=</span> <span class='fl'>3.1</span>, <span class='kw'>albumin</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>listing_age</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>growth_failure</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"US"</span>)</div><div class='output co'>#&gt; [1] 2.858796</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

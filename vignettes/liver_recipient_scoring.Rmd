@@ -64,15 +64,19 @@ The score can be calculated with the `ukeld()` function, using µmol/l as the de
 
 The PELD score is a paediatric version of MELD, and used to predict mortality in children needing liver transplants. It is based on age, bilirubin, albumin, INR and whether there is growth failure.
 
-The `peld()` function in _transplantr_ calculates the PELD score. Bilirubin is calculated from their values in µmol/l by default, and can be changed to mg/dl either by setting the optional `units` parameter to `"US"` or by using the `peld_US()` wrapper function instead. Albumin is measured in g/l in the formula, so take care to convert it by multiplying by 10 if your lab reports in g/dl. The conversion is easily done for a series in a vectorised way by including it in a _dplyr_ pipe:
+The `peld()` function in _transplantr_ calculates the PELD score. Bilirubin is calculated from their values in µmol/l and albumin in g/l by default, and can be changed to mg/dl and g/dl respectively either by setting the optional `units` parameter to `"US"` or by using the `peld_US()` wrapper function instead. In the event that albumin is measured locally in g/l and bilirubin in mg/dl, take care to convert it by dividing by 10. Similarly, if albumin is reported in g/dl and bilirubin in µmol/l, multiply the albumin results by 10. The conversion is easily done for a series in a vectorised way by including it in a _dplyr_ pipe:
 
 ```{r, eval = F}
-# calculate PELD where lab reports albumin in g/dl and bilirubin in mg/dl
+# calculate PELD where lab reports albumin in g/dl and bilirubin in µmol/l
 paed.oltx.df = paed.oltx.df %>%
   mutate(AlbuminX10 = Patient.Albumin * 10,
          PELD = peld(INR = Patient.INR, bili = Patient.Bilirubin, albumin = AlbuminX10,
-                     listing_age = Patient.ListAge, growth_failure = Patient.GrowthFailure,
-                     units = "US"))
+                     listing_age = Patient.ListAge, growth_failure = Patient.GrowthFailure))
+
+# calculate PELD where lab reports albumin in g/l and bilirubin in mg/dl
+paed.oltx.df = paed.oltx.df %>%
+  mutate(AlbuminDiv10 = Patient.Albumin / 10,
+         PELD = peld_US(INR = Patient.INR, bili = Patient.Bilirubin, albumin = AlbuminDiv10,
+                     listing_age = Patient.ListAge, growth_failure = Patient.GrowthFailure))
 
 ```
-

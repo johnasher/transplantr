@@ -180,10 +180,14 @@ meld_na_US = function(INR, bili, creat, Na, dialysis) {
 #' PELD score
 #'
 #' A vectorised function to generate a PELD score for paediatric liver transplant candidates.
-#' The default unit for bilirubin is µmol/l but this can be changed to mg/dl by setting the
+#' The default unit for bilirubin is µmol/l and albumin in g/l, but these can be changed to
+#' mg/dl and g/dl respectively by setting the
 #' optional units parameter to "US".
 #'
-#' Some labs report albumin in g/dl rather than the g/l used in this function. Take care to
+#' Some labs report albumin in g/dl rather than the g/l used in this function.
+#' If units are set to "US" then g/dl is assumed and albumin should be divided by 10 if the
+#' lab reports are in g/l. If using SI units,
+#' take care to
 #' multiply the lab albumin by 10 if the lab output is in g/dl.
 #'
 #' @param INR INR
@@ -203,10 +207,11 @@ peld = function(INR, bili, albumin, listing_age, growth_failure, units = "SI") {
   # convert bilirubin to US units
   if (units == "SI") {
     bili = bili / 17.1
+    albumin = albumin / 10
   }
 
   # calculate PELD score
-  peld1 = 4.80 * log(bili) + 18.57 * log(INR) - 6.87 * log(albumin / 10)
+  peld1 = 4.80 * log(bili) + 18.57 * log(INR) - 6.87 * log(albumin)
   peld2 = ifelse(listing_age < 1, 4.36, 0)
   peld3 = ifelse(growth_failure, 6.67, 0)
   peld1 + peld2 + peld3
@@ -219,7 +224,7 @@ peld = function(INR, bili, albumin, listing_age, growth_failure, units = "SI") {
 #'
 #' @param INR numeric vector of INR
 #' @param bili numeric vector of serum biliruin (mg/dl)
-#' @param albumin numeric vector of serum albumin
+#' @param albumin numeric vector of serum albumin (g/dl)
 #' @param listing_age numeric vector of age at the time of listing (years)
 #' @param growth_failure numeric vector of whether there is growth failure (1 = yes, 0 = no)
 #'
@@ -227,7 +232,27 @@ peld = function(INR, bili, albumin, listing_age, growth_failure, units = "SI") {
 #' @export
 #'
 #' @examples
-#' peld_US(INR = 2, bili = 3.1, albumin = 25, listing_age = 2, growth_failure = 1)
+#' peld_US(INR = 2, bili = 3.1, albumin = 2.5, listing_age = 2, growth_failure = 1)
 peld_US = function(INR, bili, albumin, listing_age, growth_failure) {
   peld(INR, bili, albumin, listing_age, growth_failure, units = "US")
+}
+
+#' AST to Platelet Ratio (APRI)
+#'
+#' A vectorised function to calculate the APRI score, a predictor of hepatic fibrosis.
+#'
+#' @param ast numeric vector of serum AST levels in IU/l
+#' @param plt numeric vector of platelet counts (10^9/l)
+#' @param ast_uln single number value for lab upper limit of normal for AST levels (default is 40)
+#'
+#' @return numeric vector of APRI scores
+#' @export
+#'
+#' @examples
+#' apri(ast = 38, plt = 150, ast_uln = 40)
+#'
+#' # if the lab upper limit of normal is 40, ast_uln can be omitted
+#' apri(ast = 160, plt = 75)
+apri = function(ast, plt, ast_uln = 40) {
+  ast / ast_uln / plt * 100
 }

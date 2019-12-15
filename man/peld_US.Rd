@@ -11,7 +11,7 @@ peld_US(INR, bili, albumin, listing_age, growth_failure)
 
 \item{bili}{numeric vector of serum biliruin (mg/dl)}
 
-\item{albumin}{numeric vector of serum albumin}
+\item{albumin}{numeric vector of serum albumin (g/dl)}
 
 \item{listing_age}{numeric vector of age at the time of listing (years)}
 
@@ -25,5 +25,5 @@ A wrapper for peld(), a vectorised function to generate a PELD score for paediat
 transplant candidates, using  mg/dl as the unit for the serum bilirubin level.
 }
 \examples{
-peld_US(INR = 2, bili = 3.1, albumin = 25, listing_age = 2, growth_failure = 1)
+peld_US(INR = 2, bili = 3.1, albumin = 2.5, listing_age = 2, growth_failure = 1)
 }

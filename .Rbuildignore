@@ -8,3 +8,5 @@
 ^docs$
 ^pkgdown$
 ^LICENSE$
+^index.md$
+^index.md.backup$
