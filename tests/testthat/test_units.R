@@ -12,7 +12,7 @@ test_that("Creatinine calcs give correct results", {
 })
 
 test_that("Urea/BUN calcs give correct results", {
-  expect_equal(round(urea_to_BUN(3.2), 1), 9.0)
-  expect_equal(round(BUN_to_urea(12), 1), 4.3)
+  expect_equal(round(urea_to_bun(3.2), 1), 9.0)
+  expect_equal(round(bun_to_urea(12), 1), 4.3)
 })
 

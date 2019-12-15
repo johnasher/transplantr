@@ -71,8 +71,8 @@ creatinine_to_SI = function(creat) {
 #' @export
 #'
 #' @examples
-#' urea_to_BUN(5.4)
-urea_to_BUN = function(urea, units = "SI") {
+#' urea_to_bun(5.4)
+urea_to_bun = function(urea, units = "SI") {
   if (units == "SI") {
     urea / 0.3571
   } else {
@@ -93,8 +93,8 @@ urea_to_BUN = function(urea, units = "SI") {
 #' @export
 #'
 #' @examples
-#' BUN_to_urea(8.0)
-BUN_to_urea = function(BUN, units = "SI") {
+#' bun_to_urea(8.0)
+bun_to_urea = function(BUN, units = "SI") {
   if (units == "SI") {
     BUN * 0.3571
   } else {
