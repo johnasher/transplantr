@@ -12,7 +12,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Audit and Research Functions for Transplantation">
 <meta property="og:description" content="A set of functions to calculate medical equations used in transplantation.
-    Focussed mainly on transplantation of abdominal organs.">
+    Focused mainly on transplantation of abdominal organs.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -58,6 +58,9 @@
       <a href="articles/egfr.html">Estimated GFR</a>
     </li>
     <li>
+      <a href="articles/hla_mismatch_grade.html">HLA Mismatch Level</a>
+    </li>
+    <li>
       <a href="articles/kidney_risk_scores.html">Kidney Donor and Recipient Risk Index</a>
     </li>
     <li>
@@ -83,9 +86,10 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#transplantr" class="anchor"></a>transplantr</h1></div>
 <p>The <em>transplantr</em> package provides a set of vectorised functions for audit and clinical research in solid organ transplantation. These are particularly intended to work well with multiple datapoints in large series of data, where manual calculations would be particularly tedious.</p>
-<p>The functions provided fall into three groups:</p>
+<p>The functions provided fall into four groups:</p>
 <ul>
 <li>Donor and recipient risk indices</li>
+<li>HLA mismatch level calculators</li>
 <li>Estimated GFR calculators</li>
 <li>Biochemical unit converters</li>
 </ul>

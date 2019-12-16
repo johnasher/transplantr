@@ -1,0 +1,62 @@
+---
+title: "HLA Mismatch Level"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{hla_mismatch_grade}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+
+The national deceased donor matching scheme used in the UK takes into account the HLA mismatch between donor and potential recipient when assigning points to determine the matching sequence. Rather than using a crude number of antigen mismatches, it takes into account the differing immunological effect of mismatches at different loci and assigns a mismatch level from the A:B:DR mismatch, as in the table below:
+
+Level | HLA mismatch summary | HLA mismatch combinations
+---|---|---
+1 | 000 | 000
+2 | [0 DR and 0/1 B] | 100, 010, 110, 200, 210
+3 | [0 DR and 2 B] or [1 DR and 0/1 B] | 020, 120, 220, 001, 101, 201, 011, 111, 211
+4 | [1 DR and 2 B] or [2 DR] | 021, 121, 221, 002, 102, 202, 012, 112, 212, 022, 122, 222
+
+The _transplantr_ package has two vectorised functions to calculate the mismatch level. The `hla_mm_level()` takes three vectors as arguments, one for each of A, B and DR mismatches, while the `hla_mm_level_str()` function takes a single character string vector representing the mismatch.
+
+```{r setup}
+library(transplantr)
+```
+
+
+# Using hla_mm_level()
+
+This function should be used to calculate match level if the A, B and DR mismatches are separate variables in the data frame. It uses three parameters called `a`, `b` and `dr`, all numeric vectors with possible values of 0 to 2.
+
+```{r, eval = F}
+# create new mismatch level variable using a dplyr pipe
+transplants2 = transplants %>%
+	mutate(Mismatch.Level = hla_mm_level(a = HLA.A.MM, b = HLA.B.MM, dr = HLA.DR.MM)
+```
+
+# Using hla_mmm_level_str()
+
+Instead of three separate vectors, mismatch may be stored as string such as "1:0:1" or "021" representing A, B and DR mismatches. It is better to store these in a dataframe as strings rather than as numeric in case meaningful zeroes are removed from the start!
+
+The `hla_mm_level_str()` function takes two arguments, the first `mm` is for the character string vector for the mismatches, and the second `sep` is a logical value indicating whether separators are used to separate the values for the each locus. `sep` defaults to TRUE and essentially tells the function to use the first, third and fifth characters in the string, compared to `sep = FALSE` which takes the first, second and third characters. It does not matter what the separator character is, as long as there is both a single character between A and B, and a single character between B and DR; they do not even need to be the same character. For example, "1:0:1", "1-0-1", "1.0.1" and even "1-0:1" will all work, but "1:00" will not and neither will "1::0.0".
+
+Like the `hla_mm_level()` function, it is easiest to implement via a _dplyr_ pipe:
+
+```{r, eval = F}
+# if the HLA.Mismatch variable does not use separators
+transplants2 = transplants %>%
+  mutate(Mismatch.Level = hla_mm_level_str(mm = HLA.Mismatch, sep = FALSE))
+
+# if the HLA.Mismatch variable does use separators, sep is optional
+transplants2 = transplants %>%
+  mutate(Mismatch.Level = hla_mm_level_str(mm = HLA.Mismatch))
+```
+
