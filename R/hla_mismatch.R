@@ -30,6 +30,7 @@ hla_mm_level = function(a, b, dr) {
 #' function calculates the mismatch level as used in the UK national deceased donor kidney
 #' matching scheme. By default, the function assumes a single separator character is used
 #' between each of the three numbers in the mismatch; if not, set the sep parameter to FALSE.
+#' This function needs the stringr package to be installed.
 #'
 #' @param mm character string vector of HLA mismatches, e.g. "1:1:0" or "211"
 #' @param sep logical to indicate whether separator used in the HLA mismatch strings (default TRUE)
@@ -49,13 +50,13 @@ hla_mm_level_str = function(mm, sep = TRUE) {
          call. = FALSE)
   }
   if (sep) {
-    a = str_sub(mm, 1, 1)
-    b = str_sub(mm, 3, 3)
-    dr = str_sub(mm, 5, 5)
+    a = stringr::str_sub(mm, 1, 1)
+    b = stringr::str_sub(mm, 3, 3)
+    dr = stringr::str_sub(mm, 5, 5)
   } else {
-    a = str_sub(mm, 1, 1)
-    b = str_sub(mm, 2, 2)
-    dr = str_sub(mm, 3, 3)
+    a = stringr::str_sub(mm, 1, 1)
+    b = stringr::str_sub(mm, 2, 2)
+    dr = stringr::str_sub(mm, 3, 3)
   }
   hla_mm_level(as.numeric(a), as.numeric(b), as.numeric(dr))
 }

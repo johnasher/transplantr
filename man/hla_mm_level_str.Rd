@@ -20,6 +20,7 @@ recorded as a string rather than as separate numeric values, e.g. "1:0:1" or "10
 function calculates the mismatch level as used in the UK national deceased donor kidney
 matching scheme. By default, the function assumes a single separator character is used
 between each of the three numbers in the mismatch; if not, set the sep parameter to FALSE.
+This function needs the stringr package to be installed.
 }
 \examples{
 # using string of HLA mismatches with colons
