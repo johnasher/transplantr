@@ -9,6 +9,7 @@ series of data, where manual calculations would be particularly tedious.
 The functions provided fall into three groups:
 
   - Donor and recipient risk indices
+  - HLA mismatch level calculators
   - Estimated GFR calculators
   - Biochemical unit converters
 

@@ -12,6 +12,7 @@ The _transplantr_ package provides a set of vectorised functions for audit and c
 The functions provided fall into three groups:
 
 * Donor and recipient risk indices
+* HLA mismatch level calculators
 * Estimated GFR calculators
 * Biochemical unit converters
 

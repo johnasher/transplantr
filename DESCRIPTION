@@ -4,7 +4,7 @@ Title: Audit and Research Functions for Transplantation
 Version: 0.1.0
 Authors@R: person("John", "Asher", email = "john.asher@outlook.com", role = c("aut", "cre"))
 Description: A set of functions to calculate medical equations used in transplantation.
-    Focussed mainly on transplantation of abdominal organs.
+    Focused mainly on transplantation of abdominal organs.
 Suggests:
     dplyr,
     stringr,
