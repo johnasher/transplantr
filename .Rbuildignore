@@ -10,3 +10,5 @@
 ^LICENSE$
 ^index.md$
 ^index.md.backup$
+^cran-comments.md$
+^cran-comments.md.backup$
