@@ -14,10 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(transplantr)
-```
-
 # Introduction
 
 Glomerular filtration rate can only be determined accurately by direct measurement of renal clearance of markers such as inulin, ^51^Cr-EDTA, ^125^I-iothalamate or iohexol, but GFR can be estimated from serum creatinine using a number of established formulae. There is no perfect formula for all levels of renal function, and all formulae can be inaccurate if renal function is unstable, at extremes of BMI, in pregnancy, muscle wasting or gross oedema.
@@ -30,6 +26,13 @@ The **Cockcroft-Gault** equation estimates creatinine clearance rather than GFR 
 
 Results from eGFR calculators may vary due rounding errors. The functions in the _transplantr_ package convert creatinine units as 1.00 mg/dl being equal to 88.4 µmol/l
 
+I find the functions are easiest to use with _dplyr_, using the `mutate()` verb inside a pipe.
+
+```{r setup}
+library(transplantr)
+library(dplyr)
+```
+
 # CKD-EPI formula
 
 The CKD-EPI formula eGFR is calculated from age, sex and ethnicity as well as serum creatinine. The basic function to return its value is `ckd_epi()` which takes creatinine in either µmol/l (by default) or mg/dl, age in years, sex as `0` for female or `1` for male, and ethnicity as `"black"` or `"non-black"`. The `units` parameter defines the units used for serum creatinine, taking a value of either `"SI"` for µmol/l or `"US"` for mg/dl; if the parameter is not provided, it defaults to `"SI"`.
@@ -38,23 +41,33 @@ There is also a `ckd_epi_US()` wrapper function which uses mg/dl as the creatini
 
 This is a vectorised function, which takes numeric vectors as its input and returns a numeric vector. I would typically call the function from within a `mutate()` call in a _dplyr_ pipe, which adds a new variable to the dataframe:
 
-```{r, eval = F}
-mydata <- mydata %>%
-  mutate(eGFR = ckd_epi(creat = SCr, age = Age, sex = Sex, eth = Ethnicity))
+```{r}
+data(results)
+
+results2 <- results %>%
+  mutate(eGFR = ckd_epi(creat = Creatinine, age = Age, sex = Sex, eth = Ethnicity))
+
+results2
 ```
 
 If creatinine is measured in mg/dl, the variant code would be one of these two alternatives:
 
-```{r, eval = F}
+```{r}
+data(results_US)
+
 # using the standard function
-mydata <- mydata %>%
-  mutate(eGFR = ckd_epi(creat = SCr, age = Age, sex = Sex,
+results_US2 <- results_US %>%
+  mutate(eGFR = ckd_epi(creat = Creatinine, age = Age, sex = Sex,
         eth = Ethnicity, units = "US"))
 
 # using the wrapper function
-mydata <- mydata %>%
-          mutate(eGFR = ckd_epi_US(creat = SCr, age = Age, sex = Sex,
+results_US3 <- results_US %>%
+          mutate(eGFR = ckd_epi_US(creat = Creatinine, age = Age, sex = Sex,
           eth = Ethnicity))
+
+results_US2
+
+results_US3
 ```
 
 If you don't like _dplyr_, the functions also work well within Base R:
@@ -67,12 +80,16 @@ mydata$eGFR <- ckd_epi(creat = SCr, age = Age, sex = Sex, eth = Ethnicity)
 
 In renal transplant follow-up, it is common to report eGFR at various timepoints, such as 1, 2 and 5 year eGFR. This is facilitated by the `ckd_epi()` function using the optional `offset` parameter which adds a year to the baseline age. For example, to calculate 1 and 5 year eGFR, the code would be something like this:
 
-```{r, eval = F}
-mydata <- mydata %>%
-  mutate(eGFR_1yr = ckd_epi(creat = SCr, age = Age, sex = Sex,
+```{r}
+data(serial.results)
+
+serial.results2 <- serial.results %>%
+  mutate(eGFR_1yr = ckd_epi(creat = Creatinine_1yr, age = Age, sex = Sex,
                     eth = Ethnicity, offset = 1),
-         eGFR_5yr = ckd_epi(creat = SCr, age = Age, sex = Sex,
+         eGFR_5yr = ckd_epi(creat = Creatinine_5yr, age = Age, sex = Sex,
                     eth = Ethnicity, offset = 5))
+
+serial.results2
 ```
 
 # Abbreviated MDRD formula
@@ -84,8 +101,8 @@ Like CKD-EPI function, there is also a `mdrd_US()` wrapper function which uses m
 This is also vectorised function, and is generally called from within a `mutate()` call in a _dplyr_ pipe:
 
 ```{r, eval = F}
-mydata <- mydata %>%
-  mutate(eGFR = mdrd(creat = SCr, age = Age, sex = Sex, eth = Ethnicity))
+results2m <- results %>%
+  mutate(eGFR = mdrd(creat = Creatinine, age = Age, sex = Sex, eth = Ethnicity))
 ```
 
 Using mg/dl as units or base R work in the same way as the `ckd_epi()` formula, and the `mdrd()` can also accept an optional `offset` parameter to facilitate serial results.
@@ -97,8 +114,8 @@ There is also a fuller six-variable MDRD formula which may be added to this pack
 The bedside Schwartz formula is used for children under 19 and is a simpler version of the original Schwartz formula published in 1984. It is calculated using the `schwartz()` function and uses serum creatinine in either µmol/l (by default) or mg/dl and height in cm. Like the other formulae in the package, the `units` parameter defines the units used for serum creatinine, taking a value of either `"SI"` for µmol/l or `"US"` for mg/dl; if the parameter is not provided, it defaults to `"SI"`. There is also a `schwartz_US()` wrapper function which uses mg/dl.
 
 ```{r, eval = F}
-paediatric_data <- paediatric_data %>%
-  mutate(eGFR = schwartz(creat = SCr, height = Height))
+results2p <- results %>%
+  mutate(eGFR = schwartz(creat = Creatinine, height = Height))
 ```
 
 In the same way as the CKD-EPI and MDRD functions, using the optional offset parameter helps to generate serial results.
@@ -110,9 +127,9 @@ The Cockcroft-Gault formula provides a reasonably accurate estimation of creatin
 In the _transplantr_ package, the creatinine clearance can be calculated with the `cockcroft()` function, which takes creatinine, age, sex and weight as core arguments. The creatinine is in µmol/l by default, but can be changed to mg/dl either by specifying `units` to be `"US"` or by calling the wrapper function `cockcroft_US()`. Ideal body weight can be calculated from height and sex using the `ibw()` function. An example using a _dplyr_ pipe:
 
 ```{r, eval = F}
-mydata <- mydata %>%
-  mutate(Ideal.Weight = ibw(height = Patient.Height, sex = Patient.Sex),
-         CrClear = cockcroft(creat = Patient.SCr, age = Patient.Age, sex = Patient.Sex,
+results2cg <- results %>%
+  mutate(Ideal.Weight = ibw(height = Height, sex = Sex),
+         CrClear = cockcroft(creat = Creatinine, age = Age, sex = Sex,
                              weight = Ideal.Weight))
 ```
 

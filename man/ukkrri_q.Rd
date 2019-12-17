@@ -25,7 +25,7 @@ output can also be as a vector of factors by setting fct to TRUE (this can be co
 prefix parameter).
 }
 \examples{
-obtain quartile of a single value
+# obtain quartile of a single value
 ukkrri_q(1.01)
 
 # factor vector of results with prefix

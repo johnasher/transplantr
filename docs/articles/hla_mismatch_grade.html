@@ -140,9 +140,9 @@
 <a class="sourceLine" id="cb2-2" data-line-number="2">transplants2 =<span class="st"> </span>transplants <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Mismatch.Level =</span> <span class="kw"><a href="../reference/hla_mm_level.html">hla_mm_level</a></span>(<span class="dt">a =</span> HLA.A.MM, <span class="dt">b =</span> HLA.B.MM, <span class="dt">dr =</span> HLA.DR.MM)</a></code></pre></div>
 </div>
-<div id="using-hla_mmm_level_str" class="section level1">
+<div id="using-hla_mm_level_str" class="section level1">
 <h1 class="hasAnchor">
-<a href="#using-hla_mmm_level_str" class="anchor"></a>Using hla_mmm_level_str()</h1>
+<a href="#using-hla_mm_level_str" class="anchor"></a>Using hla_mm_level_str()</h1>
 <p>Instead of three separate vectors, mismatch may be stored as string such as “1:0:1” or “021” representing A, B and DR mismatches. It is better to store these in a dataframe as strings rather than as numeric in case meaningful zeroes are removed from the start!</p>
 <p>The <code><a href="../reference/hla_mm_level_str.html">hla_mm_level_str()</a></code> function takes two arguments, the first <code>mm</code> is for the character string vector for the mismatches, and the second <code>sep</code> is a logical value indicating whether separators are used to separate the values for the each locus. <code>sep</code> defaults to TRUE and essentially tells the function to use the first, third and fifth characters in the string, compared to <code>sep = FALSE</code> which takes the first, second and third characters. It does not matter what the separator character is, as long as there is both a single character between A and B, and a single character between B and DR; they do not even need to be the same character. For example, “1:0:1”, “1-0-1”, “1.0.1” and even “1-0:1” will all work, but “1:00” will not and neither will “1::0.0”.</p>
 <p>Like the <code><a href="../reference/hla_mm_level.html">hla_mm_level()</a></code> function, it is easiest to implement via a <em>dplyr</em> pipe:</p>
@@ -163,7 +163,7 @@
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#using-hla_mm_level">Using hla_mm_level()</a></li>
-      <li><a href="#using-hla_mmm_level_str">Using hla_mmm_level_str()</a></li>
+      <li><a href="#using-hla_mm_level_str">Using hla_mm_level_str()</a></li>
       </ul>
 </div>
       </div>

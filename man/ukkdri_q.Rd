@@ -7,11 +7,11 @@
 ukkdri_q(dri, prefix = FALSE, fct = FALSE)
 }
 \arguments{
+\item{dri}{numeric vector of UKKDRI values}
+
 \item{prefix}{whether to prefix results with "D" (default FALSE)}
 
 \item{fct}{whether to return results as a factor (default FALSE)}
-
-\item{rri}{numeric vector of UKKDRI values}
 }
 \value{
 vector of UKKDRI quartiles
@@ -25,10 +25,10 @@ output can also be as a vector of factors by setting fct to TRUE (this can be co
 prefix parameter).
 }
 \examples{
-obtain quartile of a single value
+# obtain quartile of a single value
 ukkdri_q(1.01)
 
 # factor vector of results with prefix
-dri = c(0.69, 0.75, 0.96, 1.36)
-ukkdri_q(rri, prefix = TRUE, fct = TRUE)
+dri = c(0.69, 1.01, 1.36, 1.54)
+ukkdri_q(dri, prefix = TRUE, fct = TRUE)
 }

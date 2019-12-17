@@ -14,6 +14,13 @@ test_that("Watson UKKDRI is correct", {
   expect_equal(round(watson_ukkdri(40, 0, 75, 0, 0), 2), 1.00)
 })
 
+test_that("UKKRRI and UKKDRI quartiles correct", {
+  expect_equal(ukkrri_q(0.74), 1)
+  expect_equal(ukkrri_q(1.01, prefix = TRUE), "R3")
+  expect_equal(ukkdri_q(1.01), 2)
+  expect_equal(ukkdri_q(1.36, prefix = TRUE), "D3")
+})
+
 test_that("USKDRI is correct", {
   expect_equal(round(uskdri(age = 52, height = 183, weight = 81, eth = "non-black", htn = 1, dm = 0,
                             cva = 1, creat = 1.7, hcv = 0, dcd = 1, scaling = 1.250609, units = "US"), 2), 1.42)

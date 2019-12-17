@@ -12,3 +12,6 @@
 ^index.md.backup$
 ^cran-comments.md$
 ^cran-comments.md.backup$
+^R/generate_data.R$
+^data/data_sources$
+^generate_data.R$

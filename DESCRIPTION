@@ -5,6 +5,7 @@ Version: 0.1.0
 Authors@R: person("John", "Asher", email = "john.asher@outlook.com", role = c("aut", "cre"))
 Description: A set of functions to calculate medical equations used in transplantation.
     Focused mainly on transplantation of abdominal organs.
+Depends: R (>= 3.1.0)
 Suggests:
     dplyr,
     stringr,

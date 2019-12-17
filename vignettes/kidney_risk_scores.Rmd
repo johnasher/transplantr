@@ -34,6 +34,7 @@ To start, load the transplantr library and I would also recommend using dplyr to
 
 ```{r setup}
 library(transplantr)
+library(dplyr)
 ```
 
 # UK Kidney Donor and Recipient Risk Indices (2019)
@@ -63,19 +64,24 @@ my_data2 = my_data %>%
          Donor.CMV = if_else(Donor.CMV == "Pos", 1, 0))
 ```
 
+The result can be converted into quartiles using the `ukkdri_q()` function. This takes a numeric vector of donor risk index values as its input and returns a vector of quartiles. This is reported a 1-4 by default, but can be prefixed with a "D" to match the NHSBT ODT nomenclature if the optional `prefix` parameter is set to TRUE, and can be reported as a factor vector by setting `fct` to TRUE.
+
 Generating the results is also easy to do with _dplyr_:
 
 ```{r, eval = F}
 my_data3 = my_data2 %>%
   mutate(UKKDRI = ukkdri(age = Donor.Age, height = Donor.Height, htn = Donor.Hypertension,
                          sex = Donor.Sex, cmv = Donor.CMV, gfr = Donor.eGFR, 
-                         hdays = Donor.Hospital_Stay))
+                         hdays = Donor.Hospital_Stay),
+         UKKDRI.Quartile = ukkdri_q(UKKDRI, prefix = TRUE, fct = TRUE))
 ```
 
-Although it is a vectorised function, `ukkdri()` will also work with single values:
+Although vectorised functions, `ukkdri()` and `ukkdri_q()` will also work with single values:
 
 ```{r}
 ukkdri(age = 50, height = 170, htn = 1, sex = "F", cmv = 0, gfr = 90, hdays = 2)
+
+ukkdri_q(0.8572, prefix = T)
 ```
 
 ## UK Recipient Risk Index
@@ -89,12 +95,15 @@ dx | whether recipient on dialysis at time of listing | numeric vector of 1 (yes
 wait | waiting time since start of dialysis in days | numeric vector
 dm | whether recipient has diabetes | numeric vector of 1 (yes) and 0 (no)
 
+Like the donor risk index, the UKKRRI can be converted into quartiles of risk using the `ukkrri_q()` function, which like the `ukkdri_q()` function takes optional parameters to indicate whether a prefix or factor is wanted in the output.
+
 The easiest way to generate the UKKRRI data column is again to use dplyr::mutate() verb:
 
 ```{r, eval = F}
 my_data4 = my_data3 %>%
   mutate(UKKRRI = ukkrri(age = Recipient.Age, dx = Recipient.OnDialysis, 
-                         wait = Recipient.Waittime, dm = Recipient.Diabetes))
+                         wait = Recipient.Waittime, dm = Recipient.Diabetes),
+         UKKRRI.Quartile = ukkrri_q(UKKRRI, prefix = T))
 ```
 
 # UK Kidney Donor Risk Index (2012)

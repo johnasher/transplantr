@@ -29,6 +29,8 @@ The _transplantr_ package has two vectorised functions to calculate the mismatch
 
 ```{r setup}
 library(transplantr)
+library(dplyr)
+data(mismatches)
 ```
 
 
@@ -36,10 +38,11 @@ library(transplantr)
 
 This function should be used to calculate match level if the A, B and DR mismatches are separate variables in the data frame. It uses three parameters called `a`, `b` and `dr`, all numeric vectors with possible values of 0 to 2.
 
-```{r, eval = F}
+```{r}
 # create new mismatch level variable using a dplyr pipe
-transplants2 = transplants %>%
-	mutate(Mismatch.Level = hla_mm_level(a = HLA.A.MM, b = HLA.B.MM, dr = HLA.DR.MM)
+mismatches %>%
+  select(-HLA.MM, -HLA.MM.s) %>%
+	mutate(Mismatch.Level = hla_mm_level(a = HLA.A.MM, b = HLA.B.MM, dr = HLA.DR.MM))
 ```
 
 # Using hla_mm_level_str()
@@ -50,13 +53,15 @@ The `hla_mm_level_str()` function takes two arguments, the first `mm` is for the
 
 Like the `hla_mm_level()` function, it is easiest to implement via a _dplyr_ pipe:
 
-```{r, eval = F}
+```{r}
 # if the HLA.Mismatch variable does not use separators
-transplants2 = transplants %>%
-  mutate(Mismatch.Level = hla_mm_level_str(mm = HLA.Mismatch, sep = FALSE))
+mismatches %>%
+  select(HLA.MM) %>%
+  mutate(Mismatch.Level = hla_mm_level_str(mm = HLA.MM, sep = FALSE))
 
 # if the HLA.Mismatch variable does use separators, sep is optional
-transplants2 = transplants %>%
-  mutate(Mismatch.Level = hla_mm_level_str(mm = HLA.Mismatch))
+mismatches %>%
+  select(HLA.MM.s) %>%
+  mutate(Mismatch.Level = hla_mm_level_str(mm = HLA.MM.s))
 ```
 

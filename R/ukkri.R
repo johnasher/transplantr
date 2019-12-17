@@ -93,7 +93,7 @@ watson_ukkdri = function(age, htn, weight, hdays, adrenaline) {
 #' @export
 #'
 #' @examples
-#' obtain quartile of a single value
+#' # obtain quartile of a single value
 #' ukkrri_q(1.01)
 #'
 #' # factor vector of results with prefix
@@ -117,7 +117,7 @@ ukkrri_q = function(rri, prefix = FALSE, fct = FALSE) {
 #' output can also be as a vector of factors by setting fct to TRUE (this can be combined with the
 #' prefix parameter).
 #'
-#' @param rri numeric vector of UKKDRI values
+#' @param dri numeric vector of UKKDRI values
 #' @param prefix whether to prefix results with "D" (default FALSE)
 #' @param fct whether to return results as a factor (default FALSE)
 #'
@@ -125,12 +125,12 @@ ukkrri_q = function(rri, prefix = FALSE, fct = FALSE) {
 #' @export
 #'
 #' @examples
-#' obtain quartile of a single value
+#' # obtain quartile of a single value
 #' ukkdri_q(1.01)
 #'
 #' # factor vector of results with prefix
-#' dri = c(0.69, 0.75, 0.96, 1.36)
-#' ukkdri_q(rri, prefix = TRUE, fct = TRUE)
+#' dri = c(0.69, 1.01, 1.36, 1.54)
+#' ukkdri_q(dri, prefix = TRUE, fct = TRUE)
 ukkdri_q = function(dri, prefix = FALSE, fct = FALSE) {
   q = ifelse(dri < 0.79000001, 1,
              ifelse(dri < 1.12000001, 2,
