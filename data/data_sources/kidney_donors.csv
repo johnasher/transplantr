@@ -1,0 +1,5 @@
+Donor.Age,Donor.Height,Donor.Hypertension,Donor.Sex,Donor.CMV,Donor.GFR,Donor.Hospital_Stay
+34,165,TRUE,F,Neg,91,10
+51,177,FALSE,M,Pos,74,2
+65,154,TRUE,F,Pos,63,5
+78,183,FALSE,M,Pos,54,3

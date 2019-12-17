@@ -61,3 +61,36 @@
 #' }
 "mismatches"
 
+#' Simulated dataset of donors to illustrate KDRI vignette.
+#'
+#' A simulated dataset of kidney donors to illustrate the KDRI vignette
+#'
+#' @format A data frame with 4 rows and 7 variables:
+#' \describe{
+#'   \item{Donor.Age}{donor age in years}
+#'   \item{Donor.Height}{donor height in cm}
+#'   \item{Donor.Hypertension}{donor hypertension}
+#'   \item{Donor.Sex}{donor sex}
+#'   \item{Donor.CMV}{donor CMV status}
+#'   \item{Donor.GFR}{donor GFR}
+#'   \item{Donor.Hospital_Stay}{donor hospital stay in days}
+#'   ...
+#' }
+"kidney.donors"
+
+#' Simulated dataset to illustrate MELD calculator vignette.
+#'
+#' A simulated dataset of liver patient characteristics for the MELD vignette
+#'
+#' @format A data frame with 4 rows and 6 variables:
+#' \describe{
+#'   \item{Patient.Age}{patient age in years}
+#'   \item{Patient.INR}{Patient INR}
+#'   \item{Patient.Bilirubin}{Patient serum bilirubin in µmol/l}
+#'   \item{Patient.Creatinine}{serum serum creatinine in µmol/l}
+#'   \item{Patient.Sodium}{Patient serum sodium in mmol/l}
+#'   \item{Patient.Dialysed}{Whether patient dialysed (1 = yes, 0 = no)}
+#'   ...
+#' }
+"liver.pts"
+

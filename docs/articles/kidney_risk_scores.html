@@ -177,16 +177,53 @@
 </tbody>
 </table>
 <p>Using vectors of 1 and 0 is more efficient than TRUE/FALSE or “Male”/“Female”, but if your dataset uses these values instead, it is easy enough to convert them with the dplyr::mutate() verb:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">my_data2 =<span class="st"> </span>my_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">Donor.Hypertension =</span> <span class="kw"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span>(Donor.Hypertension <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>, <span class="dv">1</span>, <span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">         <span class="dt">Donor.CMV =</span> <span class="kw"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span>(Donor.CMV <span class="op">==</span><span class="st"> "Pos"</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># load dataset</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"kidney.donors"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">kidney.donors</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; # A tibble: 4 x 7</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt;   Donor.Age Donor.Height Donor.Hypertens… Donor.Sex Donor.CMV Donor.GFR</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;       &lt;dbl&gt;        &lt;dbl&gt; &lt;lgl&gt;            &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; 1        34          165 TRUE             F         Neg              91</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; 2        51          177 FALSE            M         Pos              74</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; 3        65          154 TRUE             F         Pos              63</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; 4        78          183 FALSE            M         Pos              54</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; # … with 1 more variable: Donor.Hospital_Stay &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co"># change required variables to 1/0</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">kidney.donors2 =<span class="st"> </span>kidney.donors <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">Donor.Hypertension =</span> <span class="kw"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span>(Donor.Hypertension <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>, <span class="dv">1</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">         <span class="dt">Donor.Sex =</span> <span class="kw"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span>(Donor.Sex <span class="op">==</span><span class="st"> "F"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">        <span class="dt">Donor.CMV =</span> <span class="kw"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span>(Donor.CMV <span class="op">==</span><span class="st"> "Pos"</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co"># view updated dataset</span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">kidney.donors2</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; # A tibble: 4 x 7</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt;   Donor.Age Donor.Height Donor.Hypertens… Donor.Sex Donor.CMV Donor.GFR</span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt;       &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt; 1        34          165                1         1         0        91</span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt; 2        51          177                0         0         1        74</span></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#&gt; 3        65          154                1         1         1        63</span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#&gt; 4        78          183                0         0         1        54</span></a>
+<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#&gt; # … with 1 more variable: Donor.Hospital_Stay &lt;dbl&gt;</span></a></code></pre></div>
 <p>The result can be converted into quartiles using the <code><a href="../reference/ukkdri_q.html">ukkdri_q()</a></code> function. This takes a numeric vector of donor risk index values as its input and returns a vector of quartiles. This is reported a 1-4 by default, but can be prefixed with a “D” to match the NHSBT ODT nomenclature if the optional <code>prefix</code> parameter is set to TRUE, and can be reported as a factor vector by setting <code>fct</code> to TRUE.</p>
 <p>Generating the results is also easy to do with <em>dplyr</em>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">my_data3 =<span class="st"> </span>my_data2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">UKKDRI =</span> <span class="kw"><a href="../reference/ukkdri.html">ukkdri</a></span>(<span class="dt">age =</span> Donor.Age, <span class="dt">height =</span> Donor.Height, <span class="dt">htn =</span> Donor.Hypertension,</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">                         <span class="dt">sex =</span> Donor.Sex, <span class="dt">cmv =</span> Donor.CMV, <span class="dt">gfr =</span> Donor.eGFR, </a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">                         <span class="dt">hdays =</span> Donor.Hospital_Stay),</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">         <span class="dt">UKKDRI.Quartile =</span> <span class="kw"><a href="../reference/ukkdri_q.html">ukkdri_q</a></span>(UKKDRI, <span class="dt">prefix =</span> <span class="ot">TRUE</span>, <span class="dt">fct =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># calculate UKKDRI </span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">kidney.donors3 =<span class="st"> </span>kidney.donors2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">UKKDRI =</span> <span class="kw"><a href="../reference/ukkdri.html">ukkdri</a></span>(<span class="dt">age =</span> Donor.Age, <span class="dt">height =</span> Donor.Height, <span class="dt">htn =</span> Donor.Hypertension,</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">                         <span class="dt">sex =</span> Donor.Sex, <span class="dt">cmv =</span> Donor.CMV, <span class="dt">gfr =</span> Donor.GFR, </a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">                         <span class="dt">hdays =</span> Donor.Hospital_Stay),</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">         <span class="dt">UKKDRI.Quartile =</span> <span class="kw"><a href="../reference/ukkdri_q.html">ukkdri_q</a></span>(UKKDRI, <span class="dt">prefix =</span> <span class="ot">TRUE</span>, <span class="dt">fct =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co"># display results (with selected variables)</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">kidney.donors3 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(Donor.Age, Donor.GFR, UKKDRI, UKKDRI.Quartile)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; # A tibble: 4 x 4</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;   Donor.Age Donor.GFR UKKDRI UKKDRI.Quartile</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt;       &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;          </span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; 1        34        91  0.866 D2             </span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; 2        51        74  1.19  D3             </span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; 3        65        63  2.50  D4             </span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; 4        78        54  2.15  D4</span></a></code></pre></div>
 <p>Although vectorised functions, <code><a href="../reference/ukkdri.html">ukkdri()</a></code> and <code><a href="../reference/ukkdri_q.html">ukkdri_q()</a></code> will also work with single values:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/ukkdri.html">ukkdri</a></span>(<span class="dt">age =</span> <span class="dv">50</span>, <span class="dt">height =</span> <span class="dv">170</span>, <span class="dt">htn =</span> <span class="dv">1</span>, <span class="dt">sex =</span> <span class="st">"F"</span>, <span class="dt">cmv =</span> <span class="dv">0</span>, <span class="dt">gfr =</span> <span class="dv">90</span>, <span class="dt">hdays =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; [1] 0.857272</span></a>
@@ -234,7 +271,7 @@
 </table>
 <p>Like the donor risk index, the UKKRRI can be converted into quartiles of risk using the <code><a href="../reference/ukkrri_q.html">ukkrri_q()</a></code> function, which like the <code><a href="../reference/ukkdri_q.html">ukkdri_q()</a></code> function takes optional parameters to indicate whether a prefix or factor is wanted in the output.</p>
 <p>The easiest way to generate the UKKRRI data column is again to use dplyr::mutate() verb:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">my_data4 =<span class="st"> </span>my_data3 <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">kidney.recipients2 =<span class="st"> </span>kidney.recipients <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">UKKRRI =</span> <span class="kw"><a href="../reference/ukkrri.html">ukkrri</a></span>(<span class="dt">age =</span> Recipient.Age, <span class="dt">dx =</span> Recipient.OnDialysis, </a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">                         <span class="dt">wait =</span> Recipient.Waittime, <span class="dt">dm =</span> Recipient.Diabetes),</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">         <span class="dt">UKKRRI.Quartile =</span> <span class="kw"><a href="../reference/ukkrri_q.html">ukkrri_q</a></span>(UKKRRI, <span class="dt">prefix =</span> T))</a></code></pre></div>
@@ -367,11 +404,12 @@
 </table>
 <p>The Scaling Factor is the median KDRI for kidney donors in the USA in the previous year, and is published each year on the <a href="https://optn.transplant.hrsa.gov/resources/allocation-calculators/kdpi-calculator/">OPTN website</a>, together with a table for converting KDRI to KDPI, which gives a percentile of risk. For 2019 the scaling factor is approximately 1.2507. This normalises the donor risk within each year, but I think it obscures inter-year comparisons. The <code>scaling</code> parameter defaults to 1 so can be left out when a non-scaled KDRI is desired.</p>
 <p>As a vectorised function, this works well when calculating US KDRI for a large series using a <em>dplyr</em> pipe with code like this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">my_data5 =<span class="st"> </span>my_data2 <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">kidney.donors3us =<span class="st"> </span>kidney.donors2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">USKDRI =</span> <span class="kw"><a href="../reference/uskdri.html">uskdri</a></span>(<span class="dt">age =</span> Donor.Age, <span class="dt">height =</span> Donor.Height, <span class="dt">weight =</span> Donor.Weight,</a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">                         <span class="dt">eth =</span> Donor.Race, <span class="dt">htn =</span> Donor.Hypertension, <span class="dt">dm =</span> Donor.Diabetes,</a>
 <a class="sourceLine" id="cb7-4" data-line-number="4">                         <span class="dt">cva =</span> Donor.CVA, <span class="dt">creat =</span> Donor.Creatinine,</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">                         <span class="dt">hcv =</span> Donor.HepatitisC, <span class="dt">dcd =</span> Donor.Type, <span class="dt">scaling =</span> <span class="fl">1.250697</span>, <span class="dt">units =</span> <span class="st">"US"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb7-5" data-line-number="5">                         <span class="dt">hcv =</span> Donor.HepatitisC, <span class="dt">dcd =</span> Donor.Type, </a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">                         <span class="dt">scaling =</span> <span class="fl">1.250697</span>, <span class="dt">units =</span> <span class="st">"US"</span>))</a></code></pre></div>
 <p>The function can also be used for a single case:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># with creatinine in µmol/l (units = "SI" can be omitted)</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="../reference/uskdri.html">uskdri</a></span>(<span class="dt">age =</span> <span class="dv">40</span>, <span class="dt">height =</span> <span class="dv">170</span>, <span class="dt">weight =</span> <span class="dv">80</span>, <span class="dt">eth =</span> <span class="st">"non-black"</span>, <span class="dt">htn =</span> <span class="dv">0</span>, <span class="dt">dm =</span> <span class="dv">0</span>,</a>

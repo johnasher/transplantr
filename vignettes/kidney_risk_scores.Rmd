@@ -58,22 +58,36 @@ hdays | length of donor hospital stay | numeric vector
 Using vectors of 1 and 0 is more efficient than TRUE/FALSE or "Male"/"Female", but if your dataset 
 uses these values instead, it is easy enough to convert them with the dplyr::mutate() verb:
 
-```{r, eval = F}
-my_data2 = my_data %>%
+```{r}
+# load dataset
+data("kidney.donors")
+kidney.donors
+
+# change required variables to 1/0
+kidney.donors2 = kidney.donors %>%
   mutate(Donor.Hypertension = if_else(Donor.Hypertension == TRUE, 1, 0),
-         Donor.CMV = if_else(Donor.CMV == "Pos", 1, 0))
+         Donor.Sex = if_else(Donor.Sex == "F", 1, 0),
+        Donor.CMV = if_else(Donor.CMV == "Pos", 1, 0))
+
+# view updated dataset
+kidney.donors2
 ```
 
 The result can be converted into quartiles using the `ukkdri_q()` function. This takes a numeric vector of donor risk index values as its input and returns a vector of quartiles. This is reported a 1-4 by default, but can be prefixed with a "D" to match the NHSBT ODT nomenclature if the optional `prefix` parameter is set to TRUE, and can be reported as a factor vector by setting `fct` to TRUE.
 
 Generating the results is also easy to do with _dplyr_:
 
-```{r, eval = F}
-my_data3 = my_data2 %>%
+```{r}
+# calculate UKKDRI 
+kidney.donors3 = kidney.donors2 %>%
   mutate(UKKDRI = ukkdri(age = Donor.Age, height = Donor.Height, htn = Donor.Hypertension,
-                         sex = Donor.Sex, cmv = Donor.CMV, gfr = Donor.eGFR, 
+                         sex = Donor.Sex, cmv = Donor.CMV, gfr = Donor.GFR, 
                          hdays = Donor.Hospital_Stay),
          UKKDRI.Quartile = ukkdri_q(UKKDRI, prefix = TRUE, fct = TRUE))
+
+# display results (with selected variables)
+kidney.donors3 %>%
+  select(Donor.Age, Donor.GFR, UKKDRI, UKKDRI.Quartile)
 ```
 
 Although vectorised functions, `ukkdri()` and `ukkdri_q()` will also work with single values:
@@ -100,7 +114,7 @@ Like the donor risk index, the UKKRRI can be converted into quartiles of risk us
 The easiest way to generate the UKKRRI data column is again to use dplyr::mutate() verb:
 
 ```{r, eval = F}
-my_data4 = my_data3 %>%
+kidney.recipients2 = kidney.recipients %>%
   mutate(UKKRRI = ukkrri(age = Recipient.Age, dx = Recipient.OnDialysis, 
                          wait = Recipient.Waittime, dm = Recipient.Diabetes),
          UKKRRI.Quartile = ukkrri_q(UKKRRI, prefix = T))
@@ -151,11 +165,12 @@ together with a table for converting KDRI to KDPI, which gives a percentile of r
 As a vectorised function, this works well when calculating US KDRI for a large series using a _dplyr_ pipe with code like this:
 
 ```{r, eval = F}
-my_data5 = my_data2 %>%
+kidney.donors3us = kidney.donors2 %>%
   mutate(USKDRI = uskdri(age = Donor.Age, height = Donor.Height, weight = Donor.Weight,
                          eth = Donor.Race, htn = Donor.Hypertension, dm = Donor.Diabetes,
                          cva = Donor.CVA, creat = Donor.Creatinine,
-                         hcv = Donor.HepatitisC, dcd = Donor.Type, scaling = 1.250697, units = "US"))
+                         hcv = Donor.HepatitisC, dcd = Donor.Type, 
+                         scaling = 1.250697, units = "US"))
 ```
 
 The function can also be used for a single case:

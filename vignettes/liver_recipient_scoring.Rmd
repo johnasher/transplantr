@@ -22,6 +22,7 @@ The **UKELD** score was developed to risk stratify liver transplant recipients i
 
 ```{r setup}
 library(transplantr)
+library(dplyr)
 ```
 
 # MELD and MELD-Na scores
@@ -38,10 +39,18 @@ $$MELDNa = MELD + 1.32 \times (137 - Na) - [0.033 \times MELD \times (137 - Na)]
 
 The `meld()` function in _transplantr_ calculates the MELD score with these value assignments taken into account. Creatinine and bilirubin are both calculated from their values in µmol/l by default, and can be changed to mg/dl either by setting the optional `units` parameter to `"US"` or by using the `meld_US()` wrapper function instead. It is a vectorised function and can therefore be applied to a whole series at once, for example in a _dplyr_ pipe:
 
-```{r, eval = F}
-oltx_data = oltx_data %>%
-  mutate(MELD = meld(INR = Patient.INR, age = Patient.Age, creat = Patient.SCr,
-                     dialysis = Patient.Dialysed))
+```{r}
+# load dataset
+data("liver.pts")
+
+# remove redundant variables and calculate MELD
+oltx_data = liver.pts %>%
+  select(-Patient.Age, -Patient.Sodium) %>%
+  mutate(MELD = meld(INR = Patient.INR, bili = Patient.Bilirubin, 
+                     creat = Patient.Creatinine, dialysis = Patient.Dialysed))
+
+# display result
+oltx_data
 ```
 
 It will also work to calculate MELD score for a single case:
@@ -68,13 +77,13 @@ The `peld()` function in _transplantr_ calculates the PELD score. Bilirubin is c
 
 ```{r, eval = F}
 # calculate PELD where lab reports albumin in g/dl and bilirubin in µmol/l
-paed.oltx.df = paed.oltx.df %>%
+paed.oltx2 = paed.oltx %>%
   mutate(AlbuminX10 = Patient.Albumin * 10,
          PELD = peld(INR = Patient.INR, bili = Patient.Bilirubin, albumin = AlbuminX10,
                      listing_age = Patient.ListAge, growth_failure = Patient.GrowthFailure))
 
 # calculate PELD where lab reports albumin in g/l and bilirubin in mg/dl
-paed.oltx.df = paed.oltx.df %>%
+paed.oltx2 = paed.oltx %>%
   mutate(AlbuminDiv10 = Patient.Albumin / 10,
          PELD = peld_US(INR = Patient.INR, bili = Patient.Bilirubin, albumin = AlbuminDiv10,
                      listing_age = Patient.ListAge, growth_failure = Patient.GrowthFailure))
