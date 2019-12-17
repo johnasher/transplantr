@@ -74,3 +74,68 @@ watson_ukkdri = function(age, htn, weight, hdays, adrenaline) {
   adrenvar = 0.0465 * adrenaline
   exp(agevar + htnvar + wtvar + dvar + adrenvar)
 }
+
+
+#' UK Kidney Recipient Risk Index Quartile (2019)
+#'
+#' Vectorised function to convert UKKRRI values to quartiles of risk. The function takes a numeric
+#' vector of UKKRRI values as input, and returns a vector of quartiles. By default this is also a
+#' numeric vector with values 1-4, but this can be changed to a character string vector of R1-R4 to
+#' match the nomenclature in the NHSBT ODT documentation by setting the prefix parameter to TRUE. The
+#' output can also be as a vector of factors by setting fct to TRUE (this can be combined with the
+#' prefix parameter).
+#'
+#' @param rri numeric vector of UKKRRI values
+#' @param prefix whether to prefix results with "R" (default FALSE)
+#' @param fct whether to return results as a factor (default FALSE)
+#'
+#' @return vector of UKKRRI quartiles
+#' @export
+#'
+#' @examples
+#' obtain quartile of a single value
+#' ukkrri_q(1.01)
+#'
+#' # factor vector of results with prefix
+#' rri = c(0.69, 0.75, 0.96, 1.36)
+#' ukkrri_q(rri, prefix = TRUE, fct = TRUE)
+ukkrri_q = function(rri, prefix = FALSE, fct = FALSE) {
+  q = ifelse(rri < 0.74000001, 1,
+             ifelse(rri < 0.94000001, 2,
+                    ifelse(rri < 1.20000001, 3, 4)))
+  if (prefix) q = paste0("R", q)
+  if (fct) q = as.factor(q)
+  q
+}
+
+#' UK Kidney Donor Risk Index Quartile (2019)
+#'
+#' Vectorised function to convert UKKDRI values to quartiles of risk. The function takes a numeric
+#' vector of UKKDRI values as input, and returns a vector of quartiles. By default this is also a
+#' numeric vector with values 1-4, but this can be changed to a character string vector of D1-D4 to
+#' match the nomenclature in the NHSBT ODT documentation by setting the prefix parameter to TRUE. The
+#' output can also be as a vector of factors by setting fct to TRUE (this can be combined with the
+#' prefix parameter).
+#'
+#' @param rri numeric vector of UKKDRI values
+#' @param prefix whether to prefix results with "D" (default FALSE)
+#' @param fct whether to return results as a factor (default FALSE)
+#'
+#' @return vector of UKKDRI quartiles
+#' @export
+#'
+#' @examples
+#' obtain quartile of a single value
+#' ukkdri_q(1.01)
+#'
+#' # factor vector of results with prefix
+#' dri = c(0.69, 0.75, 0.96, 1.36)
+#' ukkdri_q(rri, prefix = TRUE, fct = TRUE)
+ukkdri_q = function(dri, prefix = FALSE, fct = FALSE) {
+  q = ifelse(dri < 0.79000001, 1,
+             ifelse(dri < 1.12000001, 2,
+                    ifelse(dri < 1.50000001, 3, 4)))
+  if (prefix) q = paste0("D", q)
+  if (fct) q = as.factor(q)
+  q
+}
