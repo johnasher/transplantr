@@ -42,7 +42,7 @@ transplants2 = transplants %>%
 	mutate(Mismatch.Level = hla_mm_level(a = HLA.A.MM, b = HLA.B.MM, dr = HLA.DR.MM)
 ```
 
-# Using hla_mmm_level_str()
+# Using hla_mm_level_str()
 
 Instead of three separate vectors, mismatch may be stored as string such as "1:0:1" or "021" representing A, B and DR mismatches. It is better to store these in a dataframe as strings rather than as numeric in case meaningful zeroes are removed from the start!
 
