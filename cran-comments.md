@@ -1,6 +1,7 @@
 ## Test environments
 * linux Mint 18 Cinnamon 64-bit , R 3.6.1
 * win-builder (devel and release)
+* R-hub builder
 
 ## R CMD check results
 There were no ERRORs, WARNINGs or NOTEs

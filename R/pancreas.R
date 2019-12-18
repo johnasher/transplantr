@@ -85,7 +85,7 @@ pdri = function(age, sex, creat, eth, bmi, height, cva, cit, dcd, intent = c("SP
 #'
 #' # as a vector with all lipase values missing
 #' p_pass(age = c(25, 31, 45), bmi = c(18, 22, 35), icu = c(2, 5, 10), c.arr = c(0, 4, 10),
-#'        Na = c(135, 157, 164), amylase = c(120, 145, 400),
+#'        Na = c(135, 157, 164), amylase = c(120, 145, 400), lipase = c(NA, NA, NA),
 #'        norad = c(0, 0.02, 0.06), dopam = c(0, 5, 11)) # 9, 19, 25
 p_pass = function(age, bmi, icu, c.arr, Na, amylase = NULL, lipase = NULL, norad, dopam) {
    age_points = ifelse(age < 30, 2, ifelse(age < 40, 4, 6))
@@ -116,4 +116,6 @@ p_pass = function(age, bmi, icu, c.arr, Na, amylase = NULL, lipase = NULL, norad
 #        Na = c(135, 157, 164), amylase = c(120, NA, 400), lipase = c(155, 170, NA),
 #        norad = c(0, 0.02, 0.06), dopam = c(0, 5, 11)) # 9, 19, 25
 #
-# p_pass(age = c(25, 31, 45), bmi = c(18, 22, 35), icu = c(2, 5, 10), c.arr = c(0, 4, 10), Na = c(135, 157, 164), amylase = c(120, 145, 400), norad = c(0, 0.02, 0.06), dopam = c(0, 5, 11)) # 9, 19, 25
+# p_pass(age = c(25, 31, 45), bmi = c(18, 22, 35), icu = c(2, 5, 10), c.arr = c(0, 4, 10),
+#        Na = c(135, 157, 164), amylase = c(120, 145, 400), lipase = c(NA, NA, NA),
+#        norad = c(0, 0.02, 0.06), dopam = c(0, 5, 11)) # 9, 19, 25

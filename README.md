@@ -81,7 +81,10 @@ wrapper function is called.
 
 Which is the best option to use? Calling the wrapper function uses fewer
 keystrokes so is quicker to type, but as it is a function calling
-another function, there is a slight increase in computational overhead.
+another function, there is a slight increase in computational overhead; 
+for example, benchmarking the time taken to calculate 100,000 eGFR results, the median 
+time was 106 milliseconds with `ckd_epi()` and 108 milliseconds using the 
+more convenient `ckd_epi_US()`.
 
 ## Using *transplantr* functions with *dplyr*
 

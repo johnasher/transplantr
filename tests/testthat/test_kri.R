@@ -8,6 +8,8 @@ test_that("UKKRRI gives correct result", {
 
 test_that("UKKDRI gives correct result", {
   expect_equal(round(ukkdri(age = 50, height = 170, htn = 1, sex = "F", cmv = 0, gfr = 90, hdays = 2), 2), 0.86)
+  expect_equal(round(ukkdri(age = 55, height = 170, htn = 0, sex = "M", cmv = 0, gfr = 90, hdays = 0), 2), 1.12)
+
 })
 
 test_that("Watson UKKDRI is correct", {

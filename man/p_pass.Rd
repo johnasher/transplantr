@@ -52,6 +52,6 @@ p_pass(age = c(25, 31, 45), bmi = c(18, 22, 35), icu = c(2, 5, 10), c.arr = c(0,
 
 # as a vector with all lipase values missing
 p_pass(age = c(25, 31, 45), bmi = c(18, 22, 35), icu = c(2, 5, 10), c.arr = c(0, 4, 10),
-       Na = c(135, 157, 164), amylase = c(120, 145, 400),
+       Na = c(135, 157, 164), amylase = c(120, 145, 400), lipase = c(NA, NA, NA),
        norad = c(0, 0.02, 0.06), dopam = c(0, 5, 11)) # 9, 19, 25
 }

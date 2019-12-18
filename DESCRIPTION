@@ -2,18 +2,22 @@ Package: transplantr
 Type: Package
 Title: Audit and Research Functions for Transplantation
 Version: 0.1.0
-Authors@R: person("John", "Asher", email = "john.asher@outlook.com", role = c("aut", "cre"))
+Authors@R: person("John", "Asher", email = "john.asher@outlook.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8735-6453"))
 Description: A set of functions to calculate medical equations used in transplantation.
     Focused mainly on transplantation of abdominal organs.
+URL: https://transplantr.txtools.net, https://github.com/johnasher/transplantr
+BugReports: https://github.com/johnasher/transplantr/issues
 Depends: R (>= 3.1.0)
 Suggests:
     dplyr,
     stringr,
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    spelling
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
+Language: en-US
