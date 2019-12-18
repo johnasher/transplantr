@@ -15,3 +15,4 @@
 ^R/generate_data.R$
 ^data/data_sources$
 ^generate_data.R$
+^CRAN-RELEASE$
