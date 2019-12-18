@@ -67,8 +67,18 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/johnasher/transplantr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -84,7 +94,7 @@
       <h1>Estimated GFR</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/johnasher/transplantr/blob/master/vignettes/egfr.Rmd"><code>vignettes/egfr.Rmd</code></a></small>
       <div class="hidden name"><code>egfr.Rmd</code></div>
 
     </div>
@@ -99,7 +109,7 @@
 <p>The bedside <strong>Schwartz</strong> formula is more accurate in children, and recommended for GFR estimation in patients under 19 by the National Kidney Federation and National Kidney Disease Education Program in the USA.</p>
 <p>The <strong>Cockcroft-Gault</strong> equation estimates creatinine clearance rather than GFR and tends to overestimate actual GFR as creatinine is cleared from the kidney by tubular secretion as well as glomerular filtration. It is still widely used for renal drug dosing, although the National Kidney Federation in the USA recommend CKD-EPI or MDRD instead.</p>
 <p>Results from eGFR calculators may vary due rounding errors. The functions in the <em>transplantr</em> package convert creatinine units as 1.00 mg/dl being equal to 88.4 µmol/l</p>
-<p>I find the functions are easiest to use with <em>dplyr</em>, using the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> verb inside a pipe.</p>
+<p>I find the functions are easiest to use with <em>dplyr</em>, using the <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> verb inside a pipe.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(transplantr)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">#&gt; </span></a>
@@ -116,11 +126,11 @@
 <a href="#ckd-epi-formula" class="anchor"></a>CKD-EPI formula</h1>
 <p>The CKD-EPI formula eGFR is calculated from age, sex and ethnicity as well as serum creatinine. The basic function to return its value is <code><a href="../reference/ckd_epi.html">ckd_epi()</a></code> which takes creatinine in either µmol/l (by default) or mg/dl, age in years, sex as <code>0</code> for female or <code>1</code> for male, and ethnicity as <code>"black"</code> or <code>"non-black"</code>. The <code>units</code> parameter defines the units used for serum creatinine, taking a value of either <code>"SI"</code> for µmol/l or <code>"US"</code> for mg/dl; if the parameter is not provided, it defaults to <code>"SI"</code>.</p>
 <p>There is also a <code><a href="../reference/ckd_epi_US.html">ckd_epi_US()</a></code> wrapper function which uses mg/dl as the creatinine unit. This is quicker to type than <code><a href="../reference/ckd_epi.html">ckd_epi(..., units = "US")</a></code> but is very fractionally slower.</p>
-<p>This is a vectorised function, which takes numeric vectors as its input and returns a numeric vector. I would typically call the function from within a <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> call in a <em>dplyr</em> pipe, which adds a new variable to the dataframe:</p>
+<p>This is a vectorised function, which takes numeric vectors as its input and returns a numeric vector. I would typically call the function from within a <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> call in a <em>dplyr</em> pipe, which adds a new variable to the dataframe:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(results)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">results2 &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">eGFR =</span> <span class="kw"><a href="../reference/ckd_epi.html">ckd_epi</a></span>(<span class="dt">creat =</span> Creatinine, <span class="dt">age =</span> Age, <span class="dt">sex =</span> Sex, <span class="dt">eth =</span> Ethnicity))</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">eGFR =</span> <span class="kw"><a href="../reference/ckd_epi.html">ckd_epi</a></span>(<span class="dt">creat =</span> Creatinine, <span class="dt">age =</span> Age, <span class="dt">sex =</span> Sex, <span class="dt">eth =</span> Ethnicity))</a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6">results2</a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; # A tibble: 4 x 7</span></a>
@@ -135,12 +145,12 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># using the standard function</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">results_US2 &lt;-<span class="st"> </span>results_US <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">eGFR =</span> <span class="kw"><a href="../reference/ckd_epi.html">ckd_epi</a></span>(<span class="dt">creat =</span> Creatinine, <span class="dt">age =</span> Age, <span class="dt">sex =</span> Sex,</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">eGFR =</span> <span class="kw"><a href="../reference/ckd_epi.html">ckd_epi</a></span>(<span class="dt">creat =</span> Creatinine, <span class="dt">age =</span> Age, <span class="dt">sex =</span> Sex,</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">        <span class="dt">eth =</span> Ethnicity, <span class="dt">units =</span> <span class="st">"US"</span>))</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co"># using the wrapper function</span></a>
 <a class="sourceLine" id="cb3-9" data-line-number="9">results_US3 &lt;-<span class="st"> </span>results_US <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="st">          </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">eGFR =</span> <span class="kw"><a href="../reference/ckd_epi_US.html">ckd_epi_US</a></span>(<span class="dt">creat =</span> Creatinine, <span class="dt">age =</span> Age, <span class="dt">sex =</span> Sex,</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="st">          </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">eGFR =</span> <span class="kw"><a href="../reference/ckd_epi_US.html">ckd_epi_US</a></span>(<span class="dt">creat =</span> Creatinine, <span class="dt">age =</span> Age, <span class="dt">sex =</span> Sex,</a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">          <span class="dt">eth =</span> Ethnicity))</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb3-13" data-line-number="13">results_US2</a>
@@ -169,7 +179,7 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(serial.results)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">serial.results2 &lt;-<span class="st"> </span>serial.results <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">eGFR_1yr =</span> <span class="kw"><a href="../reference/ckd_epi.html">ckd_epi</a></span>(<span class="dt">creat =</span> Creatinine_1yr, <span class="dt">age =</span> Age, <span class="dt">sex =</span> Sex,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">eGFR_1yr =</span> <span class="kw"><a href="../reference/ckd_epi.html">ckd_epi</a></span>(<span class="dt">creat =</span> Creatinine_1yr, <span class="dt">age =</span> Age, <span class="dt">sex =</span> Sex,</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">                    <span class="dt">eth =</span> Ethnicity, <span class="dt">offset =</span> <span class="dv">1</span>),</a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">         <span class="dt">eGFR_5yr =</span> <span class="kw"><a href="../reference/ckd_epi.html">ckd_epi</a></span>(<span class="dt">creat =</span> Creatinine_5yr, <span class="dt">age =</span> Age, <span class="dt">sex =</span> Sex,</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7">                    <span class="dt">eth =</span> Ethnicity, <span class="dt">offset =</span> <span class="dv">5</span>))</a>
@@ -189,9 +199,9 @@
 <a href="#abbreviated-mdrd-formula" class="anchor"></a>Abbreviated MDRD formula</h1>
 <p>Using abbreviated MDRD formula eGFR is also calculated from age, sex and ethnicity as well as serum creatinine. The basic function to return its value is <code><a href="../reference/mdrd.html">mdrd()</a></code> which takes creatinine in either µmol/l (by default) or mg/dl, age in years, sex as <code>0</code> for female or <code>1</code> for male, and ethnicity as <code>"black"</code> or <code>"non-black"</code>. The <code>units</code> parameter defines the units used for serum creatinine, taking a value of either <code>"SI"</code> for µmol/l or <code>"US"</code> for mg/dl; if the parameter is not provided, it defaults to <code>"SI"</code>.</p>
 <p>Like CKD-EPI function, there is also a <code><a href="../reference/mdrd_US.html">mdrd_US()</a></code> wrapper function which uses mg/dl as the creatinine unit.</p>
-<p>This is also vectorised function, and is generally called from within a <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> call in a <em>dplyr</em> pipe:</p>
+<p>This is also vectorised function, and is generally called from within a <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> call in a <em>dplyr</em> pipe:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">results2m &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">eGFR =</span> <span class="kw"><a href="../reference/mdrd.html">mdrd</a></span>(<span class="dt">creat =</span> Creatinine, <span class="dt">age =</span> Age, <span class="dt">sex =</span> Sex, <span class="dt">eth =</span> Ethnicity))</a></code></pre></div>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">eGFR =</span> <span class="kw"><a href="../reference/mdrd.html">mdrd</a></span>(<span class="dt">creat =</span> Creatinine, <span class="dt">age =</span> Age, <span class="dt">sex =</span> Sex, <span class="dt">eth =</span> Ethnicity))</a></code></pre></div>
 <p>Using mg/dl as units or base R work in the same way as the <code><a href="../reference/ckd_epi.html">ckd_epi()</a></code> formula, and the <code><a href="../reference/mdrd.html">mdrd()</a></code> can also accept an optional <code>offset</code> parameter to facilitate serial results.</p>
 <p>There is also a fuller six-variable MDRD formula which may be added to this package in the future. The six-variable formula includes albumin and either urea or blood urea nitrogen (BUN).</p>
 </div>
@@ -200,7 +210,7 @@
 <a href="#schwartz-formula" class="anchor"></a>Schwartz formula</h1>
 <p>The bedside Schwartz formula is used for children under 19 and is a simpler version of the original Schwartz formula published in 1984. It is calculated using the <code><a href="../reference/schwartz.html">schwartz()</a></code> function and uses serum creatinine in either µmol/l (by default) or mg/dl and height in cm. Like the other formulae in the package, the <code>units</code> parameter defines the units used for serum creatinine, taking a value of either <code>"SI"</code> for µmol/l or <code>"US"</code> for mg/dl; if the parameter is not provided, it defaults to <code>"SI"</code>. There is also a <code><a href="../reference/schwartz_US.html">schwartz_US()</a></code> wrapper function which uses mg/dl.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">results2p &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">eGFR =</span> <span class="kw"><a href="../reference/schwartz.html">schwartz</a></span>(<span class="dt">creat =</span> Creatinine, <span class="dt">height =</span> Height))</a></code></pre></div>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">eGFR =</span> <span class="kw"><a href="../reference/schwartz.html">schwartz</a></span>(<span class="dt">creat =</span> Creatinine, <span class="dt">height =</span> Height))</a></code></pre></div>
 <p>In the same way as the CKD-EPI and MDRD functions, using the optional offset parameter helps to generate serial results.</p>
 </div>
 <div id="cockcroft-gault-formula" class="section level1">
@@ -209,7 +219,7 @@
 <p>The Cockcroft-Gault formula provides a reasonably accurate estimation of creatinine clearance, but this is <em>not</em> the same as glomerular filtration as creatinine is also cleared by tubular secretion, and so the equation tends to overestimate GFR by up to 25%. It is still used in renal dose calculations in the UK, although the US guidance is to use CKD-EPI or MDRD instead. It is also worth noting that the methodology from which it was derived assumes ideal body weight.</p>
 <p>In the <em>transplantr</em> package, the creatinine clearance can be calculated with the <code><a href="../reference/cockcroft.html">cockcroft()</a></code> function, which takes creatinine, age, sex and weight as core arguments. The creatinine is in µmol/l by default, but can be changed to mg/dl either by specifying <code>units</code> to be <code>"US"</code> or by calling the wrapper function <code><a href="../reference/cockcroft_US.html">cockcroft_US()</a></code>. Ideal body weight can be calculated from height and sex using the <code><a href="../reference/ibw.html">ibw()</a></code> function. An example using a <em>dplyr</em> pipe:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">results2cg &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">Ideal.Weight =</span> <span class="kw"><a href="../reference/ibw.html">ibw</a></span>(<span class="dt">height =</span> Height, <span class="dt">sex =</span> Sex),</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">Ideal.Weight =</span> <span class="kw"><a href="../reference/ibw.html">ibw</a></span>(<span class="dt">height =</span> Height, <span class="dt">sex =</span> Sex),</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3">         <span class="dt">CrClear =</span> <span class="kw"><a href="../reference/cockcroft.html">cockcroft</a></span>(<span class="dt">creat =</span> Creatinine, <span class="dt">age =</span> Age, <span class="dt">sex =</span> Sex,</a>
 <a class="sourceLine" id="cb8-4" data-line-number="4">                             <span class="dt">weight =</span> Ideal.Weight))</a></code></pre></div>
 </div>

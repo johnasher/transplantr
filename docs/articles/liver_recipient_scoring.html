@@ -67,8 +67,18 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/johnasher/transplantr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -84,7 +94,7 @@
       <h1>Liver recipient scoring</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/johnasher/transplantr/blob/master/vignettes/liver_recipient_scoring.Rmd"><code>vignettes/liver_recipient_scoring.Rmd</code></a></small>
       <div class="hidden name"><code>liver_recipient_scoring.Rmd</code></div>
 
     </div>
@@ -121,8 +131,8 @@
 <a class="sourceLine" id="cb2-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># remove redundant variables and calculate MELD</span></a>
 <a class="sourceLine" id="cb2-5" data-line-number="5">oltx_data =<span class="st"> </span>liver.pts <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>Patient.Age, <span class="op">-</span>Patient.Sodium) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">MELD =</span> <span class="kw"><a href="../reference/meld.html">meld</a></span>(<span class="dt">INR =</span> Patient.INR, <span class="dt">bili =</span> Patient.Bilirubin, </a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span>(<span class="op">-</span>Patient.Age, <span class="op">-</span>Patient.Sodium) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">MELD =</span> <span class="kw"><a href="../reference/meld.html">meld</a></span>(<span class="dt">INR =</span> Patient.INR, <span class="dt">bili =</span> Patient.Bilirubin, </a>
 <a class="sourceLine" id="cb2-8" data-line-number="8">                     <span class="dt">creat =</span> Patient.Creatinine, <span class="dt">dialysis =</span> Patient.Dialysed))</a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co"># display result</span></a>
@@ -155,13 +165,13 @@
 <p>The <code><a href="../reference/peld.html">peld()</a></code> function in <em>transplantr</em> calculates the PELD score. Bilirubin is calculated from their values in µmol/l and albumin in g/l by default, and can be changed to mg/dl and g/dl respectively either by setting the optional <code>units</code> parameter to <code>"US"</code> or by using the <code><a href="../reference/peld_US.html">peld_US()</a></code> wrapper function instead. In the event that albumin is measured locally in g/l and bilirubin in mg/dl, take care to convert it by dividing by 10. Similarly, if albumin is reported in g/dl and bilirubin in µmol/l, multiply the albumin results by 10. The conversion is easily done for a series in a vectorised way by including it in a <em>dplyr</em> pipe:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># calculate PELD where lab reports albumin in g/dl and bilirubin in µmol/l</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">paed.oltx2 =<span class="st"> </span>paed.oltx <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">AlbuminX10 =</span> Patient.Albumin <span class="op">*</span><span class="st"> </span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">AlbuminX10 =</span> Patient.Albumin <span class="op">*</span><span class="st"> </span><span class="dv">10</span>,</a>
 <a class="sourceLine" id="cb4-4" data-line-number="4">         <span class="dt">PELD =</span> <span class="kw"><a href="../reference/peld.html">peld</a></span>(<span class="dt">INR =</span> Patient.INR, <span class="dt">bili =</span> Patient.Bilirubin, <span class="dt">albumin =</span> AlbuminX10,</a>
 <a class="sourceLine" id="cb4-5" data-line-number="5">                     <span class="dt">listing_age =</span> Patient.ListAge, <span class="dt">growth_failure =</span> Patient.GrowthFailure))</a>
 <a class="sourceLine" id="cb4-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co"># calculate PELD where lab reports albumin in g/l and bilirubin in mg/dl</span></a>
 <a class="sourceLine" id="cb4-8" data-line-number="8">paed.oltx2 =<span class="st"> </span>paed.oltx <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">AlbuminDiv10 =</span> Patient.Albumin <span class="op">/</span><span class="st"> </span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">AlbuminDiv10 =</span> Patient.Albumin <span class="op">/</span><span class="st"> </span><span class="dv">10</span>,</a>
 <a class="sourceLine" id="cb4-10" data-line-number="10">         <span class="dt">PELD =</span> <span class="kw"><a href="../reference/peld_US.html">peld_US</a></span>(<span class="dt">INR =</span> Patient.INR, <span class="dt">bili =</span> Patient.Bilirubin, <span class="dt">albumin =</span> AlbuminDiv10,</a>
 <a class="sourceLine" id="cb4-11" data-line-number="11">                     <span class="dt">listing_age =</span> Patient.ListAge, <span class="dt">growth_failure =</span> Patient.GrowthFailure))</a></code></pre></div>
 </div>
