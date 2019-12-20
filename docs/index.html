@@ -138,7 +138,7 @@ install.packages("dplyr")</a></code></pre>
 <a href="#biochemical-units" class="anchor"></a>Biochemical units</h2>
 <p>By default, all the functions work with the units most commonly used in the UK, which for creatinine and bilirubin is µmol/l, but each function using either of these can be used with mg/dl instead by changing an optional <code>units</code> parameter to <code>"US"</code> or by calling a wrapper function suffixed with <code>_US()</code>; e.g. when calculating eGFR, the <code><a href="reference/ckd_epi_US.html">ckd_epi_US()</a></code> function calls <code><a href="reference/ckd_epi.html">ckd_epi()</a></code> using creatinine in mg/dl.</p>
 <p>Albumin is generally reported in g/l in the UK, but more commonly as g/dl in the US. The few functions using albumin default to g/l but change to g/dl if the <code>units</code> parameter is set to <code>"US"</code> or the <code>_US()</code> wrapper function is called.</p>
-<p>Which is the best option to use? Calling the wrapper function uses fewer keystrokes so is quicker to type, but as it is a function calling another function, there is a slight increase in computational overhead.</p>
+<p>Which is the best option to use? Calling the wrapper function uses fewer keystrokes so is quicker to type, but as it is a function calling another function, there is a slight increase in computational overhead; for example, benchmarking the time taken to calculate 100,000 eGFR results, the median time was 106 milliseconds with <code><a href="reference/ckd_epi.html">ckd_epi()</a></code> and 108 milliseconds using the more convenient <code><a href="reference/ckd_epi_US.html">ckd_epi_US()</a></code>.</p>
 </div>
 <div id="using-transplantr-functions-with-dplyr" class="section level2">
 <h2 class="hasAnchor">

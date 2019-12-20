@@ -158,8 +158,8 @@
 <p>This function should be used to calculate match level if the A, B and DR mismatches are separate variables in the data frame. It uses three parameters called <code>a</code>, <code>b</code> and <code>dr</code>, all numeric vectors with possible values of 0 to 2.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># create new mismatch level variable using a dplyr pipe</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">mismatches <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span>(<span class="op">-</span>HLA.MM, <span class="op">-</span>HLA.MM.s) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">Mismatch.Level =</span> <span class="kw"><a href="../reference/hla_mm_level.html">hla_mm_level</a></span>(<span class="dt">a =</span> HLA.A.MM, <span class="dt">b =</span> HLA.B.MM, <span class="dt">dr =</span> HLA.DR.MM))</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>HLA.MM, <span class="op">-</span>HLA.MM.s) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">Mismatch.Level =</span> <span class="kw"><a href="../reference/hla_mm_level.html">hla_mm_level</a></span>(<span class="dt">a =</span> HLA.A.MM, <span class="dt">b =</span> HLA.B.MM, <span class="dt">dr =</span> HLA.DR.MM))</a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt;   HLA.A.MM HLA.B.MM HLA.DR.MM Mismatch.Level</span></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; 1        0        0         0              1</span></a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; 2        1        1         0              2</span></a>
@@ -174,8 +174,8 @@
 <p>Like the <code><a href="../reference/hla_mm_level.html">hla_mm_level()</a></code> function, it is easiest to implement via a <em>dplyr</em> pipe:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># if the HLA.Mismatch variable does not use separators</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">mismatches <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span>(HLA.MM) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">Mismatch.Level =</span> <span class="kw"><a href="../reference/hla_mm_level_str.html">hla_mm_level_str</a></span>(<span class="dt">mm =</span> HLA.MM, <span class="dt">sep =</span> <span class="ot">FALSE</span>))</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(HLA.MM) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">Mismatch.Level =</span> <span class="kw"><a href="../reference/hla_mm_level_str.html">hla_mm_level_str</a></span>(<span class="dt">mm =</span> HLA.MM, <span class="dt">sep =</span> <span class="ot">FALSE</span>))</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;   HLA.MM Mismatch.Level</span></a>
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; 1    000              1</span></a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; 2    110              2</span></a>
@@ -184,8 +184,8 @@
 <a class="sourceLine" id="cb3-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co"># if the HLA.Mismatch variable does use separators, sep is optional</span></a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">mismatches <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span>(HLA.MM.s) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">Mismatch.Level =</span> <span class="kw"><a href="../reference/hla_mm_level_str.html">hla_mm_level_str</a></span>(<span class="dt">mm =</span> HLA.MM.s))</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(HLA.MM.s) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">Mismatch.Level =</span> <span class="kw"><a href="../reference/hla_mm_level_str.html">hla_mm_level_str</a></span>(<span class="dt">mm =</span> HLA.MM.s))</a>
 <a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt;   HLA.MM.s Mismatch.Level</span></a>
 <a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; 1    0:0:0              1</span></a>
 <a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; 2    1:1:0              2</span></a>
