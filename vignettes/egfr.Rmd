@@ -18,11 +18,11 @@ knitr::opts_chunk$set(
 
 Glomerular filtration rate can only be determined accurately by direct measurement of renal clearance of markers such as inulin, ^51^Cr-EDTA, ^125^I-iothalamate or iohexol, but GFR can be estimated from serum creatinine using a number of established formulae. There is no perfect formula for all levels of renal function, and all formulae can be inaccurate if renal function is unstable, at extremes of BMI, in pregnancy, muscle wasting or gross oedema.
 
-The **CKD-EPI** and abbreviated **MDRD** formulae are the ones most commonly used for adults, and are both based on large numbers of patients with direct GFR measurement and standardised serum creatinine measurements using isotope dilution mass spectrometry. The CKD-EPI formula is more accurate for patients with GFR greater than 60 ml/min, although as both formulae are based on regression splines, neither is accurate for GFR greater than 90ml/min. The MDRD formula was updated in 2005, and this later revision is used in this package. The CKD-EPI formula was recommended for estimation of GFR in adults in NICE Clinical Guideline 128 (2014). In the USA, the MDRD formula was recommended in NKF-KDOQI 2002, and the CKD-EPI formula recommended by KDIGO 2013. Both produce an estimate of GFR for a patient with body surface area of 1.73m^2^.
+The **CKD-EPI**(_1_) and abbreviated **MDRD**(_2_) formulae are the ones most commonly used for adults, and are both based on large numbers of patients with direct GFR measurement and standardised serum creatinine measurements using isotope dilution mass spectrometry. The CKD-EPI formula is more accurate for patients with GFR greater than 60 ml/min, although as both formulae are based on regression splines, neither is accurate for GFR greater than 90ml/min. The MDRD formula was updated in 2005, and this later revision is used in this package. The CKD-EPI formula was recommended for estimation of GFR in adults in NICE Clinical Guideline 128 (2014). In the USA, the MDRD formula was recommended in NKF-KDOQI 2002, and the CKD-EPI formula recommended by KDIGO 2013. Both produce an estimate of GFR for a patient with body surface area of 1.73m^2^.
 
-The bedside **Schwartz** formula is more accurate in children, and recommended for GFR estimation in patients under 19 by the National Kidney Federation and National Kidney Disease Education Program in the USA.
+The bedside **Schwartz**(_3_) formula is more accurate in children, and recommended for GFR estimation in patients under 19 by the National Kidney Federation and National Kidney Disease Education Program in the USA.
 
-The **Cockcroft-Gault** equation estimates creatinine clearance rather than GFR and tends to overestimate actual GFR as creatinine is cleared from the kidney by tubular secretion as well as glomerular filtration. It is still widely used for renal drug dosing, although the National Kidney Federation in the USA recommend CKD-EPI or MDRD instead.
+The **Cockcroft-Gault**(_4_) equation estimates creatinine clearance rather than GFR and tends to overestimate actual GFR as creatinine is cleared from the kidney by tubular secretion as well as glomerular filtration. It is still widely used for renal drug dosing, although the National Kidney Federation in the USA recommend CKD-EPI or MDRD instead.
 
 Results from eGFR calculators may vary due rounding errors. The functions in the _transplantr_ package convert creatinine units as 1.00 mg/dl being equal to 88.4 µmol/l
 
@@ -137,3 +137,13 @@ results2cg <- results %>%
 # Formulae to be added in future
 
 The **Nankivell** and **Walser** formulae are less commonly used. The Nankivell formula is the only eGFR formula derived entirely from renal transplant patients, but included patients with unstable GFR. The Nankivell formula includes weight and height so approximates an absolute GFR. The Walser formula produces a result standardised to a height-squared of 3m^2^.
+
+# References
+
+1. Levey AS, Stevens LA, Schmid CH, et al. for the CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration). _Ann Intern Med_ 2009; 150(9):604-612.
+
+2. Levey AS, Greene T, Kusek JW, et al. A simplified equation to predict glomerular filtration rate from serum creatinine. _J Am Soc Nephrol_ 2000; 11:A0828.
+
+3. Schwartz GJ, Munoz A, Schneider MF et al. New equations to estimate GFR in children with CKD. _J Am Soc Nephrol_ 2009; 20(3):629-637.
+
+4. Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine. _Nephron_ 1976; 16(1):31-41

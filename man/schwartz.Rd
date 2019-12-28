@@ -20,6 +20,10 @@ numeric vector of eGFR values
 A vectorised formula to calculate estimate glomerular filtration rate in children using the bedside Schwartz formula. By default this uses
 serum creatinine in µmol/l but this can be changed to mg/dl by setting the optional units parameter to "US".
 }
+\details{
+Reference: Schwartz GJ, Munoz A, Schneider MF et al. New equations to estimate GFR in children
+with CKD. J Am Soc Nephrol 2009; 20(3):629-637.
+}
 \examples{
 # calculate using creatinine in µmol/l
 schwartz(creat = 64, height = 101)

@@ -6,6 +6,9 @@
 #' for transplant follow-up data, there is an optional offset = n parameter which increases the age
 #' value used in the equation by n years.
 #'
+#' Reference: Levey AS, Stevens LA, Schmid CH, et al. for the CKD-EPI
+#' (Chronic Kidney Disease Epidemiology Collaboration). Ann Intern Med 2009; 150(9):604-612.
+#'
 #' @param creat numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")
 #' @param age numeric vector of age in years (accepts integers or decimals)
 #' @param sex character vector of sex ("F" for female, "M" for male)
@@ -53,6 +56,9 @@ ckd_epi <- function(creat, age, sex, ethnicity, units = "SI", offset = 0) {
 #' for transplant follow-up data, there is an optional offset = n parameter which increases the age
 #' value used in the equation by n years.
 #'
+#' Reference: Levey AS, Greene T, Kusek JW, et al. A simplified equation to predict glomerular
+#' filtration rate from serum creatinine. J Am Soc Nephrol 2000; 11:A0828.
+#'
 #' @param creat numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")
 #' @param age numeric vector of age in years (accepts integers or decimals)
 #' @param sex character vector of sex ("F" for female, "M" for male)
@@ -91,6 +97,9 @@ mdrd <- function (creat, age, sex, ethnicity, units = "SI", offset = 0) {
 #' A vectorised formula to calculate estimate glomerular filtration rate in children using the bedside Schwartz formula. By default this uses
 #' serum creatinine in µmol/l but this can be changed to mg/dl by setting the optional units parameter to "US".
 #'
+#' Reference: Schwartz GJ, Munoz A, Schneider MF et al. New equations to estimate GFR in children
+#' with CKD. J Am Soc Nephrol 2009; 20(3):629-637.
+#'
 #' @param creat numeric vector of creatinine levels in µmol/l (or mg/dl if units = "US")
 #' @param height numeric vector of heights in cm
 #' @param units non-vectorised optional parameter for creatinine unit ("SI" for µmol/l (default), "US" for mg/dl)
@@ -121,6 +130,9 @@ schwartz = function(creat, height, units = "SI") {
 #' for transplant follow-up data, there is an optional offset = n parameter which increases the age
 #' value used in the equation by n years.
 #'
+#' Reference: Levey AS, Stevens LA, Schmid CH, et al. for the CKD-EPI
+#' (Chronic Kidney Disease Epidemiology Collaboration). Ann Intern Med 2009; 150(9): 604-612.
+#'
 #' @param creat numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")
 #' @param age numeric vector of age in years (accepts integers or decimals)
 #' @param sex character vector of sex ("F" for female, "M" for male)
@@ -144,6 +156,9 @@ ckd_epi_US <- function (creat, age, sex, ethnicity, offset = 0) {
 #' for transplant follow-up data, there is an optional offset = n parameter which increases the age
 #' value used in the equation by n years.
 #'
+#' Reference: Levey AS, Greene T, Kusek JW, et al. A simplified equation to predict glomerular
+#' filtration rate from serum creatinine. J Am Soc Nephrol 2000; 11:A0828.
+#'
 #' @param creat numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")
 #' @param age numeric vector of age in years (accepts integers or decimals)
 #' @param sex character vector of sex ("F" for female, "M" for male)
@@ -166,6 +181,9 @@ mdrd_US <- function (creat, age, sex, ethnicity, offset = 0) {
 #' using the bedside Schwartz formula, using
 #' serum creatinine in mg/dl. Use the schwartz() function instead for µmol/l.
 #'
+#' Reference: Schwartz GJ, Munoz A, Schneider MF et al. New equations to estimate GFR in children
+#' with CKD. J Am Soc Nephrol 2009; 20(3):629-637.
+#'
 #' @param creat numeric vector of creatinine levels in µmol/l (or mg/dl if units = "US")
 #' @param height numeric vector of heights in cm
 #'
@@ -184,6 +202,9 @@ schwartz_US = function(creat, height) {
 #' A vectorised function to estimate creatinine clearance using the Cockcroft-Gault equation.
 #' By default this uses serum creatinine in µmol/l but can be changed to mg/dl by setting the
 #' units parameter to "US"
+#'
+#' Reference: Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine.
+#' Nephron 1976; 16(1):31-41
 #'
 #' @param creat numeric vector of creatinine levels in µmol/l (or mg/dl if units = "US")
 #' @param age numeric vector of ages in years
@@ -214,6 +235,9 @@ cockcroft = function(creat, age, sex, weight, units = "SI"){
 #'
 #' A wrapper function for cockcroft(), a vectorised function to estimate creatinine clearance using the Cockcroft-Gault equation,
 #' but using creatinine in mg/dl
+#'
+#' Reference: Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine.
+#' Nephron 1976; 16(1):31-41
 #'
 #' @param creat numeric vector of creatinine levels in mg/dl
 #' @param age numeric vector of ages in years

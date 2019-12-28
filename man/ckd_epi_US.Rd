@@ -27,6 +27,10 @@ To allow for serial measurements over time, such as
 for transplant follow-up data, there is an optional offset = n parameter which increases the age
 value used in the equation by n years.
 }
+\details{
+Reference: Levey AS, Stevens LA, Schmid CH, et al. for the CKD-EPI
+(Chronic Kidney Disease Epidemiology Collaboration). Ann Intern Med 2009; 150(9): 604-612.
+}
 \examples{
 ckd_epi_US(creat = 1.5, age = 64.3, sex = "F", ethnicity = "black")
 }

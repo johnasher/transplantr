@@ -22,6 +22,10 @@ numeric vector of creatinine clearances in ml/min
 A wrapper function for cockcroft(), a vectorised function to estimate creatinine clearance using the Cockcroft-Gault equation,
 but using creatinine in mg/dl
 }
+\details{
+Reference: Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine.
+Nephron 1976; 16(1):31-41
+}
 \examples{
 cockcroft_US(creat = 1, age = 25, sex = "F", weight = 60)
 }

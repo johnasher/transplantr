@@ -25,6 +25,10 @@ A vectorised function to estimate creatinine clearance using the Cockcroft-Gault
 By default this uses serum creatinine in µmol/l but can be changed to mg/dl by setting the
 units parameter to "US"
 }
+\details{
+Reference: Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine.
+Nephron 1976; 16(1):31-41
+}
 \examples{
 # calculate creatinine clearance using creatinine in µmol/l
 cockcroft(creat = 88.4, age = 25, sex = "F", weight = 60)

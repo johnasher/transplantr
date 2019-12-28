@@ -19,6 +19,10 @@ A wrapper function for the schwartz() vectorised formula to calculate estimate g
 using the bedside Schwartz formula, using
 serum creatinine in mg/dl. Use the schwartz() function instead for µmol/l.
 }
+\details{
+Reference: Schwartz GJ, Munoz A, Schneider MF et al. New equations to estimate GFR in children
+with CKD. J Am Soc Nephrol 2009; 20(3):629-637.
+}
 \examples{
 # calculate using creatinine in -mg/dl
 schwartz_US(creat = 0.7, height = 101)
