@@ -3,6 +3,10 @@
 #' A vectorised function to calculate the UK Kidney Recipient Risk Index as used in the new
 #' national kidney matching scheme implemented in September 2019.
 #'
+#' The UK KRRI is documented in the UK kidney matching policy which can be found on the
+#' NHS Blood & Transplant ODT website at www.odt.nhs.uk
+#'
+#'
 #' @param age numeric vector of patient ages in years
 #' @param dx numeric vector of whether on dialysis at time of listing (1 = yes, 0 = no)
 #' @param wait numeric vector of waiting time from start of dialysis
@@ -25,6 +29,9 @@ ukkrri = function(age, dx, wait, dm) {
 #'
 #' A vectorised function to calculate the UK Kidney Donor Risk Index as used in the new
 #' national kidney matching scheme implemented in September 2019.
+#'
+#' The UK KDRI is documented in the UK kidney matching policy which can be found on the
+#' NHS Blood & Transplant ODT website at www.odt.nhs.uk
 #'
 #' @param age numeric vector of donor age in years
 #' @param height numeric vector of donor height in cm
@@ -55,6 +62,9 @@ ukkdri = function(age, height, htn, sex, cmv, gfr, hdays) {
 #' in 2012. Please note that this is not the same risk index as used in the new UK kidney
 #' matching scheme starting in September 2019.
 #'
+#' Reference: Watson CJE, Johnson RJ, Birch R, et al. A Simplified Donor Risk Index for Predicting
+#' Outcome After Deceased Donor Kidney Transplantation. Transplantation 2012; 93(3):314-318
+#'
 #' @param age numeric vector of donor ages
 #' @param htn numeric vector of whether donor history of hypertension (1 = yes, 0 = no)
 #' @param weight numeric vector of donor weights in kg
@@ -84,6 +94,9 @@ watson_ukkdri = function(age, htn, weight, hdays, adrenaline) {
 #' match the nomenclature in the NHSBT ODT documentation by setting the prefix parameter to TRUE. The
 #' output can also be as a vector of factors by setting fct to TRUE (this can be combined with the
 #' prefix parameter).
+#'
+#' The UK KRRI quartile ranges are documented in the UK kidney matching policy which can be found
+#' on the NHS Blood & Transplant ODT website at www.odt.nhs.uk
 #'
 #' @param rri numeric vector of UKKRRI values
 #' @param prefix whether to prefix results with "R" (default FALSE)
@@ -116,6 +129,9 @@ ukkrri_q = function(rri, prefix = FALSE, fct = FALSE) {
 #' match the nomenclature in the NHSBT ODT documentation by setting the prefix parameter to TRUE. The
 #' output can also be as a vector of factors by setting fct to TRUE (this can be combined with the
 #' prefix parameter).
+#'
+#' The UK KDRI quartile ranges are documented in the UK kidney matching policy which can be found
+#' on the NHS Blood & Transplant ODT website at www.odt.nhs.uk
 #'
 #' @param dri numeric vector of UKKDRI values
 #' @param prefix whether to prefix results with "D" (default FALSE)

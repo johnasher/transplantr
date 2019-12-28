@@ -8,6 +8,9 @@
 #' approximately 1.250609 as is published on the OPTN website. The scaling parameter in this function defaults to 1,
 #' so can be left out to calculate the KDRI without scaling.
 #'
+#' Reference: Rao PS, Schaubel DE, Guidinger MK, et al. A Comprehensive Risk Quantification Score
+#' for Deceased Donor Kidneys: The Kidney Donor Risk Index. Transplantation 2009; 88:231-236.
+#'
 #' @param age numeric vector of donor ages in years
 #' @param height numeric vector of donor heights in cm
 #' @param weight numeric vector of donor weights in kg
@@ -61,6 +64,9 @@ uskdri = function(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd, scali
 #' The KDRI is normalised by a scaling factor based on the median KDRI in the previous year. For 2018, this was
 #' approximately 1.250609 as is published on the OPTN website. The scaling parameter in this function defaults to 1,
 #' so can be left out to calculate the KDRI without scaling.
+#'
+#' Reference: Rao PS, Schaubel DE, Guidinger MK, et al. A Comprehensive Risk Quantification Score
+#' for Deceased Donor Kidneys: The Kidney Donor Risk Index. Transplantation 2009; 88:231-236.
 #'
 #' @param age numeric vector of donor ages in years
 #' @param height numeric vector of donor heights in cm

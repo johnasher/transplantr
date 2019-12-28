@@ -25,6 +25,10 @@ A vectorised function to calculate the UK Kidney Donor Risk Index as published b
 in 2012. Please note that this is not the same risk index as used in the new UK kidney
 matching scheme starting in September 2019.
 }
+\details{
+Reference: Watson CJE, Johnson RJ, Birch R, et al. A Simplified Donor Risk Index for Predicting
+Outcome After Deceased Donor Kidney Transplantation. Transplantation 2012; 93(3):314-318
+}
 \examples{
 watson_ukkdri(age = 40, htn = 0, weight = 75, hdays = 0, adrenaline = 0) # 1.00
 }

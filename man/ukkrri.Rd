@@ -22,6 +22,10 @@ numeric vector of UK Kidney Recipient Risk Index values
 A vectorised function to calculate the UK Kidney Recipient Risk Index as used in the new
 national kidney matching scheme implemented in September 2019.
 }
+\details{
+The UK KRRI is documented in the UK kidney matching policy which can be found on the
+NHS Blood & Transplant ODT website at www.odt.nhs.uk
+}
 \examples{
 ukkrri(age = 45, dx = 0, wait = 750, dm = 0)
 }

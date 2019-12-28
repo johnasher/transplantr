@@ -23,7 +23,7 @@ The models included in version 0.1.0 are:
 * UK Kidney Donor Risk Index (2019 version): `ukkdri()`
 * UK Kidney Donor Risk Index (2012 version): `watson_ukkdri()`
 * US Kidney Donor Risk Index: `uskdri()`
-* UK Kidney Recipient Risk Index `ukkrri()`
+* UK Kidney Recipient Risk Index: `ukkrri()`
 
 The US risk index uses donor creatinine as a parameter, and the `uskdri()` function in this package 
 uses creatinine measured in mcmol/l as the default for all functions, but creatinine can be entered in 
@@ -39,7 +39,7 @@ library(dplyr)
 
 # UK Kidney Donor and Recipient Risk Indices (2019)
 
-The current UK Kidney Donor and Recipient Risk Indices are based on transplant and recipient survival data from the UK National Transplant Database and have been incorporated into the new deceased donor kidney matching scheme launched in September 2019, which aims to match expected transplant and recipient survival (although a number of other factors are also used in the algorithm).
+The current UK Kidney Donor and Recipient Risk Indices(_1_) are based on transplant and recipient survival data from the UK National Transplant Database and have been incorporated into the new deceased donor kidney matching scheme launched in September 2019, which aims to match expected transplant and recipient survival (although a number of other factors are also used in the algorithm).
 
 ## UK Kidney Donor Risk Index
 
@@ -122,7 +122,7 @@ kidney.recipients2 = kidney.recipients %>%
 
 # UK Kidney Donor Risk Index (2012)
 
-The first version of the UK Kidney Donor Risk Index was published by Watson et al. in 2012 and based on Cox regression of kidney transplant survival from the UK National Transplant Registry. It is simpler than the US KDRI and slightly outperforms the US KDRI when applied to the UK transpant series. It can be calculated using the `watson_ukkdri()` function, which includes these variables:
+The first version of the UK Kidney Donor Risk Index was published by Watson et al.(_2_) and based on Cox regression of kidney transplant survival from the UK National Transplant Registry. It is simpler than the US KDRI and slightly outperforms the US KDRI when applied to the UK transpant series. It can be calculated using the `watson_ukkdri()` function, which includes these variables:
 
 Parameter | Description | Values
 ---|---|---
@@ -184,3 +184,12 @@ uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
 uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
     cva = 0, creat = 1.4, hcv = 0, dcd = 0, units = "US")
 ```
+
+# References
+
+1. NHSBT Policy POL186/10. Kidney Transplantation: Deceased Donor Allocation.
+[https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/16915/kidney-allocation-policy-pol186.pdf](https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/16915/kidney-allocation-policy-pol186.pdf) _(viewed 28th December 2019)_
+
+2. Watson CJE, Johnson RJ, Birch R, et al. A Simplified Donor Risk Index for Predicting Outcome After Deceased Donor Kidney Transplantation. _Transplantation_ 2012; 93(3):314-318
+
+3. Rao PS, Schaubel DE, Guidinger MK, et al. A Comprehensive Risk Quantification Score for Deceased Donor Kidneys: The Kidney Donor Risk Index. _Transplantation_ 2009; 88:231-236.

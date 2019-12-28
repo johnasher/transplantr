@@ -28,6 +28,10 @@ numeric vector of UK Kidney Donor Risk Index values (2019 version)
 A vectorised function to calculate the UK Kidney Donor Risk Index as used in the new
 national kidney matching scheme implemented in September 2019.
 }
+\details{
+The UK KDRI is documented in the UK kidney matching policy which can be found on the
+NHS Blood & Transplant ODT website at www.odt.nhs.uk
+}
 \examples{
 ukkdri(age = 50, height = 170, htn = 1, sex = "F", cmv = 0, gfr = 90, hdays = 2)
 }

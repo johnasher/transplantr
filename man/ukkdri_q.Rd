@@ -24,6 +24,10 @@ match the nomenclature in the NHSBT ODT documentation by setting the prefix para
 output can also be as a vector of factors by setting fct to TRUE (this can be combined with the
 prefix parameter).
 }
+\details{
+The UK KDRI quartile ranges are documented in the UK kidney matching policy which can be found
+on the NHS Blood & Transplant ODT website at www.odt.nhs.uk
+}
 \examples{
 # obtain quartile of a single value
 ukkdri_q(1.01)

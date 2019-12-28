@@ -44,6 +44,9 @@ mg/dl if the optional units parameter is set to "US".
 The KDRI is normalised by a scaling factor based on the median KDRI in the previous year. For 2018, this was
 approximately 1.250609 as is published on the OPTN website. The scaling parameter in this function defaults to 1,
 so can be left out to calculate the KDRI without scaling.
+
+Reference: Rao PS, Schaubel DE, Guidinger MK, et al. A Comprehensive Risk Quantification Score
+for Deceased Donor Kidneys: The Kidney Donor Risk Index. Transplantation 2009; 88:231-236.
 }
 \examples{
 # with creatinine in µmol/l (units = "SI" can be omitted)
