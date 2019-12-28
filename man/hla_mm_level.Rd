@@ -22,6 +22,8 @@ donor kidney matching scheme.
 }
 \details{
 Mismatches should be provided as numeric vectors of integers with values from 0 to 2
+The HLA mismatch level is derived from UK kidney matching policies which can be found on the
+NHS Blood & Transplant ODT website at www.odt.nhs.uk
 }
 \examples{
 hla_mm_level(a = 0, b = 1, dr = 1)

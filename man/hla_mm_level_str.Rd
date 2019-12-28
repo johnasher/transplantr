@@ -22,6 +22,10 @@ matching scheme. By default, the function assumes a single separator character i
 between each of the three numbers in the mismatch; if not, set the sep parameter to FALSE.
 This function needs the stringr package to be installed.
 }
+\details{
+The HLA mismatch level is derived from UK kidney matching policies which can be found on the
+NHS Blood & Transplant ODT website at www.odt.nhs.uk
+}
 \examples{
 # using string of HLA mismatches with colons
 hla_mm_level_str("1:1:0")

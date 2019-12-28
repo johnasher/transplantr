@@ -65,3 +65,7 @@ mismatches %>%
   mutate(Mismatch.Level = hla_mm_level_str(mm = HLA.MM.s))
 ```
 
+# References
+
+NHSBT Policy POL186/10. Kidney Transplantation: Deceased Donor Allocation.
+[https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/16915/kidney-allocation-policy-pol186.pdf](https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/16915/kidney-allocation-policy-pol186.pdf) _(viewed 28th December 2019)_

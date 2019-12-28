@@ -4,6 +4,8 @@
 #' donor kidney matching scheme.
 #'
 #' Mismatches should be provided as numeric vectors of integers with values from 0 to 2
+#' The HLA mismatch level is derived from UK kidney matching policies which can be found on the
+#' NHS Blood & Transplant ODT website at www.odt.nhs.uk
 #'
 #' @param a numeric vector of HLA A locus mismatches (0-2)
 #' @param b numeric vector of HLA B locus mismatches (0-2)
@@ -31,6 +33,9 @@ hla_mm_level = function(a, b, dr) {
 #' matching scheme. By default, the function assumes a single separator character is used
 #' between each of the three numbers in the mismatch; if not, set the sep parameter to FALSE.
 #' This function needs the stringr package to be installed.
+#'
+#' The HLA mismatch level is derived from UK kidney matching policies which can be found on the
+#' NHS Blood & Transplant ODT website at www.odt.nhs.uk
 #'
 #' @param mm character string vector of HLA mismatches, e.g. "1:1:0" or "211"
 #' @param sep logical to indicate whether separator used in the HLA mismatch strings (default TRUE)
