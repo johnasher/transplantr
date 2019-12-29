@@ -2,3 +2,72 @@ destination: docs
 template:
   params:
     bootswatch: flatly
+
+reference:
+  - title: "Kidney risk index"
+    desc: "Functions to calculate UK and US kidney donor and recipient risk indices"
+    contents:
+      - ukkdri
+      - ukkdri_q
+      - ukkrri
+      - ukkrri_q
+      - watson_ukkdri
+      - uskdri
+      - uskdri_US
+  - title: "Liver transplant functions"
+    desc: "Functions to stratify liver recipient risk"
+    contents:
+      - meld
+      - meld_US
+      - meld_na
+      - meld_na_US
+      - ukeld
+      - ukeld_US
+      - peld
+      - peld_US
+      - apri
+  - title: "Pancreas donor risk index"
+    desc: "Functions to calculate pancreas donor risk index"
+    contents:
+      - pdri
+      - p_pass
+  - title: "HLA mismatch"
+    desc: "Functions to calculate HLA mismatch grade"
+    contents:
+      - hla_mm_level
+      - hla_mm_level_str
+  - title: "eGFR calculators"
+    desc: "Functions to estimate GFR from creatinine"
+    contents:
+      - ckd_epi
+      - ckd_epi_US
+      - mdrd
+      - mdrd_US
+      - schwartz
+      - schwartz_US
+      - cockcroft
+      - cockcroft_US
+  - title: "Units conversion"
+    desc: "Functions to convert biochemical units"
+    contents:
+      - creatinine_to_US
+      - creatinine_to_SI
+      - urea_to_bun
+      - bun_to_urea
+      - bilirubin_to_US
+      - bilirubin_to_SI
+  - title: "Miscellaneous functions"
+    desc: "Other functions"
+    contents:
+      - ibw
+      - chi2dob
+  - title: "Datasets"
+    desc: "Simulated datasets to illustrate functions in the vignettes"
+    contents:
+      - kidney.donors
+      - liver.pts
+      - mismatches
+      - results
+      - results_US
+      - serial.results
+
