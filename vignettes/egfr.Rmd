@@ -140,10 +140,10 @@ The **Nankivell** and **Walser** formulae are less commonly used. The Nankivell 
 
 # References
 
-1. Levey AS, Stevens LA, Schmid CH, et al. for the CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration). _Ann Intern Med_ 2009; 150(9):604-612.
+1. Levey AS, Stevens LA, Schmid CH, et al. for the CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration). A new equation to estimate glomerular filtration rate. _Ann Intern Med_ 2009; 150(9):604-612. DOI: [10.7326/0003-4819-150-9-200905050-00006](https://doi.org/10.7326/0003-4819-150-9-200905050-00006)
 
 2. Levey AS, Greene T, Kusek JW, et al. A simplified equation to predict glomerular filtration rate from serum creatinine. _J Am Soc Nephrol_ 2000; 11:A0828.
 
-3. Schwartz GJ, Munoz A, Schneider MF et al. New equations to estimate GFR in children with CKD. _J Am Soc Nephrol_ 2009; 20(3):629-637.
+3. Schwartz GJ, Munoz A, Schneider MF et al. New equations to estimate GFR in children with CKD. _J Am Soc Nephrol_ 2009; 20(3):629-637. DOI: [10.1681/ASN.2008030287](https://doi.org/10.1681/ASN.2008030287)
 
-4. Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine. _Nephron_ 1976; 16(1):31-41
+4. Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine. _Nephron_ 1976; 16(1):31-41. DOI: [10.1159/000180580](https://doi.org/10.1159/000180580)

@@ -6,8 +6,8 @@
 #' for transplant follow-up data, there is an optional offset = n parameter which increases the age
 #' value used in the equation by n years.
 #'
-#' Reference: Levey AS, Stevens LA, Schmid CH, et al. for the CKD-EPI
-#' (Chronic Kidney Disease Epidemiology Collaboration). Ann Intern Med 2009; 150(9):604-612.
+#' Reference: Levey AS, Stevens LA, Schmid CH, et al. A new equation to estimate glomerular filtration
+#' rate. Ann Intern Med 2009; 150(9):604-612.
 #'
 #' @param creat numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")
 #' @param age numeric vector of age in years (accepts integers or decimals)
@@ -130,8 +130,8 @@ schwartz = function(creat, height, units = "SI") {
 #' for transplant follow-up data, there is an optional offset = n parameter which increases the age
 #' value used in the equation by n years.
 #'
-#' Reference: Levey AS, Stevens LA, Schmid CH, et al. for the CKD-EPI
-#' (Chronic Kidney Disease Epidemiology Collaboration). Ann Intern Med 2009; 150(9): 604-612.
+#' Reference: Levey AS, Stevens LA, Schmid CH, et al. A new equation to estimate glomerular filtration
+#' rate. Ann Intern Med 2009; 150(9):604-612.
 #'
 #' @param creat numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")
 #' @param age numeric vector of age in years (accepts integers or decimals)
