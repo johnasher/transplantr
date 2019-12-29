@@ -39,6 +39,9 @@ to be transplanted than those with scores of 17 or more.
 At least one of amylase or lipase is needed for each case, but this function can take datasets
 with a mixture of amylase and lipase levels and will allocate points based on the higher points
 for cases when both are provided.
+
+Reference: Vinkers MT, Rahmel AO, Slot MC, et al. How to recognize a suitable pancreas donor: a
+Eurotransplant study of preprocurement factors. Transplant Proc 2008; 40(5):1275-8.
 }
 \examples{
 # as a single case

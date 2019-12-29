@@ -4,6 +4,9 @@
 #' By default, the serum creatinine is used in mcmmol/l but this can be changed to mg/dl by setting
 #' the optional units parameter to "US"
 #'
+#' Reference: Axelrod DA, Sung RS, Meyer KH, et al. Systematic evaluation of pancreas allograft
+#' quality, outcomes and geographic variation in utilization. Am J Transplant 2010; 10(4):837-45.
+#'
 #' @param age numeric vector of ages in years
 #' @param sex character vector of patient sex ("F" for female, "M" for male)
 #' @param creat numeric vector of serum creatinine (µmol/l by default)
@@ -59,6 +62,9 @@ pdri = function(age, sex, creat, eth, bmi, height, cva, cit, dcd, intent = c("SP
 #' At least one of amylase or lipase is needed for each case, but this function can take datasets
 #' with a mixture of amylase and lipase levels and will allocate points based on the higher points
 #' for cases when both are provided.
+#'
+#' Reference: Vinkers MT, Rahmel AO, Slot MC, et al. How to recognize a suitable pancreas donor: a
+#' Eurotransplant study of preprocurement factors. Transplant Proc 2008; 40(5):1275-8.
 #'
 #' @param age numeric vector of donor ages in years
 #' @param bmi numeric vector of donor body mass index (BMI)

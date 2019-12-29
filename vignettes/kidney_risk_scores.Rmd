@@ -190,6 +190,6 @@ uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
 1. NHSBT Policy POL186/10. Kidney Transplantation: Deceased Donor Allocation.
 [https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/16915/kidney-allocation-policy-pol186.pdf](https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/16915/kidney-allocation-policy-pol186.pdf) _(viewed 28th December 2019)_
 
-2. Watson CJE, Johnson RJ, Birch R, et al. A Simplified Donor Risk Index for Predicting Outcome After Deceased Donor Kidney Transplantation. _Transplantation_ 2012; 93(3):314-318
+2. Watson CJ, Johnson RJ, Birch R, et al. A Simplified Donor Risk Index for Predicting Outcome After Deceased Donor Kidney Transplantation. _Transplantation_ 2012; 93(3):314-318. DOI: [10.1097/TP.0b013e31823f14d4](https://doi.org/10.1097/TP.0b013e31823f14d4)
 
-3. Rao PS, Schaubel DE, Guidinger MK, et al. A Comprehensive Risk Quantification Score for Deceased Donor Kidneys: The Kidney Donor Risk Index. _Transplantation_ 2009; 88:231-236.
+3. Rao PS, Schaubel DE, Guidinger MK, et al. A Comprehensive Risk Quantification Score for Deceased Donor Kidneys: The Kidney Donor Risk Index. _Transplantation_ 2009; 88:231-236. DOI: [10.1097/TP.0b013e3181ac620b](https://doi.org/10.1097/TP.0b013e3181ac620b)

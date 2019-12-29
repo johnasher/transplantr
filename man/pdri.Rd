@@ -38,6 +38,10 @@ A vectorised function to calculate the Pancreas Donor Risk Index as published by
 By default, the serum creatinine is used in mcmmol/l but this can be changed to mg/dl by setting
 the optional units parameter to "US"
 }
+\details{
+Reference: Axelrod DA, Sung RS, Meyer KH, et al. Systematic evaluation of pancreas allograft
+quality, outcomes and geographic variation in utilization. Am J Transplant 2010; 10(4):837-45.
+}
 \examples{
 pdri(age = 28, sex = "M", creat = 1.0, eth = "other", bmi = 24,
 height = 173, cva = 0, cit = 12, dcd = 0, units = "US") # 1.00
