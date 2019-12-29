@@ -19,6 +19,11 @@ numeric vector of APRI scores
 \description{
 A vectorised function to calculate the APRI score, a predictor of hepatic fibrosis.
 }
+\details{
+Reference: Lin ZH, Xin YN, Dong QJ, et al. Performance of the aspartate aminotransferase-to-platelet
+ratio index for the staging of hepatitis C-related fibrosis: an updated meta-analysis.
+Hepatology 2011; 53:726-736.
+}
 \examples{
 apri(ast = 38, plt = 150, ast_uln = 40)
 

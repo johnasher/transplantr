@@ -34,6 +34,10 @@ If units are set to "US" then g/dl is assumed and albumin should be divided by 1
 lab reports are in g/l. If using SI units,
 take care to
 multiply the lab albumin by 10 if the lab output is in g/dl.
+
+Reference: McDiarmid SV, Anand R, Lindblad AS, et. al. Development of a pediatric end-stage
+liver disease score to predict poor outcome in children awaiting liver transplantation.
+Transplantation 2002; 74(2):173-81.
 }
 \examples{
 peld(INR = 2, bili = 54, albumin = 25, listing_age = 2, growth_failure = 1)

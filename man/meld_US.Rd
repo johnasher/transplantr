@@ -26,6 +26,10 @@ should be set to 1, which changes the creatinine level used in the formula to 4m
 Following UNOS guidelines, the values for INR as well bilirubin and creatinine are
 set to a minimum value of 1 if less than 1.0
 }
+\details{
+Reference: Kamath PS, Wiesner RH, Malinchoc M, et al. A model to predict survival in patients
+with end-stage liver disease. Hepatology 2001; 33:464-470.
+}
 \examples{
 meld_US(INR = 2.0, bili = 2.3, creat = 1.9, dialysis = 1)
 }

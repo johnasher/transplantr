@@ -24,6 +24,11 @@ numeric vector of PELD scores
 A wrapper for peld(), a vectorised function to generate a PELD score for paediatric liver
 transplant candidates, using  mg/dl as the unit for the serum bilirubin level.
 }
+\details{
+Reference: McDiarmid SV, Anand R, Lindblad AS, et. al. Development of a pediatric end-stage
+liver disease score to predict poor outcome in children awaiting liver transplantation.
+Transplantation 2002; 74(2):173-81.
+}
 \examples{
 peld_US(INR = 2, bili = 3.1, albumin = 2.5, listing_age = 2, growth_failure = 1)
 }

@@ -2,6 +2,10 @@
 #'
 #' A vectorised function to calculate the UKELD score using SI units for bilirubin and creatinine.
 #'
+#' Reference: Barber KM, Madden S, Allen J, et al. Elective liver transplant list mortality:
+#' development of a United Kingdom end-stage liver disease score. Transplantation
+#' 2011; 92(4):469-76.
+#'
 #' @param INR numeric vector of INR
 #' @param bili numeric vector of bilirubin in µmol/l
 #' @param creat numeric vector of creatinine in µmol/l
@@ -30,6 +34,10 @@ ukeld = function(INR, bili, creat, Na, units = "SI") {
 #'
 #' A vectorised function to calculate the UKELD score using US units for bilirubin and creatinine.
 #'
+#' Reference: Barber KM, Madden S, Allen J, et al. Elective liver transplant list mortality:
+#' development of a United Kingdom end-stage liver disease score. Transplantation
+#' 2011; 92(4):469-76.
+#'
 #' @param INR numeric vector of INR
 #' @param bili numeric vector of bilirubin in mg/dl
 #' @param creat numeric vector of creatinine in mg/dl
@@ -56,6 +64,9 @@ ukeld_US = function(INR, bili, creat, Na) {
 #' should be set to 1, which changes the creatinine level used in the formula to 4mg/dl (353µmol/l).
 #' Following UNOS guidelines, the values for INR as well bilirubin and creatinine (in mg/dl) are
 #' set to a minimum value of 1 if less than 1.0
+#'
+#' Reference: Kamath PS, Wiesner RH, Malinchoc M, et al. A model to predict survival in patients
+#' with end-stage liver disease. Hepatology 2001; 33:464-470.
 #'
 #' @param INR numeric vector of INR
 #' @param bili numeric vector of bilirubin (µmol/l)
@@ -99,6 +110,9 @@ meld = function(INR, bili, creat, dialysis, units = "SI") {
 #' Following UNOS guidelines, the values for INR as well bilirubin and creatinine are
 #' set to a minimum value of 1 if less than 1.0
 #'
+#' Reference: Kamath PS, Wiesner RH, Malinchoc M, et al. A model to predict survival in patients
+#' with end-stage liver disease. Hepatology 2001; 33:464-470.
+#'
 #' @param INR numeric vector ofINR
 #' @param bili numeric vector of bilirubin in mg/dl
 #' @param creat numeric vector of creatinine in mg/dl
@@ -117,6 +131,9 @@ meld_US = function(INR, bili, creat, dialysis) {
 #' A vectorised function to calculate the MELD-Na score, a variant of the MELD score incorporating
 #' serum sodium levels. By default, bilirubin and creatinine are in µmol/l but this can be
 #' changed to mg/dl by setting the optional units parameter to "US".
+#'
+#' Reference: Biggins SW, Kim WR, Terrault NA, et al. Evidence-based incorporation of serum sodium
+#' concentration into MELD. Gastroenterology. 2006; 130(6):1652-60.
 #'
 #' @param INR numeric vector of INR
 #' @param bili numeric vector of bilirubin (µmol/l)
@@ -162,6 +179,9 @@ meld_na = function(INR, bili, creat, Na, dialysis, units = "SI") {
 #' a variant of the MELD score incorporating
 #' serum sodium levels. In this wrapper function, bilirubin and creatinine are in mg/dl.
 #'
+#' Reference: Biggins SW, Kim WR, Terrault NA, et al. Evidence-based incorporation of serum sodium
+#' concentration into MELD. Gastroenterology. 2006; 130(6):1652-60.
+#'
 #' @param INR numeric vector of INR
 #' @param bili numeric vector of serum bilirubin (mg/dl)
 #' @param creat numeric vector of serum creatinine (mg/dl)
@@ -189,6 +209,10 @@ meld_na_US = function(INR, bili, creat, Na, dialysis) {
 #' lab reports are in g/l. If using SI units,
 #' take care to
 #' multiply the lab albumin by 10 if the lab output is in g/dl.
+#'
+#' Reference: McDiarmid SV, Anand R, Lindblad AS, et. al. Development of a pediatric end-stage
+#' liver disease score to predict poor outcome in children awaiting liver transplantation.
+#' Transplantation 2002; 74(2):173-81.
 #'
 #' @param INR INR
 #' @param bili serum biliruin (µmol/l)
@@ -222,6 +246,10 @@ peld = function(INR, bili, albumin, listing_age, growth_failure, units = "SI") {
 #' A wrapper for peld(), a vectorised function to generate a PELD score for paediatric liver
 #' transplant candidates, using  mg/dl as the unit for the serum bilirubin level.
 #'
+#' Reference: McDiarmid SV, Anand R, Lindblad AS, et. al. Development of a pediatric end-stage
+#' liver disease score to predict poor outcome in children awaiting liver transplantation.
+#' Transplantation 2002; 74(2):173-81.
+#'
 #' @param INR numeric vector of INR
 #' @param bili numeric vector of serum biliruin (mg/dl)
 #' @param albumin numeric vector of serum albumin (g/dl)
@@ -240,6 +268,10 @@ peld_US = function(INR, bili, albumin, listing_age, growth_failure) {
 #' AST to Platelet Ratio (APRI)
 #'
 #' A vectorised function to calculate the APRI score, a predictor of hepatic fibrosis.
+#'
+#' Reference: Lin ZH, Xin YN, Dong QJ, et al. Performance of the aspartate aminotransferase-to-platelet
+#' ratio index for the staging of hepatitis C-related fibrosis: an updated meta-analysis.
+#' Hepatology 2011; 53:726-736.
 #'
 #' @param ast numeric vector of serum AST levels in IU/l
 #' @param plt numeric vector of platelet counts (10^9/l)

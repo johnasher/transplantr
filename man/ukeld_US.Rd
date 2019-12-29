@@ -21,6 +21,11 @@ UKELD score
 \description{
 A vectorised function to calculate the UKELD score using US units for bilirubin and creatinine.
 }
+\details{
+Reference: Barber KM, Madden S, Allen J, et al. Elective liver transplant list mortality:
+development of a United Kingdom end-stage liver disease score. Transplantation
+2011; 92(4):469-76.
+}
 \examples{
 ukeld_US(INR = 2.0, bili = 1.8, creat = 170, Na = 130)
 }

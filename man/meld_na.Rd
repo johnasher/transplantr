@@ -27,6 +27,10 @@ A vectorised function to calculate the MELD-Na score, a variant of the MELD scor
 serum sodium levels. By default, bilirubin and creatinine are in µmol/l but this can be
 changed to mg/dl by setting the optional units parameter to "US".
 }
+\details{
+Reference: Biggins SW, Kim WR, Terrault NA, et al. Evidence-based incorporation of serum sodium
+concentration into MELD. Gastroenterology. 2006; 130(6):1652-60.
+}
 \examples{
 meld_na(INR = 1.8, bili = 34, creat = 176, Na = 131, dialysis = 0)
 meld_na(INR = 1.8, bili = 2, creat = 2, Na = 131, dialysis = 0, units = "US")
