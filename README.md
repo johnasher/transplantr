@@ -15,7 +15,8 @@ The functions provided fall into three groups:
 
 Although the package was built with unit tests, inaccuracies cannot be
 completely excluded. it is not a medical device and should not be used
-for making clinical decisions.
+for making clinical decisions. References to the publications of the formulae are
+provided in the vignettes and documentation of individual functions.
 
 # Installation
 
