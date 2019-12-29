@@ -92,11 +92,11 @@ paed.oltx2 = paed.oltx %>%
 
 # References
 
-1. Kamath PS, Wiesner RH, Malinchoc M, et al. A model to predict survival in patients with end-stage liver disease. Hepatology 2001; 33:464-470. DOI: [10.1053/jhep.2001.22172](https://doi.org/10.1053/jhep.2001.22172)
+1. Kamath PS, Wiesner RH, Malinchoc M, et al. A model to predict survival in patients with end-stage liver disease. _Hepatology_ 2001; 33:464-470. DOI: [10.1053/jhep.2001.22172](https://doi.org/10.1053/jhep.2001.22172)
 
-2. Biggins SW, Kim WR, Terrault NA, et al. Evidence-based incorporation of serum sodium concentration into MELD. Gastroenterology. 2006; 130(6):1652-60. DOI: [10.1053/j.gastro.2006.02.010](https://doi.org/10.1053/j.gastro.2006.02.010)
+2. Biggins SW, Kim WR, Terrault NA, et al. Evidence-based incorporation of serum sodium concentration into MELD. _Gastroenterology_ 2006; 130(6):1652-60. DOI: [10.1053/j.gastro.2006.02.010](https://doi.org/10.1053/j.gastro.2006.02.010)
 
-3. Barber KM, Madden S, Allen J, et al. Elective liver transplant list mortality: development of a United Kingdom end-stage liver disease score. Transplantation 2011; 92(4):469-76. DOI: [10.1097/TP.0b013e318225db4d](https://doi.org/10.1097/TP.0b013e318225db4d).
+3. Barber KM, Madden S, Allen J, et al. Elective liver transplant list mortality: development of a United Kingdom end-stage liver disease score. _Transplantation_ 2011; 92(4):469-76. DOI: [10.1097/TP.0b013e318225db4d](https://doi.org/10.1097/TP.0b013e318225db4d).
 
-4. McDiarmid SV, Anand R, Lindblad AS, et. al. Development of a pediatric end-stage liver disease score to predict poor outcome in children awaiting liver transplantation. Transplantation 2002; 74(2):173-81. DOI: [10.1097/00007890-200207270-00006](https://doi.org/10.1097/00007890-200207270-00006)
+4. McDiarmid SV, Anand R, Lindblad AS, et. al. Development of a pediatric end-stage liver disease score to predict poor outcome in children awaiting liver transplantation. _Transplantation_ 2002; 74(2):173-81. DOI: [10.1097/00007890-200207270-00006](https://doi.org/10.1097/00007890-200207270-00006)
 

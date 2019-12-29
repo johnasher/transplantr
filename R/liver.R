@@ -133,7 +133,7 @@ meld_US = function(INR, bili, creat, dialysis) {
 #' changed to mg/dl by setting the optional units parameter to "US".
 #'
 #' Reference: Biggins SW, Kim WR, Terrault NA, et al. Evidence-based incorporation of serum sodium
-#' concentration into MELD. Gastroenterology. 2006; 130(6):1652-60.
+#' concentration into MELD. Gastroenterology 2006; 130(6):1652-60.
 #'
 #' @param INR numeric vector of INR
 #' @param bili numeric vector of bilirubin (µmol/l)
@@ -180,7 +180,7 @@ meld_na = function(INR, bili, creat, Na, dialysis, units = "SI") {
 #' serum sodium levels. In this wrapper function, bilirubin and creatinine are in mg/dl.
 #'
 #' Reference: Biggins SW, Kim WR, Terrault NA, et al. Evidence-based incorporation of serum sodium
-#' concentration into MELD. Gastroenterology. 2006; 130(6):1652-60.
+#' concentration into MELD. Gastroenterology 2006; 130(6):1652-60.
 #'
 #' @param INR numeric vector of INR
 #' @param bili numeric vector of serum bilirubin (mg/dl)

@@ -29,7 +29,7 @@ changed to mg/dl by setting the optional units parameter to "US".
 }
 \details{
 Reference: Biggins SW, Kim WR, Terrault NA, et al. Evidence-based incorporation of serum sodium
-concentration into MELD. Gastroenterology. 2006; 130(6):1652-60.
+concentration into MELD. Gastroenterology 2006; 130(6):1652-60.
 }
 \examples{
 meld_na(INR = 1.8, bili = 34, creat = 176, Na = 131, dialysis = 0)

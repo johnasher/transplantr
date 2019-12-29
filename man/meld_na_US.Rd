@@ -27,7 +27,7 @@ serum sodium levels. In this wrapper function, bilirubin and creatinine are in m
 }
 \details{
 Reference: Biggins SW, Kim WR, Terrault NA, et al. Evidence-based incorporation of serum sodium
-concentration into MELD. Gastroenterology. 2006; 130(6):1652-60.
+concentration into MELD. Gastroenterology 2006; 130(6):1652-60.
 }
 \examples{
 meld_na_US(INR = 1.8, bili = 2, creat = 2, Na = 131, dialysis = 0)
