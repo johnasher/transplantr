@@ -113,7 +113,7 @@
 </li>
 <li>US Kidney Donor Risk Index: <code><a href="../reference/uskdri.html">uskdri()</a></code>
 </li>
-<li>UK Kidney Recipient Risk Index <code><a href="../reference/ukkrri.html">ukkrri()</a></code>
+<li>UK Kidney Recipient Risk Index: <code><a href="../reference/ukkrri.html">ukkrri()</a></code>
 </li>
 </ul>
 <p>The US risk index uses donor creatinine as a parameter, and the <code><a href="../reference/uskdri.html">uskdri()</a></code> function in this package uses creatinine measured in mcmol/l as the default for all functions, but creatinine can be entered in mg/dl either by setting the optional <code>units</code> parameter to “SI” or by calling the wrapper function <code><a href="../reference/uskdri_US.html">uskdri_US()</a></code> instead. All of the functions in transplantr using creatinine or bilirubin use units in the same way - for mg/dl either use <code>units == "US"</code> or call the <code>..._US()</code> wrapper function.</p>
@@ -132,7 +132,7 @@
 <div id="uk-kidney-donor-and-recipient-risk-indices-2019" class="section level1">
 <h1 class="hasAnchor">
 <a href="#uk-kidney-donor-and-recipient-risk-indices-2019" class="anchor"></a>UK Kidney Donor and Recipient Risk Indices (2019)</h1>
-<p>The current UK Kidney Donor and Recipient Risk Indices are based on transplant and recipient survival data from the UK National Transplant Database and have been incorporated into the new deceased donor kidney matching scheme launched in September 2019, which aims to match expected transplant and recipient survival (although a number of other factors are also used in the algorithm).</p>
+<p>The current UK Kidney Donor and Recipient Risk Indices(<em>1</em>) are based on transplant and recipient survival data from the UK National Transplant Database and have been incorporated into the new deceased donor kidney matching scheme launched in September 2019, which aims to match expected transplant and recipient survival (although a number of other factors are also used in the algorithm).</p>
 <div id="uk-kidney-donor-risk-index" class="section level2">
 <h2 class="hasAnchor">
 <a href="#uk-kidney-donor-risk-index" class="anchor"></a>UK Kidney Donor Risk Index</h2>
@@ -290,7 +290,7 @@
 <div id="uk-kidney-donor-risk-index-2012" class="section level1">
 <h1 class="hasAnchor">
 <a href="#uk-kidney-donor-risk-index-2012" class="anchor"></a>UK Kidney Donor Risk Index (2012)</h1>
-<p>The first version of the UK Kidney Donor Risk Index was published by Watson et al. in 2012 and based on Cox regression of kidney transplant survival from the UK National Transplant Registry. It is simpler than the US KDRI and slightly outperforms the US KDRI when applied to the UK transpant series. It can be calculated using the <code><a href="../reference/watson_ukkdri.html">watson_ukkdri()</a></code> function, which includes these variables:</p>
+<p>The first version of the UK Kidney Donor Risk Index was published by Watson et al.(<em>2</em>) and based on Cox regression of kidney transplant survival from the UK National Transplant Registry. It is simpler than the US KDRI and slightly outperforms the US KDRI when applied to the UK transpant series. It can be calculated using the <code><a href="../reference/watson_ukkdri.html">watson_ukkdri()</a></code> function, which includes these variables:</p>
 <table class="table">
 <colgroup>
 <col width="33%">
@@ -431,6 +431,15 @@
 <a class="sourceLine" id="cb8-8" data-line-number="8">    <span class="dt">cva =</span> <span class="dv">0</span>, <span class="dt">creat =</span> <span class="fl">1.4</span>, <span class="dt">hcv =</span> <span class="dv">0</span>, <span class="dt">dcd =</span> <span class="dv">0</span>, <span class="dt">units =</span> <span class="st">"US"</span>)</a>
 <a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; [1] 1.091988</span></a></code></pre></div>
 </div>
+<div id="references" class="section level1">
+<h1 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h1>
+<ol style="list-style-type: decimal">
+<li><p>NHSBT Policy POL186/10. Kidney Transplantation: Deceased Donor Allocation. <a href="https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/16915/kidney-allocation-policy-pol186.pdf">https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/16915/kidney-allocation-policy-pol186.pdf</a> <em>(viewed 28th December 2019)</em></p></li>
+<li><p>Watson CJ, Johnson RJ, Birch R, et al. A Simplified Donor Risk Index for Predicting Outcome After Deceased Donor Kidney Transplantation. <em>Transplantation</em> 2012; 93(3):314-318. DOI: <a href="https://doi.org/10.1097/TP.0b013e31823f14d4">10.1097/TP.0b013e31823f14d4</a></p></li>
+<li><p>Rao PS, Schaubel DE, Guidinger MK, et al. A Comprehensive Risk Quantification Score for Deceased Donor Kidneys: The Kidney Donor Risk Index. <em>Transplantation</em> 2009; 88:231-236. DOI: <a href="https://doi.org/10.1097/TP.0b013e3181ac620b">10.1097/TP.0b013e3181ac620b</a></p></li>
+</ol>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -447,6 +456,7 @@
 </li>
       <li><a href="#uk-kidney-donor-risk-index-2012">UK Kidney Donor Risk Index (2012)</a></li>
       <li><a href="#us-kidney-donor-risk-index">US Kidney Donor Risk Index</a></li>
+      <li><a href="#references">References</a></li>
       </ul>
 </div>
       </div>

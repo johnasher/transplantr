@@ -177,6 +177,11 @@ changed to mg/dl by setting the optional units parameter to "US".</p>
 
     <p>numeric vector of MELD-Na scores</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Reference: Biggins SW, Kim WR, Terrault NA, et al. Evidence-based incorporation of serum sodium
+concentration into MELD. Gastroenterology 2006; 130(6):1652-60.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>meld_na</span>(<span class='kw'>INR</span> <span class='kw'>=</span> <span class='fl'>1.8</span>, <span class='kw'>bili</span> <span class='kw'>=</span> <span class='fl'>34</span>, <span class='kw'>creat</span> <span class='kw'>=</span> <span class='fl'>176</span>, <span class='kw'>Na</span> <span class='kw'>=</span> <span class='fl'>131</span>, <span class='kw'>dialysis</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt; [1] 26.20589</div><div class='input'><span class='fu'>meld_na</span>(<span class='kw'>INR</span> <span class='kw'>=</span> <span class='fl'>1.8</span>, <span class='kw'>bili</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>creat</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>Na</span> <span class='kw'>=</span> <span class='fl'>131</span>, <span class='kw'>dialysis</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"US"</span>)</div><div class='output co'>#&gt; [1] 26.25671</div></pre>
@@ -187,6 +192,8 @@ changed to mg/dl by setting the optional units parameter to "US".</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

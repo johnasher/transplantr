@@ -105,9 +105,9 @@
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>Glomerular filtration rate can only be determined accurately by direct measurement of renal clearance of markers such as inulin, <sup>51</sup>Cr-EDTA, <sup>125</sup>I-iothalamate or iohexol, but GFR can be estimated from serum creatinine using a number of established formulae. There is no perfect formula for all levels of renal function, and all formulae can be inaccurate if renal function is unstable, at extremes of BMI, in pregnancy, muscle wasting or gross oedema.</p>
-<p>The <strong>CKD-EPI</strong> and abbreviated <strong>MDRD</strong> formulae are the ones most commonly used for adults, and are both based on large numbers of patients with direct GFR measurement and standardised serum creatinine measurements using isotope dilution mass spectrometry. The CKD-EPI formula is more accurate for patients with GFR greater than 60 ml/min, although as both formulae are based on regression splines, neither is accurate for GFR greater than 90ml/min. The MDRD formula was updated in 2005, and this later revision is used in this package. The CKD-EPI formula was recommended for estimation of GFR in adults in NICE Clinical Guideline 128 (2014). In the USA, the MDRD formula was recommended in NKF-KDOQI 2002, and the CKD-EPI formula recommended by KDIGO 2013. Both produce an estimate of GFR for a patient with body surface area of 1.73m<sup>2</sup>.</p>
-<p>The bedside <strong>Schwartz</strong> formula is more accurate in children, and recommended for GFR estimation in patients under 19 by the National Kidney Federation and National Kidney Disease Education Program in the USA.</p>
-<p>The <strong>Cockcroft-Gault</strong> equation estimates creatinine clearance rather than GFR and tends to overestimate actual GFR as creatinine is cleared from the kidney by tubular secretion as well as glomerular filtration. It is still widely used for renal drug dosing, although the National Kidney Federation in the USA recommend CKD-EPI or MDRD instead.</p>
+<p>The <strong>CKD-EPI</strong>(<em>1</em>) and abbreviated <strong>MDRD</strong>(<em>2</em>) formulae are the ones most commonly used for adults, and are both based on large numbers of patients with direct GFR measurement and standardised serum creatinine measurements using isotope dilution mass spectrometry. The CKD-EPI formula is more accurate for patients with GFR greater than 60 ml/min, although as both formulae are based on regression splines, neither is accurate for GFR greater than 90ml/min. The MDRD formula was updated in 2005, and this later revision is used in this package. The CKD-EPI formula was recommended for estimation of GFR in adults in NICE Clinical Guideline 128 (2014). In the USA, the MDRD formula was recommended in NKF-KDOQI 2002, and the CKD-EPI formula recommended by KDIGO 2013. Both produce an estimate of GFR for a patient with body surface area of 1.73m<sup>2</sup>.</p>
+<p>The bedside <strong>Schwartz</strong>(<em>3</em>) formula is more accurate in children, and recommended for GFR estimation in patients under 19 by the National Kidney Federation and National Kidney Disease Education Program in the USA.</p>
+<p>The <strong>Cockcroft-Gault</strong>(<em>4</em>) equation estimates creatinine clearance rather than GFR and tends to overestimate actual GFR as creatinine is cleared from the kidney by tubular secretion as well as glomerular filtration. It is still widely used for renal drug dosing, although the National Kidney Federation in the USA recommend CKD-EPI or MDRD instead.</p>
 <p>Results from eGFR calculators may vary due rounding errors. The functions in the <em>transplantr</em> package convert creatinine units as 1.00 mg/dl being equal to 88.4 µmol/l</p>
 <p>I find the functions are easiest to use with <em>dplyr</em>, using the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> verb inside a pipe.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(transplantr)</a>
@@ -228,6 +228,16 @@
 <a href="#formulae-to-be-added-in-future" class="anchor"></a>Formulae to be added in future</h1>
 <p>The <strong>Nankivell</strong> and <strong>Walser</strong> formulae are less commonly used. The Nankivell formula is the only eGFR formula derived entirely from renal transplant patients, but included patients with unstable GFR. The Nankivell formula includes weight and height so approximates an absolute GFR. The Walser formula produces a result standardised to a height-squared of 3m<sup>2</sup>.</p>
 </div>
+<div id="references" class="section level1">
+<h1 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h1>
+<ol style="list-style-type: decimal">
+<li><p>Levey AS, Stevens LA, Schmid CH, et al. for the CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration). A new equation to estimate glomerular filtration rate. <em>Ann Intern Med</em> 2009; 150(9):604-612. DOI: <a href="https://doi.org/10.7326/0003-4819-150-9-200905050-00006">10.7326/0003-4819-150-9-200905050-00006</a></p></li>
+<li><p>Levey AS, Greene T, Kusek JW, et al. A simplified equation to predict glomerular filtration rate from serum creatinine. <em>J Am Soc Nephrol</em> 2000; 11:A0828.</p></li>
+<li><p>Schwartz GJ, Munoz A, Schneider MF et al. New equations to estimate GFR in children with CKD. <em>J Am Soc Nephrol</em> 2009; 20(3):629-637. DOI: <a href="https://doi.org/10.1681/ASN.2008030287">10.1681/ASN.2008030287</a></p></li>
+<li><p>Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine. <em>Nephron</em> 1976; 16(1):31-41. DOI: <a href="https://doi.org/10.1159/000180580">10.1159/000180580</a></p></li>
+</ol>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -245,6 +255,7 @@
       <li><a href="#schwartz-formula">Schwartz formula</a></li>
       <li><a href="#cockcroft-gault-formula">Cockcroft-Gault formula</a></li>
       <li><a href="#formulae-to-be-added-in-future">Formulae to be added in future</a></li>
+      <li><a href="#references">References</a></li>
       </ul>
 </div>
       </div>
