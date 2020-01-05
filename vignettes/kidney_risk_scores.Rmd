@@ -22,8 +22,9 @@ The models included in version 0.1.0 are:
 
 * UK Kidney Donor Risk Index (2019 version): `ukkdri()`
 * UK Kidney Donor Risk Index (2012 version): `watson_ukkdri()`
-* US Kidney Donor Risk Index: `uskdri()`
 * UK Kidney Recipient Risk Index: `ukkrri()`
+* US Kidney Donor Risk Index: `uskdri()`
+* US Estimated Post-Transplant Survival Score (EPTS): `raw_epts()`
 
 The US risk index uses donor creatinine as a parameter, and the `uskdri()` function in this package 
 uses creatinine measured in mcmol/l as the default for all functions, but creatinine can be entered in 
@@ -185,6 +186,37 @@ uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
     cva = 0, creat = 1.4, hcv = 0, dcd = 0, units = "US")
 ```
 
+# Estimated Post-Transplant Survival Score (EPTS)
+
+The EPTS(_4_) is used in the USA to predict patient survival after adult renal transplantation compared to other patients on the deceased donor waiting list, and uses age, diabetes status, previous organ transplants and duration of dialysis as predictors. These generate a raw EPTS score which is then converter to a percentile of risk using a [lookup table](https://optn.transplant.hrsa.gov/media/2973/epts_mapping_table_2018.pdf) on the OPTN website. 
+
+In the US the EPTS score is used in conjunction with the USKDRI score to prioritise the 20% of patients with best expected transplant survival for the 20% of kidneys with best anticipated long-term function.
+
+The raw EPTS score can be calculated using the `raw_epts()` function in the transplantr package, which takes the following parameters:
+
+Parameter | Description | Values
+---|---|---
+age | recipient age in years | numeric vector
+dm | whether recipient has diabetes | numeric vector of 1 (yes) and 0 (no)
+prev_tx | whether previous solid organ transplant | numeric vector of 1 (yes) and 0 (no)
+dx | duration of dialysis in years | numeric vector
+
+It should be noted that the age and dx parameters can and should be used with exact age using decimals and not an integer of number of years.
+
+Like most of the other functions in the transplantr package, the `raw_epts()` is vectorised and can be used very efficiently to calculute multiple scores in a dplyr pipe:
+
+```{r, eval = F}
+kidney.recipients2a = kidney.recipients %>%
+  mutate(EPTS.raw = raw_epts(age = Recipient.Age, dm = Recipient.Diabetes, 
+                             prev_tx = Recipient.PreviousTransplant, dx = Recipient.Waittime))
+```
+
+But it can also be used with a single case:
+
+```{r}
+epts_raw(age = 23.58, dm = 0, prev_tx = 1, dx = 5.0814511)
+```
+
 # References
 
 1. NHSBT Policy POL186/10. Kidney Transplantation: Deceased Donor Allocation.
@@ -193,3 +225,5 @@ uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
 2. Watson CJ, Johnson RJ, Birch R, et al. A Simplified Donor Risk Index for Predicting Outcome After Deceased Donor Kidney Transplantation. _Transplantation_ 2012; 93(3):314-318. DOI: [10.1097/TP.0b013e31823f14d4](https://doi.org/10.1097/TP.0b013e31823f14d4)
 
 3. Rao PS, Schaubel DE, Guidinger MK, et al. A Comprehensive Risk Quantification Score for Deceased Donor Kidneys: The Kidney Donor Risk Index. _Transplantation_ 2009; 88:231-236. DOI: [10.1097/TP.0b013e3181ac620b](https://doi.org/10.1097/TP.0b013e3181ac620b)
+
+4. Estimated Post-Transplant Survival Score. [https://optn.transplant.hrsa.gov/media/1511/guide_to_calculating_interpreting_epts.pdf](https://optn.transplant.hrsa.gov/media/1511/guide_to_calculating_interpreting_epts.pdf)

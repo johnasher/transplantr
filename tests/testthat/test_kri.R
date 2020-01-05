@@ -30,3 +30,8 @@ test_that("USKDRI is correct", {
                             cva = 0, creat = 120, hcv = 0, dcd = 0, scaling = 1.250609, units = "SI"), 2), 0.87)
 })
 
+test_that("EPTS is correct", {
+  expect_equal(round(raw_epts(age = 23.5838467, dm = 0, prev_tx = 1, dx = 5.0814511), 3), 0.967)
+  expect_equal(round(raw_epts(age = 52.8788501, dm = 0, prev_tx = 0, dx = 0), 3), 1.440)
+  expect_equal(round(raw_epts(age = 22.5242984, dm = 1, prev_tx = 1, dx = 6.8747433), 3), 1.869)
+})
