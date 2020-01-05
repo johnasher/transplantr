@@ -111,9 +111,11 @@
 </li>
 <li>UK Kidney Donor Risk Index (2012 version): <code><a href="../reference/watson_ukkdri.html">watson_ukkdri()</a></code>
 </li>
+<li>UK Kidney Recipient Risk Index: <code><a href="../reference/ukkrri.html">ukkrri()</a></code>
+</li>
 <li>US Kidney Donor Risk Index: <code><a href="../reference/uskdri.html">uskdri()</a></code>
 </li>
-<li>UK Kidney Recipient Risk Index: <code><a href="../reference/ukkrri.html">ukkrri()</a></code>
+<li>US Estimated Post-Transplant Survival Score (EPTS): <code><a href="../reference/raw_epts.html">raw_epts()</a></code>
 </li>
 </ul>
 <p>The US risk index uses donor creatinine as a parameter, and the <code><a href="../reference/uskdri.html">uskdri()</a></code> function in this package uses creatinine measured in mcmol/l as the default for all functions, but creatinine can be entered in mg/dl either by setting the optional <code>units</code> parameter to “SI” or by calling the wrapper function <code><a href="../reference/uskdri_US.html">uskdri_US()</a></code> instead. All of the functions in transplantr using creatinine or bilirubin use units in the same way - for mg/dl either use <code>units == "US"</code> or call the <code>..._US()</code> wrapper function.</p>
@@ -431,6 +433,55 @@
 <a class="sourceLine" id="cb8-8" data-line-number="8">    <span class="dt">cva =</span> <span class="dv">0</span>, <span class="dt">creat =</span> <span class="fl">1.4</span>, <span class="dt">hcv =</span> <span class="dv">0</span>, <span class="dt">dcd =</span> <span class="dv">0</span>, <span class="dt">units =</span> <span class="st">"US"</span>)</a>
 <a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; [1] 1.091988</span></a></code></pre></div>
 </div>
+<div id="estimated-post-transplant-survival-score-epts" class="section level1">
+<h1 class="hasAnchor">
+<a href="#estimated-post-transplant-survival-score-epts" class="anchor"></a>Estimated Post-Transplant Survival Score (EPTS)</h1>
+<p>The EPTS(<em>4</em>) is used in the USA to predict patient survival after adult renal transplantation compared to other patients on the deceased donor waiting list, and uses age, diabetes status, previous organ transplants and duration of dialysis as predictors. These generate a raw EPTS score which is then converter to a percentile of risk using a <a href="https://optn.transplant.hrsa.gov/media/2973/epts_mapping_table_2018.pdf">lookup table</a> on the OPTN website.</p>
+<p>In the US the EPTS score is used in conjunction with the USKDRI score to prioritise the 20% of patients with best expected transplant survival for the 20% of kidneys with best anticipated long-term function.</p>
+<p>The raw EPTS score can be calculated using the <code><a href="../reference/raw_epts.html">raw_epts()</a></code> function in the transplantr package, which takes the following parameters:</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>age</td>
+<td>recipient age in years</td>
+<td>numeric vector</td>
+</tr>
+<tr class="even">
+<td>dm</td>
+<td>whether recipient has diabetes</td>
+<td>numeric vector of 1 (yes) and 0 (no)</td>
+</tr>
+<tr class="odd">
+<td>prev_tx</td>
+<td>whether previous solid organ transplant</td>
+<td>numeric vector of 1 (yes) and 0 (no)</td>
+</tr>
+<tr class="even">
+<td>dx</td>
+<td>duration of dialysis in years</td>
+<td>numeric vector</td>
+</tr>
+</tbody>
+</table>
+<p>It should be noted that the age and dx parameters can and should be used with exact age using decimals and not an integer of number of years.</p>
+<p>Like most of the other functions in the transplantr package, the <code><a href="../reference/raw_epts.html">raw_epts()</a></code> is vectorised and can be used very efficiently to calculute multiple scores in a dplyr pipe:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">kidney.recipients2a =<span class="st"> </span>kidney.recipients <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">EPTS.raw =</span> <span class="kw"><a href="../reference/raw_epts.html">raw_epts</a></span>(<span class="dt">age =</span> Recipient.Age, <span class="dt">dm =</span> Recipient.Diabetes, </a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">                             <span class="dt">prev_tx =</span> Recipient.PreviousTransplant, <span class="dt">dx =</span> Recipient.Waittime))</a></code></pre></div>
+<p>But it can also be used with a single case:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="../reference/raw_epts.html">raw_epts</a></span>(<span class="dt">age =</span> <span class="fl">23.58</span>, <span class="dt">dm =</span> <span class="dv">0</span>, <span class="dt">prev_tx =</span> <span class="dv">1</span>, <span class="dt">dx =</span> <span class="fl">5.0814511</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; [1] 0.9666517</span></a></code></pre></div>
+</div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
@@ -438,6 +489,7 @@
 <li><p>NHSBT Policy POL186/10. Kidney Transplantation: Deceased Donor Allocation. <a href="https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/16915/kidney-allocation-policy-pol186.pdf">https://nhsbtdbe.blob.core.windows.net/umbraco-assets-corp/16915/kidney-allocation-policy-pol186.pdf</a> <em>(viewed 28th December 2019)</em></p></li>
 <li><p>Watson CJ, Johnson RJ, Birch R, et al. A Simplified Donor Risk Index for Predicting Outcome After Deceased Donor Kidney Transplantation. <em>Transplantation</em> 2012; 93(3):314-318. DOI: <a href="https://doi.org/10.1097/TP.0b013e31823f14d4">10.1097/TP.0b013e31823f14d4</a></p></li>
 <li><p>Rao PS, Schaubel DE, Guidinger MK, et al. A Comprehensive Risk Quantification Score for Deceased Donor Kidneys: The Kidney Donor Risk Index. <em>Transplantation</em> 2009; 88:231-236. DOI: <a href="https://doi.org/10.1097/TP.0b013e3181ac620b">10.1097/TP.0b013e3181ac620b</a></p></li>
+<li><p>Estimated Post-Transplant Survival Score. <a href="https://optn.transplant.hrsa.gov/media/1511/guide_to_calculating_interpreting_epts.pdf">https://optn.transplant.hrsa.gov/media/1511/guide_to_calculating_interpreting_epts.pdf</a></p></li>
 </ol>
 </div>
   </div>
@@ -456,6 +508,7 @@
 </li>
       <li><a href="#uk-kidney-donor-risk-index-2012">UK Kidney Donor Risk Index (2012)</a></li>
       <li><a href="#us-kidney-donor-risk-index">US Kidney Donor Risk Index</a></li>
+      <li><a href="#estimated-post-transplant-survival-score-epts">Estimated Post-Transplant Survival Score (EPTS)</a></li>
       <li><a href="#references">References</a></li>
       </ul>
 </div>

@@ -214,7 +214,7 @@ kidney.recipients2a = kidney.recipients %>%
 But it can also be used with a single case:
 
 ```{r}
-epts_raw(age = 23.58, dm = 0, prev_tx = 1, dx = 5.0814511)
+raw_epts(age = 23.58, dm = 0, prev_tx = 1, dx = 5.0814511)
 ```
 
 # References
