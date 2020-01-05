@@ -14,7 +14,12 @@ reference:
       - watson_ukkdri
       - uskdri
       - uskdri_US
+      - kdpi
+      - kdpi_US
+      - kdpi_lookup
+      - epts
       - raw_epts
+      - epts_lookup
   - title: "Liver transplant functions"
     desc: "Functions to stratify liver recipient risk"
     contents:

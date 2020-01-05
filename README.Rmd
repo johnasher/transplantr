@@ -51,7 +51,7 @@ install.packages("tidyverse")
 install.packages("dplyr")
 ```
 
-Although recommended, _dplyr_ is not necessary for _transplantr_ to work. The only required package is _stringr_ which is only needed for the `chi2dob()` function, one unlikely to be needed by anyone working outside Scotland!
+Although recommended, _dplyr_ is not necessary for most _transplantr_ functions to work.  _dplyr_ is needed for the EPTS and KDPI functions, and additionally _stringr_ is needed for the `hla_mm_level_str()` function and also for the `chi2dob()` function, one unlikely to be needed by anyone working outside Scotland!
 
 ## Biochemical units
 

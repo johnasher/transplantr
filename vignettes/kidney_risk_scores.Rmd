@@ -186,6 +186,22 @@ uskdri(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
     cva = 0, creat = 1.4, hcv = 0, dcd = 0, units = "US")
 ```
 
+## US KDPI
+
+The KDPI is a percentile of risk converted from the US KDRI using the scaling factor and a lookup table published on the OPTN website each year. There is a `kdpi()` function to calculate the KDPI from the same parameters used the the `uskdri()` function and a matching `kdri_US()` wrapper function for use when donor creatinine is measured in mg/dl. The transplantr package also has a `kdpi_lookup()` function to convert a KDRI score to KDPI percentile. 
+
+These functions require the dplyr package to be installed. The functions are called in the same way as above, or for a single case:
+
+```{r}
+# with creatinine in µmol/l (units = "SI" can be omitted)
+kdpi(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
+    cva = 0, creat = 120, hcv = 0, dcd = 0, scaling = 1.250697, units = "SI")
+
+# with creatinine in mg/dl
+kdpi_US(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
+    cva = 0, creat = 1.4, hcv = 0, dcd = 0, scaling = 1.250697)
+```
+
 # Estimated Post-Transplant Survival Score (EPTS)
 
 The EPTS(_4_) is used in the USA to predict patient survival after adult renal transplantation compared to other patients on the deceased donor waiting list, and uses age, diabetes status, previous organ transplants and duration of dialysis as predictors. These generate a raw EPTS score which is then converter to a percentile of risk using a [lookup table](https://optn.transplant.hrsa.gov/media/2973/epts_mapping_table_2018.pdf) on the OPTN website. 
@@ -203,7 +219,7 @@ dx | duration of dialysis in years | numeric vector
 
 It should be noted that the age and dx parameters can and should be used with exact age using decimals and not an integer of number of years.
 
-The `epts()` function in the transplantr package currently uses the most recent published lookup table on the OPTN website, published in March 2019 using SRTR data from 2018. Archives of lookup tables from previous years are also available on the OPTN website.
+The `epts()` function in the transplantr package, which requires the dplyr package to be installed, currently uses the most recent published lookup table on the OPTN website, published in March 2019 using SRTR data from 2018. Archives of lookup tables from previous years are also available on the OPTN website.
 
 Like most of the other functions in the transplantr package, the `raw_epts()` is vectorised and can be used very efficiently to calculute multiple scores in a dplyr pipe:
 

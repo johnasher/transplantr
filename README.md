@@ -15,8 +15,7 @@ The functions provided fall into three groups:
 
 Although the package was built with unit tests, inaccuracies cannot be
 completely excluded. it is not a medical device and should not be used
-for making clinical decisions. References to the publications of the formulae are
-provided in the vignettes and documentation of individual functions.
+for making clinical decisions.
 
 # Installation
 
@@ -61,10 +60,11 @@ install.packages("tidyverse")
 install.packages("dplyr")
 ```
 
-Although recommended, *dplyr* is not necessary for *transplantr* to
-work. The only required package is *stringr* which is only needed for
-the `chi2dob()` function, one unlikely to be needed by anyone working
-outside Scotland\!
+Although recommended, *dplyr* is not necessary for most *transplantr*
+functions to work. *dplyr* is needed for the EPTS and KDPI functions,
+and additionally *stringr* is needed for the `hla_mm_level_str()`
+function and also for the `chi2dob()` function, one unlikely to be
+needed by anyone working outside Scotland\!
 
 ## Biochemical units
 
@@ -82,10 +82,7 @@ wrapper function is called.
 
 Which is the best option to use? Calling the wrapper function uses fewer
 keystrokes so is quicker to type, but as it is a function calling
-another function, there is a slight increase in computational overhead; 
-for example, benchmarking the time taken to calculate 100,000 eGFR results, the median 
-time was 106 milliseconds with `ckd_epi()` and 108 milliseconds using the 
-more convenient `ckd_epi_US()`.
+another function, there is a slight increase in computational overhead.
 
 ## Using *transplantr* functions with *dplyr*
 

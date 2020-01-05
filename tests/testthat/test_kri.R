@@ -30,6 +30,17 @@ test_that("USKDRI is correct", {
                             cva = 0, creat = 120, hcv = 0, dcd = 0, scaling = 1.250609, units = "SI"), 2), 0.87)
 })
 
+test_that("KDPI is correct", {
+  expect_equal(kdpi(age = 52, height = 183, weight = 81, eth = "non-black", htn = 1, dm = 0, cva = 1,
+                    creat = 1.7, hcv = 0, dcd = 1, scaling = 1.250609, units = "US"), 83)
+  expect_equal(kdpi(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
+                            cva = 0, creat = 120, hcv = 0, dcd = 0, scaling = 1.250609, units = "SI"), 35)
+  expect_equal(kdpi_US(age = 52, height = 183, weight = 81, eth = "non-black", htn = 1, dm = 0, cva = 1,
+                       creat = 1.7, hcv = 0, dcd = 1, scaling = 1.250609), 83)
+  expect_equal(kdpi_lookup(1.42), 83)
+  expect_equal(kdpi_lookup(0.87), 35)
+})
+
 test_that("EPTS raw is correct", {
   expect_equal(round(raw_epts(age = 23.5838467, dm = 0, prev_tx = 1, dx = 5.0814511), 3), 0.967)
   expect_equal(round(raw_epts(age = 52.8788501, dm = 0, prev_tx = 0, dx = 0), 3), 1.440)

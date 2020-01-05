@@ -432,6 +432,21 @@
 <a class="sourceLine" id="cb8-7" data-line-number="7"><span class="kw"><a href="../reference/uskdri.html">uskdri</a></span>(<span class="dt">age =</span> <span class="dv">40</span>, <span class="dt">height =</span> <span class="dv">170</span>, <span class="dt">weight =</span> <span class="dv">80</span>, <span class="dt">eth =</span> <span class="st">"non-black"</span>, <span class="dt">htn =</span> <span class="dv">0</span>, <span class="dt">dm =</span> <span class="dv">0</span>,</a>
 <a class="sourceLine" id="cb8-8" data-line-number="8">    <span class="dt">cva =</span> <span class="dv">0</span>, <span class="dt">creat =</span> <span class="fl">1.4</span>, <span class="dt">hcv =</span> <span class="dv">0</span>, <span class="dt">dcd =</span> <span class="dv">0</span>, <span class="dt">units =</span> <span class="st">"US"</span>)</a>
 <a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; [1] 1.091988</span></a></code></pre></div>
+<div id="us-kdpi" class="section level2">
+<h2 class="hasAnchor">
+<a href="#us-kdpi" class="anchor"></a>US KDPI</h2>
+<p>The KDPI is a percentile of risk converted from the US KDRI using the scaling factor and a lookup table published on the OPTN website each year. There is a <code><a href="../reference/kdpi.html">kdpi()</a></code> function to calculate the KDPI from the same parameters used the the <code><a href="../reference/uskdri.html">uskdri()</a></code> function and a matching <code>kdri_US()</code> wrapper function for use when donor creatinine is measured in mg/dl. The transplantr package also has a <code><a href="../reference/kdpi_lookup.html">kdpi_lookup()</a></code> function to convert a KDRI score to KDPI percentile.</p>
+<p>These functions require the dplyr package to be installed. The functions are called in the same way as above, or for a single case:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># with creatinine in µmol/l (units = "SI" can be omitted)</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="../reference/kdpi.html">kdpi</a></span>(<span class="dt">age =</span> <span class="dv">40</span>, <span class="dt">height =</span> <span class="dv">170</span>, <span class="dt">weight =</span> <span class="dv">80</span>, <span class="dt">eth =</span> <span class="st">"non-black"</span>, <span class="dt">htn =</span> <span class="dv">0</span>, <span class="dt">dm =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">    <span class="dt">cva =</span> <span class="dv">0</span>, <span class="dt">creat =</span> <span class="dv">120</span>, <span class="dt">hcv =</span> <span class="dv">0</span>, <span class="dt">dcd =</span> <span class="dv">0</span>, <span class="dt">scaling =</span> <span class="fl">1.250697</span>, <span class="dt">units =</span> <span class="st">"SI"</span>)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; [1] 35</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co"># with creatinine in mg/dl</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="kw"><a href="../reference/kdpi_US.html">kdpi_US</a></span>(<span class="dt">age =</span> <span class="dv">40</span>, <span class="dt">height =</span> <span class="dv">170</span>, <span class="dt">weight =</span> <span class="dv">80</span>, <span class="dt">eth =</span> <span class="st">"non-black"</span>, <span class="dt">htn =</span> <span class="dv">0</span>, <span class="dt">dm =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">    <span class="dt">cva =</span> <span class="dv">0</span>, <span class="dt">creat =</span> <span class="fl">1.4</span>, <span class="dt">hcv =</span> <span class="dv">0</span>, <span class="dt">dcd =</span> <span class="dv">0</span>, <span class="dt">scaling =</span> <span class="fl">1.250697</span>)</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt; [1] 36</span></a></code></pre></div>
+</div>
 </div>
 <div id="estimated-post-transplant-survival-score-epts" class="section level1">
 <h1 class="hasAnchor">
@@ -474,18 +489,18 @@
 </tbody>
 </table>
 <p>It should be noted that the age and dx parameters can and should be used with exact age using decimals and not an integer of number of years.</p>
-<p>The <code><a href="../reference/epts.html">epts()</a></code> function in the transplantr package currently uses the most recent published lookup table on the OPTN website, published in March 2019 using SRTR data from 2018. Archives of lookup tables from previous years are also available on the OPTN website.</p>
+<p>The <code><a href="../reference/epts.html">epts()</a></code> function in the transplantr package, which requires the dplyr package to be installed, currently uses the most recent published lookup table on the OPTN website, published in March 2019 using SRTR data from 2018. Archives of lookup tables from previous years are also available on the OPTN website.</p>
 <p>Like most of the other functions in the transplantr package, the <code><a href="../reference/raw_epts.html">raw_epts()</a></code> is vectorised and can be used very efficiently to calculute multiple scores in a dplyr pipe:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">kidney.recipients2a =<span class="st"> </span>kidney.recipients <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">EPTS.raw =</span> <span class="kw"><a href="../reference/raw_epts.html">raw_epts</a></span>(<span class="dt">age =</span> Recipient.Age, <span class="dt">dm =</span> Recipient.Diabetes, </a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">                             <span class="dt">prev_tx =</span> Recipient.PreviousTransplant, <span class="dt">dx =</span> Recipient.Waittime),</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">         <span class="dt">EPTS =</span> <span class="kw"><a href="../reference/epts.html">epts</a></span>(<span class="dt">age =</span> Recipient.Age, <span class="dt">dm =</span> Recipient.Diabetes, </a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">                             <span class="dt">prev_tx =</span> Recipient.PreviousTransplant, <span class="dt">dx =</span> Recipient.Waittime))</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">kidney.recipients2a =<span class="st"> </span>kidney.recipients <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">EPTS.raw =</span> <span class="kw"><a href="../reference/raw_epts.html">raw_epts</a></span>(<span class="dt">age =</span> Recipient.Age, <span class="dt">dm =</span> Recipient.Diabetes, </a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">                             <span class="dt">prev_tx =</span> Recipient.PreviousTransplant, <span class="dt">dx =</span> Recipient.Waittime),</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">         <span class="dt">EPTS =</span> <span class="kw"><a href="../reference/epts.html">epts</a></span>(<span class="dt">age =</span> Recipient.Age, <span class="dt">dm =</span> Recipient.Diabetes, </a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">                             <span class="dt">prev_tx =</span> Recipient.PreviousTransplant, <span class="dt">dx =</span> Recipient.Waittime))</a></code></pre></div>
 <p>But it can also be used with a single case:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="../reference/raw_epts.html">raw_epts</a></span>(<span class="dt">age =</span> <span class="fl">23.58</span>, <span class="dt">dm =</span> <span class="dv">0</span>, <span class="dt">prev_tx =</span> <span class="dv">1</span>, <span class="dt">dx =</span> <span class="fl">5.081</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; [1] 0.9666283</span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw"><a href="../reference/epts.html">epts</a></span>(<span class="dt">age =</span> <span class="fl">23.58</span>, <span class="dt">dm =</span> <span class="dv">0</span>, <span class="dt">prev_tx =</span> <span class="dv">1</span>, <span class="dt">dx =</span> <span class="fl">5.081</span>)</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt; [1] 9</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="../reference/raw_epts.html">raw_epts</a></span>(<span class="dt">age =</span> <span class="fl">23.58</span>, <span class="dt">dm =</span> <span class="dv">0</span>, <span class="dt">prev_tx =</span> <span class="dv">1</span>, <span class="dt">dx =</span> <span class="fl">5.081</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt; [1] 0.9666283</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw"><a href="../reference/epts.html">epts</a></span>(<span class="dt">age =</span> <span class="fl">23.58</span>, <span class="dt">dm =</span> <span class="dv">0</span>, <span class="dt">prev_tx =</span> <span class="dv">1</span>, <span class="dt">dx =</span> <span class="fl">5.081</span>)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; [1] 9</span></a></code></pre></div>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
@@ -512,7 +527,11 @@
       </ul>
 </li>
       <li><a href="#uk-kidney-donor-risk-index-2012">UK Kidney Donor Risk Index (2012)</a></li>
-      <li><a href="#us-kidney-donor-risk-index">US Kidney Donor Risk Index</a></li>
+      <li>
+<a href="#us-kidney-donor-risk-index">US Kidney Donor Risk Index</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#us-kdpi">US KDPI</a></li>
+      </ul>
+</li>
       <li><a href="#estimated-post-transplant-survival-score-epts">Estimated Post-Transplant Survival Score (EPTS)</a></li>
       <li><a href="#references">References</a></li>
       </ul>
