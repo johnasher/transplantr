@@ -52,5 +52,5 @@ for Deceased Donor Kidneys: The Kidney Donor Risk Index. Transplantation 2009; 8
 \examples{
 # with creatinine in mg/dl
 kdpi_US(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-    cva = 0, creat = 1.4, hcv = 0, dcd = 0, scaling = 1.250609, units = "US")
+    cva = 0, creat = 1.4, hcv = 0, dcd = 0, scaling = 1.250609)
 }

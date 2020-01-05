@@ -167,7 +167,7 @@ kdpi = function(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd, scaling
 #' @examples
 #' # with creatinine in mg/dl
 #' kdpi_US(age = 40, height = 170, weight = 80, eth = "non-black", htn = 0, dm = 0,
-#'     cva = 0, creat = 1.4, hcv = 0, dcd = 0, scaling = 1.250609, units = "US")
+#'     cva = 0, creat = 1.4, hcv = 0, dcd = 0, scaling = 1.250609)
 kdpi_US = function(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd, scaling = 1) {
   kdri = uskdri(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd, scaling, units = "US")
   kdpi_lookup(kdri, scaling = 1)
@@ -182,7 +182,7 @@ kdpi_US = function(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd, scal
 #' This function requires the dplyr package to be installed.
 #'
 #' @param kdri numeric vector of KDRI values
-#' @scaling optional parameter for scaling factor (default is 1)
+#' @param scaling optional parameter for scaling factor (default is 1)
 #'
 #' @return numeric vector of KDPI percentiles
 #' @export

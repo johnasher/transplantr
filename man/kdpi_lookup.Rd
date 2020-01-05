@@ -8,6 +8,8 @@ kdpi_lookup(kdri, scaling = 1)
 }
 \arguments{
 \item{kdri}{numeric vector of KDRI values}
+
+\item{scaling}{optional parameter for scaling factor (default is 1)}
 }
 \value{
 numeric vector of KDPI percentiles
