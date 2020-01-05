@@ -192,7 +192,7 @@ The EPTS(_4_) is used in the USA to predict patient survival after adult renal t
 
 In the US the EPTS score is used in conjunction with the USKDRI score to prioritise the 20% of patients with best expected transplant survival for the 20% of kidneys with best anticipated long-term function.
 
-The raw EPTS score can be calculated using the `raw_epts()` function in the transplantr package, which takes the following parameters:
+The EPTS (as a percentile) can be calculated with with the `epts()` function and the raw EPTS score with the `raw_epts()` function in the transplantr package. Both functions take the following parameters:
 
 Parameter | Description | Values
 ---|---|---
@@ -203,18 +203,23 @@ dx | duration of dialysis in years | numeric vector
 
 It should be noted that the age and dx parameters can and should be used with exact age using decimals and not an integer of number of years.
 
+The `epts()` function in the transplantr package currently uses the most recent published lookup table on the OPTN website, published in March 2019 using SRTR data from 2018. Archives of lookup tables from previous years are also available on the OPTN website.
+
 Like most of the other functions in the transplantr package, the `raw_epts()` is vectorised and can be used very efficiently to calculute multiple scores in a dplyr pipe:
 
 ```{r, eval = F}
 kidney.recipients2a = kidney.recipients %>%
   mutate(EPTS.raw = raw_epts(age = Recipient.Age, dm = Recipient.Diabetes, 
+                             prev_tx = Recipient.PreviousTransplant, dx = Recipient.Waittime),
+         EPTS = epts(age = Recipient.Age, dm = Recipient.Diabetes, 
                              prev_tx = Recipient.PreviousTransplant, dx = Recipient.Waittime))
 ```
 
 But it can also be used with a single case:
 
 ```{r}
-raw_epts(age = 23.58, dm = 0, prev_tx = 1, dx = 5.0814511)
+raw_epts(age = 23.58, dm = 0, prev_tx = 1, dx = 5.081)
+epts(age = 23.58, dm = 0, prev_tx = 1, dx = 5.081)
 ```
 
 # References

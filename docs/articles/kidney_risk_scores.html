@@ -438,7 +438,7 @@
 <a href="#estimated-post-transplant-survival-score-epts" class="anchor"></a>Estimated Post-Transplant Survival Score (EPTS)</h1>
 <p>The EPTS(<em>4</em>) is used in the USA to predict patient survival after adult renal transplantation compared to other patients on the deceased donor waiting list, and uses age, diabetes status, previous organ transplants and duration of dialysis as predictors. These generate a raw EPTS score which is then converter to a percentile of risk using a <a href="https://optn.transplant.hrsa.gov/media/2973/epts_mapping_table_2018.pdf">lookup table</a> on the OPTN website.</p>
 <p>In the US the EPTS score is used in conjunction with the USKDRI score to prioritise the 20% of patients with best expected transplant survival for the 20% of kidneys with best anticipated long-term function.</p>
-<p>The raw EPTS score can be calculated using the <code><a href="../reference/raw_epts.html">raw_epts()</a></code> function in the transplantr package, which takes the following parameters:</p>
+<p>The EPTS (as a percentile) can be calculated with with the <code><a href="../reference/epts.html">epts()</a></code> function and the raw EPTS score with the <code><a href="../reference/raw_epts.html">raw_epts()</a></code> function in the transplantr package. Both functions take the following parameters:</p>
 <table class="table">
 <colgroup>
 <col width="33%">
@@ -474,13 +474,18 @@
 </tbody>
 </table>
 <p>It should be noted that the age and dx parameters can and should be used with exact age using decimals and not an integer of number of years.</p>
+<p>The <code><a href="../reference/epts.html">epts()</a></code> function in the transplantr package currently uses the most recent published lookup table on the OPTN website, published in March 2019 using SRTR data from 2018. Archives of lookup tables from previous years are also available on the OPTN website.</p>
 <p>Like most of the other functions in the transplantr package, the <code><a href="../reference/raw_epts.html">raw_epts()</a></code> is vectorised and can be used very efficiently to calculute multiple scores in a dplyr pipe:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">kidney.recipients2a =<span class="st"> </span>kidney.recipients <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">EPTS.raw =</span> <span class="kw"><a href="../reference/raw_epts.html">raw_epts</a></span>(<span class="dt">age =</span> Recipient.Age, <span class="dt">dm =</span> Recipient.Diabetes, </a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">                             <span class="dt">prev_tx =</span> Recipient.PreviousTransplant, <span class="dt">dx =</span> Recipient.Waittime))</a></code></pre></div>
+<a class="sourceLine" id="cb9-3" data-line-number="3">                             <span class="dt">prev_tx =</span> Recipient.PreviousTransplant, <span class="dt">dx =</span> Recipient.Waittime),</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">         <span class="dt">EPTS =</span> <span class="kw"><a href="../reference/epts.html">epts</a></span>(<span class="dt">age =</span> Recipient.Age, <span class="dt">dm =</span> Recipient.Diabetes, </a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">                             <span class="dt">prev_tx =</span> Recipient.PreviousTransplant, <span class="dt">dx =</span> Recipient.Waittime))</a></code></pre></div>
 <p>But it can also be used with a single case:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="../reference/raw_epts.html">raw_epts</a></span>(<span class="dt">age =</span> <span class="fl">23.58</span>, <span class="dt">dm =</span> <span class="dv">0</span>, <span class="dt">prev_tx =</span> <span class="dv">1</span>, <span class="dt">dx =</span> <span class="fl">5.0814511</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; [1] 0.9666517</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="../reference/raw_epts.html">raw_epts</a></span>(<span class="dt">age =</span> <span class="fl">23.58</span>, <span class="dt">dm =</span> <span class="dv">0</span>, <span class="dt">prev_tx =</span> <span class="dv">1</span>, <span class="dt">dx =</span> <span class="fl">5.081</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; [1] 0.9666283</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw"><a href="../reference/epts.html">epts</a></span>(<span class="dt">age =</span> <span class="fl">23.58</span>, <span class="dt">dm =</span> <span class="dv">0</span>, <span class="dt">prev_tx =</span> <span class="dv">1</span>, <span class="dt">dx =</span> <span class="fl">5.081</span>)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt; [1] 9</span></a></code></pre></div>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
