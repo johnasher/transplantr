@@ -6,6 +6,8 @@ This is a resubmission. In this version I have:
 * Have added references for the theoretical background to the equations in the documentation for each function and also to the vignettes. There are 18 such functions in the package, and some of the papers describing the background to these have more than 10 authors, so listing all in the DESCRIPTION file would be very impractical. I have however added a comment to the description field of the DESCRIPTION file noting that references are in the vignettes and documentation of each individual function.
 
 * re-run R CMD check with no ERRORs, WARNINGs or NOTEs.
+
+These were the comments from the CRAN reviewer for the first submission:
   
 > Thanks, please add more details about the package functionality in your
 > Description text.
