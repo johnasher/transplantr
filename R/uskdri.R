@@ -159,7 +159,6 @@ kdpi = function(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd, scaling
 #' @param hcv numeric vector of donor hepatitis C history (1 = yes, 0 = no)
 #' @param dcd numeric vector of type of donor (1 = DCD, 0 = DBD)
 #' @param scaling single numeric value for OPTN scaling factor (optional, defaults to 1)
-#' @param units single string value to indicate creatinine units ("SI" for µmol/l, "US" for mg/dl)
 #'
 #' @return numeric vector of US KDRI values
 #' @export

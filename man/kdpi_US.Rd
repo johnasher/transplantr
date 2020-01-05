@@ -29,8 +29,6 @@ kdpi_US(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd,
 \item{dcd}{numeric vector of type of donor (1 = DCD, 0 = DBD)}
 
 \item{scaling}{single numeric value for OPTN scaling factor (optional, defaults to 1)}
-
-\item{units}{single string value to indicate creatinine units ("SI" for µmol/l, "US" for mg/dl)}
 }
 \value{
 numeric vector of US KDRI values
