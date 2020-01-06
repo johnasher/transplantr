@@ -3,7 +3,7 @@ This is a resubmission. In this version I have:
 
 * Added more details about the package functionality to the DESCRIPTION text.
 
-* Have added references for the theoretical background to the equations in the documentation for each function and also to the vignettes. There are 18 such functions in the package, and some of the papers describing the background to these have more than 10 authors, so listing all in the DESCRIPTION file would be very impractical. I have however added a comment to the description field of the DESCRIPTION file noting that references are in the vignettes and documentation of each individual function. DOI links to individual referenced publications and links to relevant organisation web pages are also provided in the vignettes.
+* Have added references for the theoretical background to the equations in the documentation for each function and also to the vignettes. There are 18 such functions in the package, and some of the papers describing the background to these have more than 10 authors, so listing all in the DESCRIPTION file would be very impractical. I have however added a comment to the description field of the DESCRIPTION file noting that references are in the vignettes and documentation of each individual function. The vignettes also contain DOI links to individual referenced publications and links to relevant organisation web pages (where the equations are published by transplant organisations rather than in the literature).
 
 * re-run R CMD check with no ERRORs, WARNINGs or NOTEs.
 
