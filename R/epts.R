@@ -1,4 +1,4 @@
-#' Estimated Post-Transplant Survival Score calculator
+#' Estimated Post-Transplant Survival Score (EPTS)
 #'
 #' A vectorised function to calculate raw EPTS scores for norm-related prediction of
 #' patient survival after adult renal transplants. This function generates the raw
@@ -32,7 +32,7 @@ raw_epts <- function(age, dm, prev_tx, dx) {
   agevar + prevtxvar + dxvar1 + dxvar2 + 1.262 * dm
 }
 
-#' Estimated Post-Transplant Survival Score calculator
+#' Estimated Post-Transplant Survival Score (EPTS)
 #'
 #' A vectorised function to calculate EPTS scores as percentiles for norm-related prediction of
 #' patient survival after adult renal transplants. This function generates the EPTN scores

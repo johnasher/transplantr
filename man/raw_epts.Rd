@@ -2,7 +2,7 @@
 % Please edit documentation in R/epts.R
 \name{raw_epts}
 \alias{raw_epts}
-\title{Estimated Post-Transplant Survival Score calculator}
+\title{Estimated Post-Transplant Survival Score (EPTS)}
 \usage{
 raw_epts(age, dm, prev_tx, dx)
 }
