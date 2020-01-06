@@ -136,8 +136,8 @@ kdpi = function(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd, scaling
 
 #' US KDPI (US units)
 #'
-#' Wrapper function for the uskdpi() vectorised function to calculate US KDPI percentile as published by OPTN/UNOS,
-#' using creatinine measured in mg/dl (please use the uskdpi() function for µmol/l).
+#' Wrapper function for the kdpi() vectorised function to calculate US KDPI percentile as published by OPTN/UNOS,
+#' using creatinine measured in mg/dl (please use the kdpi() function for µmol/l).
 #'
 #' The KDRI is calculated from KDRI normalised by a scaling factor based on the median KDRI in the previous year.
 #' For 2018, this was approximately 1.250609 as is published on the OPTN website.

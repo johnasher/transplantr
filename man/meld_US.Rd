@@ -19,7 +19,7 @@ meld_US(INR, bili, creat, dialysis)
 MELD score
 }
 \description{
-A wrapper for the vecotorised function meld() to calculate the MELD score, but
+A wrapper for the vectorised function meld() to calculate the MELD score, but
 using mg/dl for bilirubin and creatinine. If the
 patient is on CVVH or has been dialysed at least twice in the same week, the dialysis argument
 should be set to 1, which changes the creatinine level used in the formula to 4mg/dl.

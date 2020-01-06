@@ -221,7 +221,7 @@ It should be noted that the age and dx parameters can and should be used with ex
 
 The `epts()` function in the transplantr package, which requires the dplyr package to be installed, currently uses the most recent published lookup table on the OPTN website, published in March 2019 using SRTR data from 2018. Archives of lookup tables from previous years are also available on the OPTN website.
 
-Like most of the other functions in the transplantr package, the `raw_epts()` is vectorised and can be used very efficiently to calculute multiple scores in a dplyr pipe:
+Like most of the other functions in the transplantr package, the `raw_epts()` is vectorised and can be used very efficiently to calculate multiple scores in a dplyr pipe:
 
 ```{r, eval = F}
 kidney.recipients2a = kidney.recipients %>%

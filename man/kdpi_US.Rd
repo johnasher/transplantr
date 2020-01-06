@@ -34,8 +34,8 @@ kdpi_US(age, height, weight, eth, htn, dm, cva, creat, hcv, dcd,
 numeric vector of US KDRI values
 }
 \description{
-Wrapper function for the uskdpi() vectorised function to calculate US KDPI percentile as published by OPTN/UNOS,
-using creatinine measured in mg/dl (please use the uskdpi() function for µmol/l).
+Wrapper function for the kdpi() vectorised function to calculate US KDPI percentile as published by OPTN/UNOS,
+using creatinine measured in mg/dl (please use the kdpi() function for µmol/l).
 }
 \details{
 The KDRI is calculated from KDRI normalised by a scaling factor based on the median KDRI in the previous year.

@@ -10,7 +10,7 @@
 #'
 #' The paed and cent parameters can either be provided as vectors for each case,
 #' for example in a series where there are patients with dates of birth in both
-#' the 1910s and 2010s, or alteratively can be set as a single TRUE or FALSE for
+#' the 1910s and 2010s, or alternatively can be set as a single TRUE or FALSE for
 #' the whole series.
 #'
 #' @param chi vector of CHI numbers (as numeric or string)
