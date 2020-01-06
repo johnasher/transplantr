@@ -101,7 +101,7 @@ meld = function(INR, bili, creat, dialysis, units = "SI") {
   meld
 }
 
-#' MELD score (using US units)
+#' MELD score (US units)
 #'
 #' A wrapper for the vectorised function meld() to calculate the MELD score, but
 #' using mg/dl for bilirubin and creatinine. If the

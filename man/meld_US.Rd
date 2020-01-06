@@ -2,7 +2,7 @@
 % Please edit documentation in R/liver.R
 \name{meld_US}
 \alias{meld_US}
-\title{MELD score (using US units)}
+\title{MELD score (US units)}
 \usage{
 meld_US(INR, bili, creat, dialysis)
 }
