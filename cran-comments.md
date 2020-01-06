@@ -3,7 +3,9 @@ This is a resubmission. In this version I have:
 
 * Added more details about the package functionality to the DESCRIPTION text.
 
-* Have added references for the theoretical background to the equations in the documentation for each function and also to the vignettes. There are 18 such functions in the package, and some of the papers describing the background to these have more than 10 authors, so listing all in the DESCRIPTION file would be very impractical. I have however added a comment to the description field of the DESCRIPTION file noting that references are in the vignettes and documentation of each individual function.
+* Have added references for the theoretical background to the equations in the documentation for each function and also to the vignettes. There are 18 such functions in the package, and some of the papers describing the background to these have more than 10 authors, so listing all in the DESCRIPTION file would be very impractical. I have however added a comment to the description field of the DESCRIPTION file noting that references are in the vignettes and documentation of each individual function. 
+DOI links to individual referenced publications and links to relevant organisation web pages 
+are also provided in the vignettes.
 
 * re-run R CMD check with no ERRORs, WARNINGs or NOTEs.
 
@@ -29,6 +31,13 @@ These were the comments from the CRAN reviewer for the first submission:
 
 ## R CMD check results
 There were no ERRORs, WARNINGs or NOTEs
+
+Win-builder produced a NOTE for possibly misspelled words.
+These have been checked and are not actually misspelled.
+
+R-hub builder produced a NOTE for possible wrong URLs. I think these were returning 
+403 Forbidden HTTP codes due to robots blockers as the links are correct and 
+work on manual testing using different devices on different networks.
 
 ## Downstream dependencies
 There are currently no downstream dependencies of this package
