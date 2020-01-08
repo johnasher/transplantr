@@ -7,7 +7,7 @@ Description: A set of vectorised functions to calculate medical equations used i
     focused mainly on transplantation of abdominal organs. These functions include donor and recipient
     risk indices as used by NHS Blood & Transplant, OPTN/UNOS and Eurotransplant, tools for 
     quantifying HLA mismatches, functions for calculating estimated glomerular filtration rate (eGFR), 
-    a function to calculate the APRI score used in initial screening of suitability to receive a 
+    a function to calculate the APRI (AST to platelet ratio) score used in initial screening of suitability to receive a 
     transplant from a hepatitis C seropositive donor and some biochemical unit converter functions. 
     All functions are designed to work with either US or international units.
     References for the equations are provided in the vignettes and function documentation.
