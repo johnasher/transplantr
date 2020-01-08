@@ -112,3 +112,7 @@ meld(INR =  2.1, bili = 2.0, creat = 2.3, dialysis = 0, units = "US")
 # using mg/dl with wrapper function
 meld_US(INR =  2.1, bili = 2.0, creat = 2.3, dialysis = 0)
 ```
+
+# More information
+
+For more information, function documentation and usage vignettes, visit [transplantr.txtools.net](https://transplantr.txtools.net/).
