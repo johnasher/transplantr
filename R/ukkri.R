@@ -18,7 +18,7 @@
 #' @examples
 #' ukkrri(age = 45, dx = 0, wait = 750, dm = 0)
 ukkrri = function(age, dx, wait, dm) {
-  agevar = ifelse(age <= 25, 0, 0.016 * (age - 75))
+  agevar = ifelse(age <= 25, 0, 0.016 * (age - 50))
   dxvar = 0.361 * dx
   wtvar = 0.033 * (wait - 950) / 365.25
   dmvar = 0.252 * dm
