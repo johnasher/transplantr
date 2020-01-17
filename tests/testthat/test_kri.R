@@ -2,8 +2,8 @@ context("Kidney risk indices")
 library(transplantr)
 
 test_that("UKKRRI gives correct result", {
-  expect_equal(round(ukkrri(45, 0, 750, 0), 2), 0.91)
-  expect_equal(round(ukkrri(55, 1, 960, 1), 2), 2.00)
+  expect_equal(round(ukkrri(45, 0, 750, 0), 2), 0.61)
+  expect_equal(round(ukkrri(55, 1, 960, 1), 2), 1.34)
 })
 
 test_that("UKKDRI gives correct result", {
