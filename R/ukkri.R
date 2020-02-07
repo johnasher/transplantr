@@ -50,6 +50,7 @@ ukkdri = function(age, height, htn, sex, cmv, gfr, hdays) {
   agevar = 0.023 * (age - 50)
   heightvar = -0.152 * (height - 170) / 10
   femvar = ifelse(sex == "F", -0.184, 0)
+  htnvar = 0.149 * htn
   cmvvar = 0.190 * cmv
   gfrvar = -0.023 * (gfr - 90) / 10
   hdaysvar = 0.015 * hdays
