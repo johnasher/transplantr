@@ -54,7 +54,7 @@ ukkdri = function(age, height, htn, sex, cmv, gfr, hdays) {
   cmvvar = 0.190 * cmv
   gfrvar = -0.023 * (gfr - 90) / 10
   hdaysvar = 0.015 * hdays
-  exp(agevar + heightvar + femvar + cmvvar + gfrvar + hdaysvar)
+  exp(agevar + heightvar + femvar + htnvar + cmvvar + gfrvar + hdaysvar)
 }
 
 #' UK Kidney Donor Risk Index (2012 version)
