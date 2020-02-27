@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">transplantr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -232,13 +232,13 @@
 <a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; # A tibble: 4 x 4</span></a>
 <a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;   Donor.Age Donor.GFR UKKDRI UKKDRI.Quartile</span></a>
 <a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt;       &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;          </span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; 1        34        91  0.866 D2             </span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; 2        51        74  1.19  D3             </span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; 3        65        63  2.50  D4             </span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; 4        78        54  2.15  D4</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; 1        34        91   1.00 D2             </span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; 2        51        74   1.19 D3             </span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; 3        65        63   2.90 D4             </span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; 4        78        54   2.15 D4</span></a></code></pre></div>
 <p>Although vectorised functions, <code><a href="../reference/ukkdri.html">ukkdri()</a></code> and <code><a href="../reference/ukkdri_q.html">ukkdri_q()</a></code> will also work with single values:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/ukkdri.html">ukkdri</a></span>(<span class="dt">age =</span> <span class="dv">50</span>, <span class="dt">height =</span> <span class="dv">170</span>, <span class="dt">htn =</span> <span class="dv">1</span>, <span class="dt">sex =</span> <span class="st">"F"</span>, <span class="dt">cmv =</span> <span class="dv">0</span>, <span class="dt">gfr =</span> <span class="dv">90</span>, <span class="dt">hdays =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; [1] 0.857272</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; [1] 0.9950125</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw"><a href="../reference/ukkdri_q.html">ukkdri_q</a></span>(<span class="fl">0.8572</span>, <span class="dt">prefix =</span> T)</a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; [1] "D2"</span></a></code></pre></div>

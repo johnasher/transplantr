@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">transplantr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -137,16 +137,11 @@
 <a class="sourceLine" id="cb2-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co"># display result</span></a>
 <a class="sourceLine" id="cb2-11" data-line-number="11">oltx_data</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;   Patient.INR Patient.Bilirubin Patient.Creatinine Patient.Dialysed</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; 1         1.4                22                120                0</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; 2         2.1                34                450                1</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; 3         1.6                26                 77                0</span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; 4         4.9                51                228                0</span></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt;       MELD</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; 1 14.07569</span></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; 2 30.60446</span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; 3 13.27793</span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; 4 37.42734</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;   Patient.INR Patient.Bilirubin Patient.Creatinine Patient.Dialysed     MELD</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; 1         1.4                22                120                0 14.07569</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; 2         2.1                34                450                1 30.60446</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; 3         1.6                26                 77                0 13.27793</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; 4         4.9                51                228                0 37.42734</span></a></code></pre></div>
 <p>It will also work to calculate MELD score for a single case:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/meld.html">meld</a></span>(<span class="dt">INR =</span> <span class="fl">2.0</span>, <span class="dt">bili =</span> <span class="fl">3.1</span>, <span class="dt">creat =</span> <span class="fl">1.9</span>, <span class="dt">dialysis =</span> <span class="dv">0</span>, <span class="dt">units =</span> <span class="st">"US"</span>)</a></code></pre></div>
 <p>The <code><a href="../reference/meld_na.html">meld_na()</a></code> function calculates the newer MELD-Na score using SI units for creatinine and bilirubin. Changing to US units can be done by setting <code>units</code> to <code>"US"</code> or using the <code><a href="../reference/meld_na_US.html">meld_na_US()</a></code> wrapper function. <code><a href="../reference/meld_na.html">meld_na()</a></code> is also a vectorised function and can be called from within a <em>dplyr</em> pipe or for single cases in the same way as the <code><a href="../reference/meld.html">meld()</a></code> function.</p>

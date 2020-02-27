@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>UKELD score (US units) — ukeld_US • transplantr</title>
+<title>P-SOFT Score (US units) — p_soft_US • transplantr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,12 @@
 
 
 
-<meta property="og:title" content="UKELD score (US units) — ukeld_US" />
+<meta property="og:title" content="P-SOFT Score (US units) — p_soft_US" />
 
-<meta property="og:description" content="A vectorised function to calculate the UKELD score using US units for bilirubin and creatinine." />
+<meta property="og:description" content="A wrapper for the p_soft() vectorised function to calculate the pre-procurement component of the SOFT score used to
+predict patient survival after liver transplantation. The function needs the MELD score as one of
+its inputs - this is available using the transplantr::meld() function.
+The units for albumin are g/dl (rather than g/l in p_soft() function)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -127,53 +130,95 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>UKELD score (US units)</h1>
-    <small class="dont-index">Source: <a href='https://github.com/johnasher/transplantr/blob/master/R/liver.R'><code>R/liver.R</code></a></small>
-    <div class="hidden name"><code>ukeld_US.Rd</code></div>
+    <h1>P-SOFT Score (US units)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/johnasher/transplantr/blob/master/R/liver_scores.R'><code>R/liver_scores.R</code></a></small>
+    <div class="hidden name"><code>p_soft_US.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A vectorised function to calculate the UKELD score using US units for bilirubin and creatinine.</p>
+    <p>A wrapper for the p_soft() vectorised function to calculate the pre-procurement component of the SOFT score used to
+predict patient survival after liver transplantation. The function needs the MELD score as one of
+its inputs - this is available using the transplantr::meld() function.
+The units for albumin are g/dl (rather than g/l in p_soft() function)</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ukeld_US</span>(<span class='no'>INR</span>, <span class='no'>bili</span>, <span class='no'>creat</span>, <span class='no'>Na</span>)</pre>
+    <pre class="usage"><span class='fu'>p_soft_US</span>(<span class='no'>Age</span>, <span class='no'>BMI</span>, <span class='no'>PrevTx</span>, <span class='no'>AbdoSurg</span>, <span class='no'>Albumin</span>, <span class='no'>Dx</span>, <span class='no'>ICU</span>, <span class='no'>Admitted</span>, <span class='no'>MELD</span>,
+  <span class='no'>LifeSupport</span>, <span class='no'>Encephalopathy</span>, <span class='no'>PVThrombosis</span>, <span class='no'>Ascites</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>INR</th>
-      <td><p>numeric vector of INR</p></td>
+      <th>Age</th>
+      <td><p>numeric vector of patient ages in years</p></td>
     </tr>
     <tr>
-      <th>bili</th>
-      <td><p>numeric vector of bilirubin in mg/dl</p></td>
+      <th>BMI</th>
+      <td><p>numeric vector of patient BMI in kg/m2</p></td>
     </tr>
     <tr>
-      <th>creat</th>
-      <td><p>numeric vector of creatinine in mg/dl</p></td>
+      <th>PrevTx</th>
+      <td><p>numeric vector of number of previous transplants</p></td>
     </tr>
     <tr>
-      <th>Na</th>
-      <td><p>numeric vector of sodium in mmol/l</p></td>
+      <th>AbdoSurg</th>
+      <td><p>numeric vector of whether previous abdominal surgery (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>Albumin</th>
+      <td><p>numeric vector of serum albumin in g/dl</p></td>
+    </tr>
+    <tr>
+      <th>Dx</th>
+      <td><p>numeric vector of whether on dialysis before transplant (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>ICU</th>
+      <td><p>numeric vector of whether patients in intensive care unit before transplant (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>Admitted</th>
+      <td><p>numeric vector of whether admitted to hospital pre-transplant (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>MELD</th>
+      <td><p>numeric vector of MELD scores</p></td>
+    </tr>
+    <tr>
+      <th>LifeSupport</th>
+      <td><p>numeric vector of whether on life support pre-transplant (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>Encephalopathy</th>
+      <td><p>numeric vector of whether encephalopathy present (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>PVThrombosis</th>
+      <td><p>numeric vector of whether portal vein thrombosis (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>Ascites</th>
+      <td><p>numeric vector of whether ascites pre-transplant (1 = "yes", 0 = "no")</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>UKELD score</p>
+    <p>numeric vector of P-SOFT scores</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Reference: Barber KM, Madden S, Allen J, et al. Elective liver transplant list mortality:
-development of a United Kingdom end-stage liver disease score. Transplantation
-2011; 92(4):469-76.</p>
+    <p>Reference: Rana A, Hardy MA, Halazun KJ, et al. Survival Outcomes Following Liver Transplantation
+(SOFT) Score: A Novel Method to Predict Patient Survival Following Liver Transplantation.
+American Journal of Transplantation 2008; 8:2537-2546.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ukeld_US</span>(<span class='kw'>INR</span> <span class='kw'>=</span> <span class='fl'>2.0</span>, <span class='kw'>bili</span> <span class='kw'>=</span> <span class='fl'>1.8</span>, <span class='kw'>creat</span> <span class='kw'>=</span> <span class='fl'>170</span>, <span class='kw'>Na</span> <span class='kw'>=</span> <span class='fl'>130</span>)</div><div class='output co'>#&gt; [1] 35.64362</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>p_soft_US</span>(<span class='kw'>Age</span> <span class='kw'>=</span> <span class='fl'>65</span>, <span class='kw'>BMI</span> <span class='kw'>=</span> <span class='fl'>36</span>, <span class='kw'>PrevTx</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>AbdoSurg</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Albumin</span> <span class='kw'>=</span> <span class='fl'>2.9</span>,
+    <span class='kw'>Dx</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>ICU</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Admitted</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>MELD</span> <span class='kw'>=</span> <span class='fl'>32</span>, <span class='kw'>LifeSupport</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Encephalopathy</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+    <span class='kw'>PVThrombosis</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Ascites</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='co'># 37</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

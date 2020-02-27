@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>US KDPI — kdpi • transplantr</title>
+<title>SOFT score (Survival Outcomes Following Liver Transplantation) (US units) — soft_US • transplantr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,11 +32,11 @@
 
 
 
-<meta property="og:title" content="US KDPI — kdpi" />
+<meta property="og:title" content="SOFT score (Survival Outcomes Following Liver Transplantation) (US units) — soft_US" />
 
-<meta property="og:description" content="Vectorised function to calculate US KDPI percentile as published by OPTN/UNOS. Please note
-that this function uses creatinine measured in µmol/l by default, but can be changed to
-mg/dl if the optional units parameter is set to &quot;US&quot;." />
+<meta property="og:description" content="A wrapper function using US units for the soft() vectorised function to calculate SOFT Scores
+for predicting patient survival after liver
+transplantation. The units for donor serum creatinine and recipient serum albumin in g/l." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -129,96 +129,120 @@ mg/dl if the optional units parameter is set to &quot;US&quot;." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>US KDPI</h1>
-    <small class="dont-index">Source: <a href='https://github.com/johnasher/transplantr/blob/master/R/uskdri.R'><code>R/uskdri.R</code></a></small>
-    <div class="hidden name"><code>kdpi.Rd</code></div>
+    <h1>SOFT score (Survival Outcomes Following Liver Transplantation) (US units)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/johnasher/transplantr/blob/master/R/liver_scores.R'><code>R/liver_scores.R</code></a></small>
+    <div class="hidden name"><code>soft_US.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Vectorised function to calculate US KDPI percentile as published by OPTN/UNOS. Please note
-that this function uses creatinine measured in µmol/l by default, but can be changed to
-mg/dl if the optional units parameter is set to "US".</p>
+    <p>A wrapper function using US units for the soft() vectorised function to calculate SOFT Scores
+for predicting patient survival after liver
+transplantation. The units for donor serum creatinine and recipient serum albumin in g/l.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>kdpi</span>(<span class='no'>age</span>, <span class='no'>height</span>, <span class='no'>weight</span>, <span class='no'>eth</span>, <span class='no'>htn</span>, <span class='no'>dm</span>, <span class='no'>cva</span>, <span class='no'>creat</span>, <span class='no'>hcv</span>, <span class='no'>dcd</span>,
-  <span class='kw'>scaling</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"SI"</span>)</pre>
+    <pre class="usage"><span class='fu'>soft_US</span>(<span class='no'>Age</span>, <span class='no'>BMI</span>, <span class='no'>PrevTx</span>, <span class='no'>AbdoSurg</span>, <span class='no'>Albumin</span>, <span class='no'>Dx</span>, <span class='no'>ICU</span>, <span class='no'>Admitted</span>, <span class='no'>MELD</span>,
+  <span class='no'>LifeSupport</span>, <span class='no'>Encephalopathy</span>, <span class='no'>PVThrombosis</span>, <span class='no'>Ascites</span>, <span class='no'>PortalBleed</span>,
+  <span class='no'>DonorAge</span>, <span class='no'>DonorCVA</span>, <span class='no'>DonorSCr</span>, <span class='no'>National</span>, <span class='no'>CIT</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>age</th>
+      <th>Age</th>
+      <td><p>numeric vector of patient ages in years</p></td>
+    </tr>
+    <tr>
+      <th>BMI</th>
+      <td><p>numeric vector of patient BMI in kg/m2</p></td>
+    </tr>
+    <tr>
+      <th>PrevTx</th>
+      <td><p>numeric vector of number of previous transplants</p></td>
+    </tr>
+    <tr>
+      <th>AbdoSurg</th>
+      <td><p>numeric vector of whether previous abdominal surgery (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>Albumin</th>
+      <td><p>numeric vector of serum albumin in g/dl</p></td>
+    </tr>
+    <tr>
+      <th>Dx</th>
+      <td><p>numeric vector of whether on dialysis before transplant (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>ICU</th>
+      <td><p>numeric vector of whether patients in intensive care unit before transplant (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>Admitted</th>
+      <td><p>numeric vector of whether admitted to hospital pre-transplant (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>MELD</th>
+      <td><p>numeric vector of MELD scores</p></td>
+    </tr>
+    <tr>
+      <th>LifeSupport</th>
+      <td><p>numeric vector of whether on life support pre-transplant (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>Encephalopathy</th>
+      <td><p>numeric vector of whether encephalopathy present (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>PVThrombosis</th>
+      <td><p>numeric vector of whether portal vein thrombosis (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>Ascites</th>
+      <td><p>numeric vector of whether ascites pre-transplant (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>PortalBleed</th>
+      <td><p>numeric vector of whether portal bleedn in 48 hours pre-transplant (1 = "yes", 0 = "no")</p></td>
+    </tr>
+    <tr>
+      <th>DonorAge</th>
       <td><p>numeric vector of donor ages in years</p></td>
     </tr>
     <tr>
-      <th>height</th>
-      <td><p>numeric vector of donor heights in cm</p></td>
+      <th>DonorCVA</th>
+      <td><p>numeric vector of whether donor cause of death is CVA/stroke (1 = "yes", 0 = "no")</p></td>
     </tr>
     <tr>
-      <th>weight</th>
-      <td><p>numeric vector of donor weights in kg</p></td>
+      <th>DonorSCr</th>
+      <td><p>numeric vector of donor terminal serum creatinine in mg/dl</p></td>
     </tr>
     <tr>
-      <th>eth</th>
-      <td><p>character string vector of donor ethnicity, "black" or "non-black"</p></td>
+      <th>National</th>
+      <td><p>numeric vector of whether national allocation (1 = "yes", 0 = "no")</p></td>
     </tr>
     <tr>
-      <th>htn</th>
-      <td><p>numeric vector of donor hypertension history (1 = yes, 0 = no)</p></td>
-    </tr>
-    <tr>
-      <th>dm</th>
-      <td><p>numeric vector of donor diabetes history (1 = yes, 0 = no)</p></td>
-    </tr>
-    <tr>
-      <th>cva</th>
-      <td><p>numeric vector of whether donor death due to CVA (1 = yes, 0 = no)</p></td>
-    </tr>
-    <tr>
-      <th>creat</th>
-      <td><p>numeric vector of donor serum creatinine (µmol/l)</p></td>
-    </tr>
-    <tr>
-      <th>hcv</th>
-      <td><p>numeric vector of donor hepatitis C history (1 = yes, 0 = no)</p></td>
-    </tr>
-    <tr>
-      <th>dcd</th>
-      <td><p>numeric vector of type of donor (1 = DCD, 0 = DBD)</p></td>
-    </tr>
-    <tr>
-      <th>scaling</th>
-      <td><p>single numeric value for OPTN scaling factor (optional, defaults to 1)</p></td>
-    </tr>
-    <tr>
-      <th>units</th>
-      <td><p>single string value to indicate creatinine units ("SI" for µmol/l, "US" for mg/dl)</p></td>
+      <th>CIT</th>
+      <td><p>numeric vector of cold ischaemic time in hours</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>numeric vector of US KDRI values</p>
+    <p>numeric vector of SOFT Scores</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The KDRI is calculated from KDRI normalised by a scaling factor based on the median KDRI in the previous year.
-For 2018, this was approximately 1.250609 as is published on the OPTN website.
-The scaling parameter in this function defaults to 1, so can be left out to calculate the KDPI without scaling.</p>
-<p>This function requires the dplyr package to be installed.</p>
-<p>Reference: Rao PS, Schaubel DE, Guidinger MK, et al. A Comprehensive Risk Quantification Score
-for Deceased Donor Kidneys: The Kidney Donor Risk Index. Transplantation 2009; 88:231-236.</p>
+    <p>Reference: Rana A, Hardy MA, Halazun KJ, et al. Survival Outcomes Following Liver Transplantation
+(SOFT) Score: A Novel Method to Predict Patient Survival Following Liver Transplantation.
+American Journal of Transplantation 2008; 8:2537-2546.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># with creatinine in µmol/l (units = "SI" can be omitted)</span>
-<span class='fu'>kdpi</span>(<span class='kw'>age</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>170</span>, <span class='kw'>weight</span> <span class='kw'>=</span> <span class='fl'>80</span>, <span class='kw'>eth</span> <span class='kw'>=</span> <span class='st'>"non-black"</span>, <span class='kw'>htn</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>dm</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-    <span class='kw'>cva</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>creat</span> <span class='kw'>=</span> <span class='fl'>120</span>, <span class='kw'>hcv</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>dcd</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>scaling</span> <span class='kw'>=</span> <span class='fl'>1.250609</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"SI"</span>)</div><div class='output co'>#&gt; [1] 35</div><div class='input'>
-<span class='co'># with creatinine in mg/dl</span>
-<span class='fu'>kdpi</span>(<span class='kw'>age</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>170</span>, <span class='kw'>weight</span> <span class='kw'>=</span> <span class='fl'>80</span>, <span class='kw'>eth</span> <span class='kw'>=</span> <span class='st'>"non-black"</span>, <span class='kw'>htn</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>dm</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-    <span class='kw'>cva</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>creat</span> <span class='kw'>=</span> <span class='fl'>1.4</span>, <span class='kw'>hcv</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>dcd</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>scaling</span> <span class='kw'>=</span> <span class='fl'>1.250609</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"US"</span>)</div><div class='output co'>#&gt; [1] 36</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>soft_US</span>(<span class='kw'>Age</span> <span class='kw'>=</span> <span class='fl'>35</span>, <span class='kw'>BMI</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>PrevTx</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>AbdoSurg</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Albumin</span> <span class='kw'>=</span> <span class='fl'>3.0</span>, <span class='kw'>Dx</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+    <span class='kw'>ICU</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Admitted</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>MELD</span> <span class='kw'>=</span> <span class='fl'>29</span>, <span class='kw'>LifeSupport</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Encephalopathy</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+    <span class='kw'>PVThrombosis</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>Ascites</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>PortalBleed</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>DonorAge</span> <span class='kw'>=</span> <span class='fl'>44</span>, <span class='kw'>DonorCVA</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+    <span class='kw'>DonorSCr</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>National</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>CIT</span> <span class='kw'>=</span> <span class='fl'>8</span>) <span class='co'># 7</span></div><div class='output co'>#&gt; [1] 7</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
