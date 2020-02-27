@@ -4,6 +4,7 @@
   - Liver DRI
   - ET-DRI (Eurotransplant variant of DRI)
   - SOFT Score (Survival Outcomes Following Liver Transplantation)
+  - BAR Score (Balance of Risk)
   - Pedi-SOFT Score
   
 * added three further eGFR calculators
