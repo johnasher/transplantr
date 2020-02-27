@@ -58,8 +58,11 @@ reference:
       - schwartz
       - schwartz_US
       - nankivell
+      - nankivell_US
       - nankivell_spk
+      - nankivell_spk_US
       - walser
+      - walser_US
       - cockcroft
       - cockcroft_US
   - title: "Units conversion"
