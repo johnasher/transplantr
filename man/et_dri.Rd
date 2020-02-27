@@ -33,7 +33,7 @@ population. The American liver DRI is available using the transplantr::liver_dri
 }
 \details{
 Reference: Braat AE, Blok JJ, Putter H, et al. The Eurotransplant Donor Risk Index in Liver
-Transplantation: ET-DRI. American Journal of Transplantation 2012;12: 2789–2796.
+Transplantation: ET-DRI. American Journal of Transplantation 2012; 12:2789–2796.
 }
 \examples{
 et_dri(age = 39, cod = "trauma", dcd = 0, split = 0, share = "local",
