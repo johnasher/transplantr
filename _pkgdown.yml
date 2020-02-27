@@ -31,6 +31,12 @@ reference:
       - ukeld_US
       - peld
       - peld_US
+      - liver_dri
+      - et_dri
+      - soft
+      - p_soft
+      - soft2
+      - pedi_soft
       - apri
   - title: "Pancreas donor risk index"
     desc: "Functions to calculate pancreas donor risk index"
