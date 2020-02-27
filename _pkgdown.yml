@@ -51,6 +51,9 @@ reference:
       - mdrd_US
       - schwartz
       - schwartz_US
+      - nankivell
+      - nankivell_spk
+      - walser
       - cockcroft
       - cockcroft_US
   - title: "Units conversion"
