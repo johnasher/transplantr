@@ -1,7 +1,7 @@
 Package: transplantr
 Type: Package
 Title: Audit and Research Functions for Transplantation
-Version: 0.2.0
+Version: 0.2.0.9000
 Authors@R: person("John", "Asher", email = "john.asher@outlook.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8735-6453"))
 Description: A set of vectorised functions to calculate medical equations used in transplantation, 
     focused mainly on transplantation of abdominal organs. These functions include donor and recipient
