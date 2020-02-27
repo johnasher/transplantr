@@ -33,6 +33,7 @@ reference:
       - peld_US
       - liver_dri
       - et_dri
+      - bar_score
       - soft
       - soft_US
       - p_soft
