@@ -1,5 +1,5 @@
 ---
-title: "Liver recipient scoring"
+title: "Liver recipient risk stratification"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{liver_recipient_scoring}
@@ -16,9 +16,17 @@ knitr::opts_chunk$set(
 
 # Introduction
 
+## Adult risk stratification
+
 The **MELD** score was originally developed at the Mayo Clinic to risk stratify elective transhepatic porto-systemic shunt (TIPS) procedures in patients with liver cirrhosis(_1_). It has also been widely used as part of clinical urgency prioritisation in liver transplant matching algorithms, although UNOS changed to the alternative **MELD-Na** score(_2_), which incorporates serum sodium levels, in January 2016. The scores have been shown to predict short-term mortality after transhepatic porto-systemic shunt (TIPS) procedure, non-liver transplant surgery in cirrhotic patients, acute alcoholic hepatitis and acute variceal haemorrhage.
 
 The **UKELD** score was developed to risk stratify liver transplant recipients in the UK, is based on MELD and adds serum sodium(_3_).
+
+MELD and UKELD are primarily intended to predict waiting list mortality and therefore urgency for transplant, but perform relatively poorly at predicting survival after liver transplant(_4-6_). The **SOFT** (Survival Outcomes Following Liver Transplantation) Score was developed by at Columbia University to predict recipient survival after liver transplantation(_7-8_).
+
+## Risk stratification in children
+
+As the adult formulae do not work well at predicting outcomes in children, the **PELD** score was developed to predict waiting list mortality(_9_), and **Pedi-SOFT** to predict outcome after transplantation(_10_).
 
 ```{r setup}
 library(transplantr)
@@ -69,9 +77,48 @@ The UKELD score was developed in the UK before the MELD-Na had been published, a
 
 The score can be calculated with the `ukeld()` function, using µmol/l as the default unit for creatinine and bilirubin. This can be changed to mg/dl by setting the `units` parameter to `"US"` or calling the `ukeld_US()` wrapper function.
 
+# SOFT score
+
+The SOFT score (_7_) aims to predict post-transplant survival in adult liver recipients using 19 risk factors. There is also a pre-procurement P-SOFT score which uses the 14 risk factors known before a specific donor liver is offered for transplantation and can be used to risk stratify patients while still on the waiting list.
+
+There are three key functions in _transplantr_ to calculate SOFT scores. The `soft()` function is a vectorised function to calculate the full 19-variable SOFT score, and the `p_soft()` function calculates the 14-variable P-SOFT score. There is also a `soft2()` function to calculate the full SOFT score for patients for whom P-SOFT has already been calculated. The functions use creatinine and albumin, which default to standard international units of µmol/l and g/l, but can be used with US units (mg/dl and g/dl) by setting the optional `Units` parameter to `"US"` or by calling any of the wrapper functions using US units by default: `soft_US()`, `p_soft_US()` and `soft2_US()`.
+
+```{r, eval = F}
+# calculate full SOFT score using international units
+soft(Age = 35, BMI = 20, PrevTx = 0, AbdoSurg = 1, Albumin = 30, Dx = 0, 
+     ICU = 0, Admitted = 0, MELD = 29, LifeSupport = 0, Encephalopathy = 1, 
+     PVThrombosis = 0, Ascites = 1, PortalBleed = 0, DonorAge = 44, 
+     DonorCVA = 0, DonorSCr = 110, National = 0, CIT = 8) 
+
+# calculate full SOFT score using US units
+soft(Age = 35, BMI = 20, PrevTx = 0, AbdoSurg = 1, Albumin = 3.0, Dx = 0, 
+     ICU = 0, Admitted = 0, MELD = 29, LifeSupport = 0, Encephalopathy = 1, 
+     PVThrombosis = 0, Ascites = 1, PortalBleed = 0, DonorAge = 44, 
+     DonorCVA = 0, DonorSCr = 1.2, National = 0, CIT = 8, Units = "US")
+
+# calculate P-SOFT score
+p_soft(Age = 65, BMI = 36, PrevTx = 2, AbdoSurg = 1, Albumin = 29, 
+       Dx = 0, ICU = 0, Admitted = 1, MELD = 32, LifeSupport = 0, 
+       Encephalopathy = 1, PVThrombosis = 1, Ascites = 1)
+
+# calculate P-SOFT with US units
+p_soft_US(Age = 65, BMI = 36, PrevTx = 2, AbdoSurg = 1, Albumin = 2.9, 
+          Dx = 0, ICU = 0, Admitted = 1, MELD = 32, LifeSupport = 0, 
+          Encephalopathy = 1,PVThrombosis = 1, Ascites = 1)
+
+# adding P-SOFT and SOFT as two variables to a tibble using a dplyr pipe
+liver.recipients = liver.recipients %>%
+  mutate(P.Soft = p_soft(age, bmi, prev.tx, abdo.surg, albumin, dialysis,
+                         icu, admitted, meld.score, life.support,
+                         encephalopathy, pv.thrombosis, ascites),
+         Soft = soft2(P.Soft, portal.bleed, donor.age, donor.cva, donor.SCr,
+                      sharing, cit))
+```
+
+
 # PELD score
 
-The PELD score(_4_) is a paediatric version of MELD, and used to predict mortality in children needing liver transplants. It is based on age, bilirubin, albumin, INR and whether there is growth failure.
+The PELD score(_9_) is a paediatric version of MELD, and used to predict mortality in children needing liver transplants. It is based on age, bilirubin, albumin, INR and whether there is growth failure.
 
 The `peld()` function in _transplantr_ calculates the PELD score. Bilirubin is calculated from their values in µmol/l and albumin in g/l by default, and can be changed to mg/dl and g/dl respectively either by setting the optional `units` parameter to `"US"` or by using the `peld_US()` wrapper function instead. In the event that albumin is measured locally in g/l and bilirubin in mg/dl, take care to convert it by dividing by 10. Similarly, if albumin is reported in g/dl and bilirubin in µmol/l, multiply the albumin results by 10. The conversion is easily done for a series in a vectorised way by including it in a _dplyr_ pipe:
 
@@ -90,6 +137,20 @@ paed.oltx2 = paed.oltx %>%
 
 ```
 
+# Pedi-SOFT
+
+The Pedi-SOFT score (_10_) is intended to predict post-transplant survival in children undergoing liver transplants, and has been demonstrated to predict survival both with infants and childen aged 1-12, with c-statistic of 0.70 and 0.77 respectively.
+
+The score is based on whether a cadaveric technical variant graft was used, recipient weight, whether recipient is on dialysis or has creatinine clearance less than 30ml/min before transplant, whether recipient required life support before transplant and number of any previous transplants.
+
+The `pedi_soft()` function in _transplantr_ will calculate the Pedi-SOFT score, and like most other functions in the package it is a vectorised function.
+
+```{r, eval = F}
+# calculate Pedi-SOFT score
+pedi_soft(CTVG = 1, Weight = 10, Dx = 0, LifeSupport = 0, PrevTx = 0) # 4
+```
+
+
 # References
 
 1. Kamath PS, Wiesner RH, Malinchoc M, et al. A model to predict survival in patients with end-stage liver disease. _Hepatology_ 2001; 33:464-470. DOI: [10.1053/jhep.2001.22172](https://doi.org/10.1053/jhep.2001.22172)
@@ -98,5 +159,17 @@ paed.oltx2 = paed.oltx %>%
 
 3. Barber KM, Madden S, Allen J, et al. Elective liver transplant list mortality: development of a United Kingdom end-stage liver disease score. _Transplantation_ 2011; 92(4):469-76. DOI: [10.1097/TP.0b013e318225db4d](https://doi.org/10.1097/TP.0b013e318225db4d).
 
-4. McDiarmid SV, Anand R, Lindblad AS, et. al. Development of a pediatric end-stage liver disease score to predict poor outcome in children awaiting liver transplantation. _Transplantation_ 2002; 74(2):173-81. DOI: [10.1097/00007890-200207270-00006](https://doi.org/10.1097/00007890-200207270-00006)
+4. Wiesner R, Edwards E, Freeman R, et al. United Network for Organ Sharing Liver Disease Severity Score Committee. Model for end-stage liver disease (MELD) and allocation of donor livers. _Gastroenterology_ 2003: 124:91-96.
+
+5. Brown RS Jr, Kumar KS, Russo MW, et al. Model for end-stage liver disease and Child-Turcotte-Pugh score as predictors of pre-transplantation disease severity, posttransplantation outcome, and resource utilization in the United Network for Organ Sharing status 2A patients. _Liver Transplant_ 2002: 8:278-284.
+
+6. Desai NM, Mange KC, Crawford MD, et al. Predicting outcome after liver transplantation: Utility of the model of end-stage liver disease and a newly derived discrimination function. _Transplantation_ 2004; 77:99-106.
+
+7. Rana A, Hardy MA, Halazun KJ, et al. Survival Outcomes Following Liver Transplantation (SOFT) Score: A Novel Method to Predict Patient Survival Following Liver Transplantation. _American Journal of Transplantation_ 2008: 8:2537-2546. DOI: [10.1111/j.1600-6143.2008.02400.x](https://doi.org/10.1111/j.1600-6143.2008.02400.x)
+
+8. Rana A, Jie T, Porubsky M, et al. The survival outcomes following liver transplantation (SOFT) score: validation with contemporaneous data and stratification of high-risk cohorts. _Clinical Transplantation_ 2013: 27:627-632. DOI: [10.1111/ctr.12181](https://doi.org/10.1111/ctr.12181)
+
+9. McDiarmid SV, Anand R, Lindblad AS, et. al. Development of a pediatric end-stage liver disease score to predict poor outcome in children awaiting liver transplantation. _Transplantation_ 2002; 74(2):173-81. DOI: [10.1097/00007890-200207270-00006](https://doi.org/10.1097/00007890-200207270-00006)
+
+10. Rana A, Pallister ZS, Guiteau JJ, et al. Survival Outcomes Following Pediatric Liver Transplantation (Pedi-SOFT) Score: A Novel Predictive Index. _American Journal of Transplantation_ 2015; 15:1855-1863. DOI: [10.1111/ajt.13190](https://doi.org/10.1111/ajt.13190)
 
