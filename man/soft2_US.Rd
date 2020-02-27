@@ -9,7 +9,7 @@ soft2_US(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT)
 \arguments{
 \item{PSoft}{numeric vector of P-SOFT scores}
 
-\item{PortalBleed}{numeric vector of whether portal bleedn in 48 hours pre-transplant (1 = "yes", 0 = "no")}
+\item{PortalBleed}{numeric vector of whether portal bleeding in 48 hours pre-transplant (1 = "yes", 0 = "no")}
 
 \item{DonorAge}{numeric vector of donor ages in years}
 

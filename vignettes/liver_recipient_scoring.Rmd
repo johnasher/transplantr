@@ -22,7 +22,7 @@ The **MELD** score was originally developed at the Mayo Clinic to risk stratify 
 
 The **UKELD** score was developed to risk stratify liver transplant recipients in the UK, is based on MELD and adds serum sodium(_3_).
 
-MELD and UKELD are primarily intended to predict waiting list mortality and therefore urgency for transplant, but perform relatively poorly at predicting survival after liver transplant(_4-6_). The **SOFT** (Survival Outcomes Following Liver Transplantation) Score was developed by at Columbia University to predict recipient survival after liver transplantation(_7_). Another score using a composite of donor and recipient characterstics is the **BAR** (Balance of Risk) score, which is based on a sample of American and European liver transplants and achieved a c-statistic of 0.7 when predicting patient  survival(_8_).
+MELD and UKELD are primarily intended to predict waiting list mortality and therefore urgency for transplant, but perform relatively poorly at predicting survival after liver transplant(_4-6_). The **SOFT** (Survival Outcomes Following Liver Transplantation) Score was developed by at Columbia University to predict recipient survival after liver transplantation(_7_). Another score using a composite of donor and recipient characteristics is the **BAR** (Balance of Risk) score, which is based on a sample of American and European liver transplants and achieved a c-statistic of 0.7 when predicting patient  survival(_8_).
 
 There are also two scores using donor characteristics to predict outcome, the **DRI** (Donor Risk Index) developed in the USA(_9_), and the derivative **ET-DRI** (Eurotransplant Donor Risk Index) adapted to the European donor population, which achieved a c-statistic of and 0.626 in the European population(_10_).
 
@@ -156,7 +156,7 @@ paed.oltx2 = paed.oltx %>%
 
 # Pedi-SOFT
 
-The Pedi-SOFT score (_10_) is intended to predict post-transplant survival in children undergoing liver transplants, and has been demonstrated to predict survival both with infants and childen aged 1-12, with c-statistic of 0.70 and 0.77 respectively.
+The Pedi-SOFT score (_10_) is intended to predict post-transplant survival in children undergoing liver transplants, and has been demonstrated to predict survival both with infants and children aged 1-12, with c-statistic of 0.70 and 0.77 respectively.
 
 The score is based on whether a cadaveric technical variant graft was used, recipient weight, whether recipient is on dialysis or has creatinine clearance less than 30ml/min before transplant, whether recipient required life support before transplant and number of any previous transplants.
 

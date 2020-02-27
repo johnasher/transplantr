@@ -183,7 +183,7 @@ p_soft_US = function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MEL
 #' American Journal of Transplantation 2008; 8:2537-2546.
 #'
 #' @param PSoft numeric vector of P-SOFT scores
-#' @param PortalBleed numeric vector of whether portal bleedn in 48 hours pre-transplant (1 = "yes", 0 = "no")
+#' @param PortalBleed numeric vector of whether portal bleeding in 48 hours pre-transplant (1 = "yes", 0 = "no")
 #' @param DonorAge numeric vector of donor ages in years
 #' @param DonorCVA numeric vector of whether donor cause of death is CVA/stroke (1 = "yes", 0 = "no")
 #' @param DonorSCr numeric vector of donor terminal serum creatinine
@@ -223,7 +223,7 @@ soft2 <- function(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CI
 #' American Journal of Transplantation 2008; 8:2537-2546.
 #'
 #' @param PSoft numeric vector of P-SOFT scores
-#' @param PortalBleed numeric vector of whether portal bleedn in 48 hours pre-transplant (1 = "yes", 0 = "no")
+#' @param PortalBleed numeric vector of whether portal bleeding in 48 hours pre-transplant (1 = "yes", 0 = "no")
 #' @param DonorAge numeric vector of donor ages in years
 #' @param DonorCVA numeric vector of whether donor cause of death is CVA/stroke (1 = "yes", 0 = "no")
 #' @param DonorSCr numeric vector of donor terminal serum creatinine in mg/dl
@@ -264,7 +264,7 @@ soft2_US = function(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, 
 #' @param Encephalopathy numeric vector of whether encephalopathy present (1 = "yes", 0 = "no")
 #' @param PVThrombosis numeric vector of whether portal vein thrombosis (1 = "yes", 0 = "no")
 #' @param Ascites numeric vector of whether ascites pre-transplant (1 = "yes", 0 = "no")
-#' @param PortalBleed numeric vector of whether portal bleedn in 48 hours pre-transplant (1 = "yes", 0 = "no")
+#' @param PortalBleed numeric vector of whether portal bleeding in 48 hours pre-transplant (1 = "yes", 0 = "no")
 #' @param DonorAge numeric vector of donor ages in years
 #' @param DonorCVA numeric vector of whether donor cause of death is CVA/stroke (1 = "yes", 0 = "no")
 #' @param DonorSCr numeric vector of donor terminal serum creatinine
@@ -318,7 +318,7 @@ soft <- function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted,
 #' @param Encephalopathy numeric vector of whether encephalopathy present (1 = "yes", 0 = "no")
 #' @param PVThrombosis numeric vector of whether portal vein thrombosis (1 = "yes", 0 = "no")
 #' @param Ascites numeric vector of whether ascites pre-transplant (1 = "yes", 0 = "no")
-#' @param PortalBleed numeric vector of whether portal bleedn in 48 hours pre-transplant (1 = "yes", 0 = "no")
+#' @param PortalBleed numeric vector of whether portal bleeding in 48 hours pre-transplant (1 = "yes", 0 = "no")
 #' @param DonorAge numeric vector of donor ages in years
 #' @param DonorCVA numeric vector of whether donor cause of death is CVA/stroke (1 = "yes", 0 = "no")
 #' @param DonorSCr numeric vector of donor terminal serum creatinine in mg/dl

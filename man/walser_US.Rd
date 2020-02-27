@@ -20,7 +20,7 @@ numeric vectors of eGFR values
 }
 \description{
 A wrapper function for the walser() vectorised function to calculate eGFR using the Walser formula,
-using erum creatinine in mg/dl.
+using serum creatinine in mg/dl.
 }
 \details{
 Reference: Walser M, Drew HH, Guldan JL. Prediction of glomerular filtration rate in advanced

@@ -158,7 +158,7 @@ walser = function(SCr, Age, Weight, Sex, Units = "SI") {
 #' eGFR using the Walser formula (US units)
 #'
 #' A wrapper function for the walser() vectorised function to calculate eGFR using the Walser formula,
-#' using erum creatinine in mg/dl.
+#' using serum creatinine in mg/dl.
 #'
 #' Reference: Walser M, Drew HH, Guldan JL. Prediction of glomerular filtration rate in advanced
 #' chronic renal failure. Kidney International 1993; 44:2245-1148.

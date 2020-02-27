@@ -12,7 +12,7 @@
   - Nankivell-SPK equation
   - Walser equation
   
-* bugfix to UK KDRI function (was not inclduding effect of donor hypertension)
+* bugfix to UK KDRI function (was not including effect of donor hypertension)
 
 # transplantr 0.1.0
 

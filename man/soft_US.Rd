@@ -35,7 +35,7 @@ soft_US(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MELD,
 
 \item{Ascites}{numeric vector of whether ascites pre-transplant (1 = "yes", 0 = "no")}
 
-\item{PortalBleed}{numeric vector of whether portal bleedn in 48 hours pre-transplant (1 = "yes", 0 = "no")}
+\item{PortalBleed}{numeric vector of whether portal bleeding in 48 hours pre-transplant (1 = "yes", 0 = "no")}
 
 \item{DonorAge}{numeric vector of donor ages in years}
 
