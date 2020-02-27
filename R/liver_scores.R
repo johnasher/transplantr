@@ -40,13 +40,13 @@ et_dri <- function(Age, COD, DCD, Split, Share, CIT, GTT, Rescue) {
 
 #' Title
 #'
-#' @param Age
-#' @param COD
+#' @param Age numeric vector of patient ages in years
+#' @param COD character string vector of donor causes of death, one of "anoxia", "cva" or "other"
 #' @param Race
-#' @param DCD
-#' @param Split
-#' @param Share
-#' @param CIT
+#' @param DCD numeric vector of whether DCD (1 = yes, 0 = no)
+#' @param Split numeric vector of whether liver split (1 = yes, 0 = no)
+#' @param Share character string vector of type of sharing, one of "regional" or "national"
+#' @param CIT numeric vector of cold ischaemic times in hours
 #' @param Height
 #'
 #' @return
