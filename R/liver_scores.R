@@ -5,7 +5,7 @@
 #' population. The American liver DRI is available using the transplantr::liver_dri() function.
 #'
 #' Reference: Braat AE, Blok JJ, Putter H, et al. The Eurotransplant Donor Risk Index in Liver
-#' Transplantation: ET-DRI. American Journal of Transplantation 2012;12: 2789–2796.
+#' Transplantation: ET-DRI. American Journal of Transplantation 2012; 12:2789–2796.
 #'
 #' @param age numeric vector of patient ages in years
 #' @param cod character string vector of donor causes of death, one of "trauma", "anoxia", "cva" or "other"
@@ -366,4 +366,33 @@ pedi_soft = function(CTVG, Weight, Dx, LifeSupport, PrevTx) {
 	weightpts = ifelse(Weight < 6.0, 6, 0)
 	txpts = ifelse(PrevTx == 0, 0, ifelse(PrevTx == 1, 15, 49))
 	weightpts + txpts + 4 * CTVG + 17 * Dx + 27 * LifeSupport
+}
+
+#' BAR (Balance of Risk) score in liver transplantation
+#'
+#' A vectorised function to calculate the BAR score to predict patient survival after liver
+#' transplantation using a composite of donor and recipient factors.
+#'
+#' Reference: Dutkowski P, Oberkofler CE, Slankamenac K, et al. Are There Better Guidelines for
+#' Allocation in Liver Transplantation? A Novel Score Targeting Justice and Utility in the
+#' Model for End-Stage Liver Disease Era. Annals of Surgery 2011; 254:745-753.
+#'
+#' @param Age numeric vector of recipient ages in years
+#' @param MELD numeric vector of MELD scores
+#' @param ReTx numeric vector of whether retransplant (1 = "yes", 0 = "no")
+#' @param LifeSupport numeric vector of whether on life support pre-transplant (1 = "yes", 0 = "no")
+#' @param CIT numeric vector of cold ischaemic time in hours
+#' @param DonorAge numeric vector of donor ages
+#'
+#' @return numeric vector of BAR scores
+#' @export
+#'
+#' @examples
+#' bar_score(Age = 63, MELD = 27, ReTx = 0, LifeSupport = 0, CIT = 9.5, DonorAge = 67)
+bar_score = function(Age, MELD, ReTx, LifeSupport, CIT, DonorAge) {
+  agepts = ifelse(Age > 60, 3, ifelse(Age > 40, 1, 0))
+  meldpts = ifelse(MELD > 35, 14, ifelse(MELD > 25, 10, ifelse(MELD > 15, 5, 0)))
+  citpts = ifelse(CIT > 12, 2, ifelse(CIT > 6, 1, 0))
+  dagepts = ifelse(DonorAge > 60, 1, ifelse(DonorAge > 40, 1, 0))
+  agepts + meldpts + citpts + dagepts + 4 * ReTx + 3 * LifeSupport
 }
