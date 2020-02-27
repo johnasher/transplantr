@@ -49,5 +49,7 @@ Reference: Rana A, Hardy MA, Halazun KJ, et al. Survival Outcomes Following Live
 American Journal of Transplantation 2008; 8:2537-2546.
 }
 \examples{
-p_soft_US(Age = 65, BMI = 36, PrevTx = 2, AbdoSurg = 1, Albumin = 2.9, Dx = 0, ICU = 0, Admitted = 1, MELD = 32, LifeSupport = 0, Encephalopathy = 1, PVThrombosis = 1, Ascites = 1) # 37
+p_soft_US(Age = 65, BMI = 36, PrevTx = 2, AbdoSurg = 1, Albumin = 2.9,
+    Dx = 0, ICU = 0, Admitted = 1, MELD = 32, LifeSupport = 0, Encephalopathy = 1,
+    PVThrombosis = 1, Ascites = 1) # 37
 }

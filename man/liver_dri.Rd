@@ -35,6 +35,9 @@ Liver Graft Failre: The Concept of a Donor Risk Index.
 American Journal of Transplantation 2006; 6:783-790.
 }
 \examples{
-liver_dri(age = 25, cod = "trauma", eth = "white", dcd = 0, split = 0, share = "local", cit = 8, height = 170) # 1.00
-liver_dri(age = 64, cod = "cva", eth = "white", dcd = 0, split = 0, share = "local", cit = 14, height = 170) # 1.88
+liver_dri(age = 25, cod = "trauma", eth = "white", dcd = 0, split = 0,
+    share = "local", cit = 8, height = 170) # 1.00
+
+liver_dri(age = 64, cod = "cva", eth = "white", dcd = 0, split = 0,
+    share = "local", cit = 14, height = 170) # 1.88
 }

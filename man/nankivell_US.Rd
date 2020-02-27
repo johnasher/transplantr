@@ -4,7 +4,7 @@
 \alias{nankivell_US}
 \title{eGFR using Nankivell formula (US units)}
 \usage{
-nankivell_US(SCr, Urea, Weight, Height, Sex, Units = "SI")
+nankivell_US(SCr, Urea, Weight, Height, Sex)
 }
 \arguments{
 \item{SCr}{numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/liver_scores.R
 \name{soft_US}
 \alias{soft_US}
-\title{SOFT score (Survival Outcomes Following Liver Transplantation)}
+\title{SOFT score (Survival Outcomes Following Liver Transplantation) (US units)}
 \usage{
 soft_US(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MELD,
   LifeSupport, Encephalopathy, PVThrombosis, Ascites, PortalBleed,
@@ -46,8 +46,6 @@ soft_US(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MELD,
 \item{National}{numeric vector of whether national allocation (1 = "yes", 0 = "no")}
 
 \item{CIT}{numeric vector of cold ischaemic time in hours}
-
-\item{PSoft}{numeric vector of P-SOFT scores}
 }
 \value{
 numeric vector of SOFT Scores
@@ -63,5 +61,8 @@ Reference: Rana A, Hardy MA, Halazun KJ, et al. Survival Outcomes Following Live
 American Journal of Transplantation 2008; 8:2537-2546.
 }
 \examples{
-soft_US(Age = 35, BMI = 20, PrevTx = 0, AbdoSurg = 1, Albumin = 3.0, Dx = 0, ICU = 0, Admitted = 0, MELD = 29, LifeSupport = 0, Encephalopathy = 1, PVThrombosis = 0, Ascites = 1, PortalBleed = 0, DonorAge = 44, DonorCVA = 0, DonorSCr = 1.2, National = 0, CIT = 8) # 7
+soft_US(Age = 35, BMI = 20, PrevTx = 0, AbdoSurg = 1, Albumin = 3.0, Dx = 0,
+    ICU = 0, Admitted = 0, MELD = 29, LifeSupport = 0, Encephalopathy = 1,
+    PVThrombosis = 0, Ascites = 1, PortalBleed = 0, DonorAge = 44, DonorCVA = 0,
+    DonorSCr = 1.2, National = 0, CIT = 8) # 7
 }

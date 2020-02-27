@@ -48,8 +48,6 @@ soft(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MELD,
 \item{CIT}{numeric vector of cold ischaemic time in hours}
 
 \item{Units}{units to use for creatinine and albumin, "SI" (default) for µmol/l and g/l, "US" for mg/dl and g/dl}
-
-\item{PSoft}{numeric vector of P-SOFT scores}
 }
 \value{
 numeric vector of SOFT Scores
@@ -66,5 +64,8 @@ Reference: Rana A, Hardy MA, Halazun KJ, et al. Survival Outcomes Following Live
 American Journal of Transplantation 2008; 8:2537-2546.
 }
 \examples{
-soft(Age = 35, BMI = 20, PrevTx = 0, AbdoSurg = 1, Albumin = 30, Dx = 0, ICU = 0, Admitted = 0, MELD = 29, LifeSupport = 0, Encephalopathy = 1, PVThrombosis = 0, Ascites = 1, PortalBleed = 0, DonorAge = 44, DonorCVA = 0, DonorSCr = 110, National = 0, CIT = 8) # 7
+soft(Age = 35, BMI = 20, PrevTx = 0, AbdoSurg = 1, Albumin = 30, Dx = 0,
+    ICU = 0, Admitted = 0, MELD = 29, LifeSupport = 0, Encephalopathy = 1,
+    PVThrombosis = 0, Ascites = 1, PortalBleed = 0, DonorAge = 44, DonorCVA = 0,
+    DonorSCr = 110, National = 0, CIT = 8) # 7
 }

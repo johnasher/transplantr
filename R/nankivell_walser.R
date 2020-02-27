@@ -52,7 +52,7 @@ nankivell = function(SCr, Urea, Weight, Height, Sex, Units = "SI") {
 #'
 #' @examples
 #' nankivell_US(SCr = 1.33, Urea = 13.4, Weight = 65, Height = 172, Sex = "M") # 44.55
-nankivell_US = function(SCr, Urea, Weight, Height, Sex, Units = "SI") {
+nankivell_US = function(SCr, Urea, Weight, Height, Sex) {
   nankivell(SCr, Urea, Weight, Height, Sex, Units = "US")
 }
 

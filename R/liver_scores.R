@@ -13,15 +13,18 @@
 #' @param split numeric vector of whether liver split (1 = yes, 0 = no)
 #' @param share character string vector of type of sharing, one of "local", regional" or "national"
 #' @param cit numeric vector of cold ischaemic times in hours
-#' @param gtt numeric vector of last pre-transplant serum gamma-GT level in IU/l
+#' @param ggt numeric vector of last pre-transplant serum gamma-GT level in IU/l
 #' @param rescue numeric vector of whether rescue transplant (1 = yes, 0 = no)
 #'
 #' @return numeric vector of ET-DRI scores
 #' @export
 #'
 #' @examples
-#' et_dri(age = 39, cod = "trauma", dcd = 0, split = 0, share = "local", cit = 8, ggt = 50, rescue = 0) # 1.00
-#' round(et_dri(age = 25, cod = "cva", dcd = 0, split = 0, share = "local", cit = 8, ggt = 50, rescue = 0) # 1.15
+#' et_dri(age = 39, cod = "trauma", dcd = 0, split = 0, share = "local",
+#'     cit = 8, ggt = 50, rescue = 0) # 1.00
+#'
+#' et_dri(age = 25, cod = "cva", dcd = 0, split = 0, share = "local",
+#'     cit = 8, ggt = 50, rescue = 0) # 1.15
 et_dri <- function(age, cod, dcd, split, share, cit, ggt, rescue) {
 	agevar = ifelse(age < 40, 0,
 			ifelse(age < 50, 0.154,
@@ -60,8 +63,11 @@ et_dri <- function(age, cod, dcd, split, share, cit, ggt, rescue) {
 #' @export
 #'
 #' @examples
-#' liver_dri(age = 25, cod = "trauma", eth = "white", dcd = 0, split = 0, share = "local", cit = 8, height = 170) # 1.00
-#' liver_dri(age = 64, cod = "cva", eth = "white", dcd = 0, split = 0, share = "local", cit = 14, height = 170) # 1.88
+#' liver_dri(age = 25, cod = "trauma", eth = "white", dcd = 0, split = 0,
+#'     share = "local", cit = 8, height = 170) # 1.00
+#'
+#' liver_dri(age = 64, cod = "cva", eth = "white", dcd = 0, split = 0,
+#'     share = "local", cit = 14, height = 170) # 1.88
 liver_dri <- function(age, cod, eth, dcd, split, share, cit, height) {
 	agevar = ifelse(age < 40, 0,
 			        ifelse(age < 50, 0.154,
@@ -110,7 +116,9 @@ liver_dri <- function(age, cod, eth, dcd, split, share, cit, height) {
 #' @export
 #'
 #' @examples
-#' p_soft(Age = 65, BMI = 36, PrevTx = 2, AbdoSurg = 1, Albumin = 29, Dx = 0, ICU = 0, Admitted = 1, MELD = 32, LifeSupport = 0, Encephalopathy = 1, PVThrombosis = 1, Ascites = 1) # 37
+#' p_soft(Age = 65, BMI = 36, PrevTx = 2, AbdoSurg = 1, Albumin = 29, Dx = 0,
+#'     ICU = 0, Admitted = 1, MELD = 32, LifeSupport = 0, Encephalopathy = 1,
+#'     PVThrombosis = 1, Ascites = 1) # 37
 p_soft <- function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MELD, LifeSupport, Encephalopathy, PVThrombosis, Ascites, Units = "SI") {
 	agepts = ifelse(Age > 60, 4, 0)
 	bmipts = ifelse(BMI > 35, 2, 0)
@@ -155,7 +163,9 @@ p_soft <- function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MELD,
 #' @export
 #'
 #' @examples
-#' p_soft_US(Age = 65, BMI = 36, PrevTx = 2, AbdoSurg = 1, Albumin = 2.9, Dx = 0, ICU = 0, Admitted = 1, MELD = 32, LifeSupport = 0, Encephalopathy = 1, PVThrombosis = 1, Ascites = 1) # 37
+#' p_soft_US(Age = 65, BMI = 36, PrevTx = 2, AbdoSurg = 1, Albumin = 2.9,
+#'     Dx = 0, ICU = 0, Admitted = 1, MELD = 32, LifeSupport = 0, Encephalopathy = 1,
+#'     PVThrombosis = 1, Ascites = 1) # 37
 p_soft_US = function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MELD, LifeSupport, Encephalopathy, PVThrombosis, Ascites) {
   p_soft(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MELD, LifeSupport, Encephalopathy, PVThrombosis, Ascites, Units = "US")
 }
@@ -185,7 +195,8 @@ p_soft_US = function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MEL
 #' @export
 #'
 #' @examples
-#' soft2(PSoft = 4, PortalBleed = 0, DonorAge = 61, DonorCVA = 1, DonorSCr = 140, National = 1, CIT = 12) # 13
+#' soft2(PSoft = 4, PortalBleed = 0, DonorAge = 61, DonorCVA = 1, DonorSCr = 140,
+#'     National = 1, CIT = 12) # 13
 soft2 <- function(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT, Units = "SI") {
 	dagepts = ifelse(DonorAge >= 10 && DonorAge <= 20, -2,
 			ifelse(DonorAge > 60, 3, 0))
@@ -223,8 +234,9 @@ soft2 <- function(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CI
 #' @export
 #'
 #' @examples
-#' soft2_US(PSoft = 4, PortalBleed = 0, DonorAge = 61, DonorCVA = 1, DonorSCr = 1.6, National = 1, CIT = 12) # 13
-soft2_us = function(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT) {
+#' soft2_US(PSoft = 4, PortalBleed = 0, DonorAge = 61, DonorCVA = 1, DonorSCr = 1.6,
+#'     National = 1, CIT = 12) # 13
+soft2_US = function(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT) {
   soft2(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT, Units = "US")
 }
 
@@ -252,7 +264,6 @@ soft2_us = function(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, 
 #' @param Encephalopathy numeric vector of whether encephalopathy present (1 = "yes", 0 = "no")
 #' @param PVThrombosis numeric vector of whether portal vein thrombosis (1 = "yes", 0 = "no")
 #' @param Ascites numeric vector of whether ascites pre-transplant (1 = "yes", 0 = "no")
-#' @param PSoft numeric vector of P-SOFT scores
 #' @param PortalBleed numeric vector of whether portal bleedn in 48 hours pre-transplant (1 = "yes", 0 = "no")
 #' @param DonorAge numeric vector of donor ages in years
 #' @param DonorCVA numeric vector of whether donor cause of death is CVA/stroke (1 = "yes", 0 = "no")
@@ -265,7 +276,10 @@ soft2_us = function(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, 
 #' @export
 #'
 #' @examples
-#' soft(Age = 35, BMI = 20, PrevTx = 0, AbdoSurg = 1, Albumin = 30, Dx = 0, ICU = 0, Admitted = 0, MELD = 29, LifeSupport = 0, Encephalopathy = 1, PVThrombosis = 0, Ascites = 1, PortalBleed = 0, DonorAge = 44, DonorCVA = 0, DonorSCr = 110, National = 0, CIT = 8) # 7
+#' soft(Age = 35, BMI = 20, PrevTx = 0, AbdoSurg = 1, Albumin = 30, Dx = 0,
+#'     ICU = 0, Admitted = 0, MELD = 29, LifeSupport = 0, Encephalopathy = 1,
+#'     PVThrombosis = 0, Ascites = 1, PortalBleed = 0, DonorAge = 44, DonorCVA = 0,
+#'     DonorSCr = 110, National = 0, CIT = 8) # 7
 soft <- function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted,
 			MELD, LifeSupport, Encephalopathy, PVThrombosis, Ascites,
 			PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT, Units = "SI") {
@@ -275,13 +289,13 @@ soft <- function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted,
     DonorSCr = DonorSCr / 88.4
   }
   # calculate P-SOFT
-	Psoft = p_soft(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted,
+	ps = p_soft(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted,
 			MELD, LifeSupport, Encephalopathy, PVThrombosis, Ascites)
 	# calculate SOFT
-	soft2(Psoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT)
+	soft2(ps, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT)
 }
 
-#' SOFT score (Survival Outcomes Following Liver Transplantation)
+#' SOFT score (Survival Outcomes Following Liver Transplantation) (US units)
 #'
 #' A wrapper function using US units for the soft() vectorised function to calculate SOFT Scores
 #' for predicting patient survival after liver
@@ -304,7 +318,6 @@ soft <- function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted,
 #' @param Encephalopathy numeric vector of whether encephalopathy present (1 = "yes", 0 = "no")
 #' @param PVThrombosis numeric vector of whether portal vein thrombosis (1 = "yes", 0 = "no")
 #' @param Ascites numeric vector of whether ascites pre-transplant (1 = "yes", 0 = "no")
-#' @param PSoft numeric vector of P-SOFT scores
 #' @param PortalBleed numeric vector of whether portal bleedn in 48 hours pre-transplant (1 = "yes", 0 = "no")
 #' @param DonorAge numeric vector of donor ages in years
 #' @param DonorCVA numeric vector of whether donor cause of death is CVA/stroke (1 = "yes", 0 = "no")
@@ -316,7 +329,10 @@ soft <- function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted,
 #' @export
 #'
 #' @examples
-#' soft_US(Age = 35, BMI = 20, PrevTx = 0, AbdoSurg = 1, Albumin = 3.0, Dx = 0, ICU = 0, Admitted = 0, MELD = 29, LifeSupport = 0, Encephalopathy = 1, PVThrombosis = 0, Ascites = 1, PortalBleed = 0, DonorAge = 44, DonorCVA = 0, DonorSCr = 1.2, National = 0, CIT = 8) # 7
+#' soft_US(Age = 35, BMI = 20, PrevTx = 0, AbdoSurg = 1, Albumin = 3.0, Dx = 0,
+#'     ICU = 0, Admitted = 0, MELD = 29, LifeSupport = 0, Encephalopathy = 1,
+#'     PVThrombosis = 0, Ascites = 1, PortalBleed = 0, DonorAge = 44, DonorCVA = 0,
+#'     DonorSCr = 1.2, National = 0, CIT = 8) # 7
 soft_US = function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted,
                    MELD, LifeSupport, Encephalopathy, PVThrombosis, Ascites,
                    PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT) {

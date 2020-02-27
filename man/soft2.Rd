@@ -40,5 +40,6 @@ Reference: Rana A, Hardy MA, Halazun KJ, et al. Survival Outcomes Following Live
 American Journal of Transplantation 2008; 8:2537-2546.
 }
 \examples{
-soft2(PSoft = 4, PortalBleed = 0, DonorAge = 61, DonorCVA = 1, DonorSCr = 140, National = 1, CIT = 12) # 13
+soft2(PSoft = 4, PortalBleed = 0, DonorAge = 61, DonorCVA = 1, DonorSCr = 140,
+    National = 1, CIT = 12) # 13
 }

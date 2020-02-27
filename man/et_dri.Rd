@@ -19,9 +19,9 @@ et_dri(age, cod, dcd, split, share, cit, ggt, rescue)
 
 \item{cit}{numeric vector of cold ischaemic times in hours}
 
-\item{rescue}{numeric vector of whether rescue transplant (1 = yes, 0 = no)}
+\item{ggt}{numeric vector of last pre-transplant serum gamma-GT level in IU/l}
 
-\item{gtt}{numeric vector of last pre-transplant serum gamma-GT level in IU/l}
+\item{rescue}{numeric vector of whether rescue transplant (1 = yes, 0 = no)}
 }
 \value{
 numeric vector of ET-DRI scores
@@ -36,6 +36,9 @@ Reference: Braat AE, Blok JJ, Putter H, et al. The Eurotransplant Donor Risk Ind
 Transplantation: ET-DRI. American Journal of Transplantation 2012;12: 2789–2796.
 }
 \examples{
-et_dri(age = 39, cod = "trauma", dcd = 0, split = 0, share = "local", cit = 8, ggt = 50, rescue = 0) # 1.00
-round(et_dri(age = 25, cod = "cva", dcd = 0, split = 0, share = "local", cit = 8, ggt = 50, rescue = 0) # 1.15
+et_dri(age = 39, cod = "trauma", dcd = 0, split = 0, share = "local",
+    cit = 8, ggt = 50, rescue = 0) # 1.00
+
+et_dri(age = 25, cod = "cva", dcd = 0, split = 0, share = "local",
+    cit = 8, ggt = 50, rescue = 0) # 1.15
 }
