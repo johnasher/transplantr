@@ -5,6 +5,9 @@
 #' The Urea parameter is serum urea in mmol/l, but if the units parameter is set to "US",
 #' Blood Urea Nitrogen (BUN) in mg/dl is used instead.
 #'
+#' Reference: Nankivell BJ, Gruenwald SM, Allen RD, Chapman JR: Predicting glomerular filtration rate
+#' after renal transplantation. Transplantation 1995; 59:1683-89.
+#'
 #' @param SCr numeric vector of serum creatinine in µmol/l (or mg/dl if units = "US")
 #' @param Urea numeric vector of serum urea in mmol/l (or BUN in mg/dl if units = "US")
 #' @param Weight numeric vector of patient weights in kilograms
@@ -82,7 +85,7 @@ nankivell_spk = function(SCr, Age, Sex, Weight, Height, Units = "SI", Offset = 0
 #' @param Sex character vector of sex ("F" for female, "M" for male)
 #' @param Units non-vectorised optional parameter for creatinine units ("SI" for µmol/l (default), "US" for mg/dl)
 #'
-#' @return
+#' @return numeric vectors of eGFR values
 #' @export
 #'
 #' @examples

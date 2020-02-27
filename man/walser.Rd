@@ -17,6 +17,9 @@ walser(SCr, Age, Weight, Sex, Units = "SI")
 
 \item{Units}{non-vectorised optional parameter for creatinine units ("SI" for µmol/l (default), "US" for mg/dl)}
 }
+\value{
+numeric vectors of eGFR values
+}
 \description{
 A vectorised function to calculate eGFR using the Walser formula. By default the equation accepts
 serum creatinine in µmol/l but can be changed to mg/dl by setting the units parameter to "US".

@@ -28,3 +28,7 @@ serum creatinine in µmol/l but can be changed to mg/dl by setting the units par
 The Urea parameter is serum urea in mmol/l, but if the units parameter is set to "US",
 Blood Urea Nitrogen (BUN) in mg/dl is used instead.
 }
+\details{
+Reference: Nankivell BJ, Gruenwald SM, Allen RD, Chapman JR: Predicting glomerular filtration rate
+after renal transplantation. Transplantation 1995; 59:1683-89.
+}
