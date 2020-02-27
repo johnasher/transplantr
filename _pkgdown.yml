@@ -34,8 +34,11 @@ reference:
       - liver_dri
       - et_dri
       - soft
+      - soft_US
       - p_soft
+      - p_soft_US
       - soft2
+      - soft2_US
       - pedi_soft
       - apri
   - title: "Pancreas donor risk index"

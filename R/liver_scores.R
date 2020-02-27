@@ -126,6 +126,40 @@ p_soft <- function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MELD,
 			5 * PVThrombosis + 3 * Ascites
 }
 
+#' P-SOFT Score (US units)
+#'
+#' A wrapper for the p_soft() vectorised function to calculate the pre-procurement component of the SOFT score used to
+#' predict patient survival after liver transplantation. The function needs the MELD score as one of
+#' its inputs - this is available using the transplantr::meld() function.
+#' The units for albumin are g/dl (rather than g/l in p_soft() function)
+#'
+#' Reference: Rana A, Hardy MA, Halazun KJ, et al. Survival Outcomes Following Liver Transplantation
+#' (SOFT) Score: A Novel Method to Predict Patient Survival Following Liver Transplantation.
+#' American Journal of Transplantation 2008; 8:2537-2546.
+#'
+#' @param Age numeric vector of patient ages in years
+#' @param BMI numeric vector of patient BMI in kg/m2
+#' @param PrevTx numeric vector of number of previous transplants
+#' @param AbdoSurg numeric vector of whether previous abdominal surgery (1 = "yes", 0 = "no")
+#' @param Albumin numeric vector of serum albumin in g/dl
+#' @param Dx numeric vector of whether on dialysis before transplant (1 = "yes", 0 = "no")
+#' @param ICU numeric vector of whether patients in intensive care unit before transplant (1 = "yes", 0 = "no")
+#' @param Admitted numeric vector of whether admitted to hospital pre-transplant (1 = "yes", 0 = "no")
+#' @param MELD numeric vector of MELD scores
+#' @param LifeSupport numeric vector of whether on life support pre-transplant (1 = "yes", 0 = "no")
+#' @param Encephalopathy numeric vector of whether encephalopathy present (1 = "yes", 0 = "no")
+#' @param PVThrombosis numeric vector of whether portal vein thrombosis (1 = "yes", 0 = "no")
+#' @param Ascites numeric vector of whether ascites pre-transplant (1 = "yes", 0 = "no")
+#'
+#' @return numeric vector of P-SOFT scores
+#' @export
+#'
+#' @examples
+#' p_soft_US(Age = 65, BMI = 36, PrevTx = 2, AbdoSurg = 1, Albumin = 2.9, Dx = 0, ICU = 0, Admitted = 1, MELD = 32, LifeSupport = 0, Encephalopathy = 1, PVThrombosis = 1, Ascites = 1) # 37
+p_soft_US = function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MELD, LifeSupport, Encephalopathy, PVThrombosis, Ascites) {
+  p_soft(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted, MELD, LifeSupport, Encephalopathy, PVThrombosis, Ascites, Units = "US")
+}
+
 #' SOFT score from P-SOFT
 #'
 #' A vectorised function to calculate SOFT Scores for predicting patient survival after liver
@@ -162,6 +196,36 @@ soft2 <- function(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CI
 	citpts = ifelse(CIT < 6, -3, 0)
 	PSoft + 6 * PortalBleed + dagepts + 2 * DonorCVA + dcrpts +
 		2 * National + citpts
+}
+
+#' SOFT score from P-SOFT (US units)
+#'
+#' A wrapper using US units for the soft2() vectorised function to calculate SOFT Scores
+#' for predicting patient survival after liver
+#' transplantation when the P-SOFT score is already known. The P-SOFT Score can be calculated using
+#' the transplantr::p_soft() function. Alternatively, the SOFT Score can be calculated in full,
+#' including the P-SOFT parameters using the transplantr::soft() or transplantr::soft_US() function.
+#' The units for donor serum creatinine are in mg/dl
+#'
+#' Reference: Rana A, Hardy MA, Halazun KJ, et al. Survival Outcomes Following Liver Transplantation
+#' (SOFT) Score: A Novel Method to Predict Patient Survival Following Liver Transplantation.
+#' American Journal of Transplantation 2008; 8:2537-2546.
+#'
+#' @param PSoft numeric vector of P-SOFT scores
+#' @param PortalBleed numeric vector of whether portal bleedn in 48 hours pre-transplant (1 = "yes", 0 = "no")
+#' @param DonorAge numeric vector of donor ages in years
+#' @param DonorCVA numeric vector of whether donor cause of death is CVA/stroke (1 = "yes", 0 = "no")
+#' @param DonorSCr numeric vector of donor terminal serum creatinine in mg/dl
+#' @param National numeric vector of whether national allocation (1 = "yes", 0 = "no")
+#' @param CIT numeric vector of cold ischaemic time in hours
+#'
+#' @return numeric vector of SOFT Scores
+#' @export
+#'
+#' @examples
+#' soft2_US(PSoft = 4, PortalBleed = 0, DonorAge = 61, DonorCVA = 1, DonorSCr = 1.6, National = 1, CIT = 12) # 13
+soft2_us = function(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT) {
+  soft2(PSoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT, Units = "US")
 }
 
 #' SOFT score (Survival Outcomes Following Liver Transplantation)
@@ -215,6 +279,50 @@ soft <- function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted,
 			MELD, LifeSupport, Encephalopathy, PVThrombosis, Ascites)
 	# calculate SOFT
 	soft2(Psoft, PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT)
+}
+
+#' SOFT score (Survival Outcomes Following Liver Transplantation)
+#'
+#' A wrapper function using US units for the soft() vectorised function to calculate SOFT Scores
+#' for predicting patient survival after liver
+#' transplantation. The units for donor serum creatinine and recipient serum albumin in g/l.
+#'
+#' Reference: Rana A, Hardy MA, Halazun KJ, et al. Survival Outcomes Following Liver Transplantation
+#' (SOFT) Score: A Novel Method to Predict Patient Survival Following Liver Transplantation.
+#' American Journal of Transplantation 2008; 8:2537-2546.
+#'
+#' @param Age numeric vector of patient ages in years
+#' @param BMI numeric vector of patient BMI in kg/m2
+#' @param PrevTx numeric vector of number of previous transplants
+#' @param AbdoSurg numeric vector of whether previous abdominal surgery (1 = "yes", 0 = "no")
+#' @param Albumin numeric vector of serum albumin in g/dl
+#' @param Dx numeric vector of whether on dialysis before transplant (1 = "yes", 0 = "no")
+#' @param ICU numeric vector of whether patients in intensive care unit before transplant (1 = "yes", 0 = "no")
+#' @param Admitted numeric vector of whether admitted to hospital pre-transplant (1 = "yes", 0 = "no")
+#' @param MELD numeric vector of MELD scores
+#' @param LifeSupport numeric vector of whether on life support pre-transplant (1 = "yes", 0 = "no")
+#' @param Encephalopathy numeric vector of whether encephalopathy present (1 = "yes", 0 = "no")
+#' @param PVThrombosis numeric vector of whether portal vein thrombosis (1 = "yes", 0 = "no")
+#' @param Ascites numeric vector of whether ascites pre-transplant (1 = "yes", 0 = "no")
+#' @param PSoft numeric vector of P-SOFT scores
+#' @param PortalBleed numeric vector of whether portal bleedn in 48 hours pre-transplant (1 = "yes", 0 = "no")
+#' @param DonorAge numeric vector of donor ages in years
+#' @param DonorCVA numeric vector of whether donor cause of death is CVA/stroke (1 = "yes", 0 = "no")
+#' @param DonorSCr numeric vector of donor terminal serum creatinine in mg/dl
+#' @param National numeric vector of whether national allocation (1 = "yes", 0 = "no")
+#' @param CIT numeric vector of cold ischaemic time in hours
+#'
+#' @return numeric vector of SOFT Scores
+#' @export
+#'
+#' @examples
+#' soft_US(Age = 35, BMI = 20, PrevTx = 0, AbdoSurg = 1, Albumin = 3.0, Dx = 0, ICU = 0, Admitted = 0, MELD = 29, LifeSupport = 0, Encephalopathy = 1, PVThrombosis = 0, Ascites = 1, PortalBleed = 0, DonorAge = 44, DonorCVA = 0, DonorSCr = 1.2, National = 0, CIT = 8) # 7
+soft_US = function(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted,
+                   MELD, LifeSupport, Encephalopathy, PVThrombosis, Ascites,
+                   PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT) {
+  soft(Age, BMI, PrevTx, AbdoSurg, Albumin, Dx, ICU, Admitted,
+       MELD, LifeSupport, Encephalopathy, PVThrombosis, Ascites,
+       PortalBleed, DonorAge, DonorCVA, DonorSCr, National, CIT, Units = "US")
 }
 
 #' Pedi-SOFT Score
