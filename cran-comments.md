@@ -14,14 +14,13 @@ This is a submission of the next version of transplantr package. In this version
 
 ## Test environments
 * linux Mint 18 Cinnamon 64-bit , R 3.6.1
-* win-builder (devel and release)
+* win-builder (devel, release, oldrelease)
 * R-hub builder
 
 ## R CMD check results
 There were no ERRORs, WARNINGs or NOTEs
 
-Win-builder produced a NOTE for possibly misspelled words.
-These have been checked and are not actually misspelled.
+Win-builder status was OK for release, devel and oldrelease
 
 R-hub builder produced a NOTE for possible wrong URLs. I think these were returning 
 403 Forbidden HTTP codes due to robots blockers as the links are correct and 
