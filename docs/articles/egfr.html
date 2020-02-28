@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">transplantr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -63,7 +63,7 @@
       <a href="../articles/kidney_risk_scores.html">Kidney Donor and Recipient Risk Index</a>
     </li>
     <li>
-      <a href="../articles/liver_recipient_scoring.html">Liver recipient risk stratification</a>
+      <a href="../articles/liver_recipient_scoring.html">Liver transplant risk stratification</a>
     </li>
   </ul>
 </li>
@@ -226,7 +226,8 @@
 <div id="formulae-to-be-added-in-future" class="section level1">
 <h1 class="hasAnchor">
 <a href="#formulae-to-be-added-in-future" class="anchor"></a>Formulae to be added in future</h1>
-<p>The <strong>Nankivell</strong> and <strong>Walser</strong> formulae are less commonly used. The Nankivell formula is the only eGFR formula derived entirely from renal transplant patients, but included patients with unstable GFR. The Nankivell formula includes weight and height so approximates an absolute GFR. The Walser formula produces a result standardised to a height-squared of 3m<sup>2</sup>.</p>
+<p>The <strong>Nankivell</strong> and <strong>Walser</strong> formulae are less commonly used. The Nankivell formula is the only eGFR formula derived entirely from renal transplant patients, but included patients with unstable GFR(<em>5</em>). The Nankivell formula includes weight and height so approximates an absolute GFR. The Walser formula produces a result standardised to a height-squared of 3m<sup>2</sup>(<em>6</em>).</p>
+<p>Both are now available using the <code><a href="../reference/nankivell.html">nankivell()</a></code> and <code><a href="../reference/walser.html">walser()</a></code> functions, but as they are so little used, and have been quoted in varying forms in the literature, it has not been possible to run automated tests so either function may return wrong results.</p>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
@@ -236,6 +237,8 @@
 <li><p>Levey AS, Greene T, Kusek JW, et al. A simplified equation to predict glomerular filtration rate from serum creatinine. <em>J Am Soc Nephrol</em> 2000; 11:A0828.</p></li>
 <li><p>Schwartz GJ, Munoz A, Schneider MF et al. New equations to estimate GFR in children with CKD. <em>J Am Soc Nephrol</em> 2009; 20(3):629-637. DOI: <a href="https://doi.org/10.1681/ASN.2008030287">10.1681/ASN.2008030287</a></p></li>
 <li><p>Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine. <em>Nephron</em> 1976; 16(1):31-41. DOI: <a href="https://doi.org/10.1159/000180580">10.1159/000180580</a></p></li>
+<li><p>Nankivell BJ, Gruenwald SM, Allen RD, Chapman JR: Predicting glomerular filtration rate after renal transplantation. Transplantation 1995; 59:1683-89.</p></li>
+<li><p>Walser M, Drew HH, Guldan JL. Prediction of glomerular filtration rate in advanced chronic renal failure. Kidney International 1993; 44:2245-1148.</p></li>
 </ol>
 </div>
   </div>

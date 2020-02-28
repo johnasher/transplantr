@@ -27,7 +27,9 @@ A wrapper function for the nankivell_spk() vectorised function to calculate the 
 using the Nankivell-SPK formula using serum creatinine in mg/dl.
 To allow for serial measurements over time, such as
 for transplant follow-up data, there is an optional offset = n parameter which increases the age
-value used in the equation by n years.
+value used in the equation by n years. It has not been possible to run automated tests
+to confirm the
+accuracy of this function, so please use with caution.
 }
 \details{
 Reference: Nankivell BJ, Chapman JR, Allen RD: Predicting glomerular filtration rate after

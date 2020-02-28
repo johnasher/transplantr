@@ -22,7 +22,9 @@ a numeric vector of eGFR values
 }
 \description{
 A wrapper function for the nankivell() vectorised function to calculate eGFR using the Nankivell
-formula, but using creatinine and BUN in mg/dl rather than international units.
+formula, but using creatinine and BUN in mg/dl rather than international units. It has not been
+possible to run automated tests to confirm the
+accuracy of this function, so please use with caution.
 }
 \details{
 Reference: Nankivell BJ, Gruenwald SM, Allen RD, Chapman JR: Predicting glomerular filtration rate

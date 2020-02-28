@@ -23,6 +23,8 @@ numeric vectors of eGFR values
 \description{
 A vectorised function to calculate eGFR using the Walser formula. By default the equation accepts
 serum creatinine in µmol/l but can be changed to mg/dl by setting the units parameter to "US".
+It has not been possible to run automated tests to confirm the
+accuracy of this function, so please use with caution.
 }
 \details{
 Reference: Walser M, Drew HH, Guldan JL. Prediction of glomerular filtration rate in advanced

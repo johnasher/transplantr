@@ -29,7 +29,9 @@ A vectorised function to calculate the eGFR using the Nankivell-SPK formula. By 
 equation accepts serum creatinine in µmol/l but can be changed to
 mg/dl by setting the units parameter to "US". To allow for serial measurements over time, such as
 for transplant follow-up data, there is an optional offset = n parameter which increases the age
-value used in the equation by n years.
+value used in the equation by n years. It has not been possible to run automated tests to
+confirm the
+accuracy of this function, so please use with caution.
 }
 \details{
 Reference: Nankivell BJ, Chapman JR, Allen RD: Predicting glomerular filtration rate after

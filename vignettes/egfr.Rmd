@@ -136,7 +136,9 @@ results2cg <- results %>%
 
 # Formulae to be added in future
 
-The **Nankivell** and **Walser** formulae are less commonly used. The Nankivell formula is the only eGFR formula derived entirely from renal transplant patients, but included patients with unstable GFR. The Nankivell formula includes weight and height so approximates an absolute GFR. The Walser formula produces a result standardised to a height-squared of 3m^2^.
+The **Nankivell** and **Walser** formulae are less commonly used. The Nankivell formula is the only eGFR formula derived entirely from renal transplant patients, but included patients with unstable GFR(_5_). The Nankivell formula includes weight and height so approximates an absolute GFR. The Walser formula produces a result standardised to a height-squared of 3m^2^(_6_). 
+
+Both are now available using the `nankivell()` and `walser()` functions, but as they are so little used, and have been quoted in varying forms in the literature, it has not been possible to run automated tests so either function may return wrong results.
 
 # References
 
@@ -147,3 +149,9 @@ The **Nankivell** and **Walser** formulae are less commonly used. The Nankivell 
 3. Schwartz GJ, Munoz A, Schneider MF et al. New equations to estimate GFR in children with CKD. _J Am Soc Nephrol_ 2009; 20(3):629-637. DOI: [10.1681/ASN.2008030287](https://doi.org/10.1681/ASN.2008030287)
 
 4. Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine. _Nephron_ 1976; 16(1):31-41. DOI: [10.1159/000180580](https://doi.org/10.1159/000180580)
+
+5. Nankivell BJ, Gruenwald SM, Allen RD, Chapman JR: Predicting glomerular filtration rate 
+after renal transplantation. Transplantation 1995; 59:1683-89.
+
+6. Walser M, Drew HH, Guldan JL. Prediction of glomerular filtration rate in advanced 
+chronic renal failure. Kidney International 1993; 44:2245-1148.

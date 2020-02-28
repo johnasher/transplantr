@@ -3,7 +3,9 @@
 #' A vectorised function to calculate eGFR using the Nankivell formula. By default the equation accepts
 #' serum creatinine in µmol/l but can be changed to mg/dl by setting the units parameter to "US".
 #' The Urea parameter is serum urea in mmol/l, but if the units parameter is set to "US",
-#' Blood Urea Nitrogen (BUN) in mg/dl is used instead.
+#' Blood Urea Nitrogen (BUN) in mg/dl is used instead. It has not been possible to run automated
+#' tests to confirm the
+#' accuracy of this function, so please use with caution.
 #'
 #' Reference: Nankivell BJ, Gruenwald SM, Allen RD, Chapman JR: Predicting glomerular filtration rate
 #' after renal transplantation. Transplantation 1995; 59:1683-89.
@@ -36,7 +38,9 @@ nankivell = function(SCr, Urea, Weight, Height, Sex, Units = "SI") {
 #' eGFR using Nankivell formula (US units)
 #'
 #' A wrapper function for the nankivell() vectorised function to calculate eGFR using the Nankivell
-#' formula, but using creatinine and BUN in mg/dl rather than international units.
+#' formula, but using creatinine and BUN in mg/dl rather than international units. It has not been
+#' possible to run automated tests to confirm the
+#' accuracy of this function, so please use with caution.
 #'
 #' Reference: Nankivell BJ, Gruenwald SM, Allen RD, Chapman JR: Predicting glomerular filtration rate
 #' after renal transplantation. Transplantation 1995; 59:1683-89.
@@ -62,7 +66,9 @@ nankivell_US = function(SCr, Urea, Weight, Height, Sex) {
 #' equation accepts serum creatinine in µmol/l but can be changed to
 #' mg/dl by setting the units parameter to "US". To allow for serial measurements over time, such as
 #' for transplant follow-up data, there is an optional offset = n parameter which increases the age
-#' value used in the equation by n years.
+#' value used in the equation by n years. It has not been possible to run automated tests to
+#' confirm the
+#' accuracy of this function, so please use with caution.
 #'
 #' Reference: Nankivell BJ, Chapman JR, Allen RD: Predicting glomerular filtration rate after
 #' simultaneous pancreas and kidney transplantation. Clin Transplant 1995; 9(2): 129-134
@@ -100,7 +106,9 @@ nankivell_spk = function(SCr, Age, Sex, Weight, Height, Units = "SI", Offset = 0
 #' using the Nankivell-SPK formula using serum creatinine in mg/dl.
 #' To allow for serial measurements over time, such as
 #' for transplant follow-up data, there is an optional offset = n parameter which increases the age
-#' value used in the equation by n years.
+#' value used in the equation by n years. It has not been possible to run automated tests
+#' to confirm the
+#' accuracy of this function, so please use with caution.
 #'
 #' Reference: Nankivell BJ, Chapman JR, Allen RD: Predicting glomerular filtration rate after
 #' simultaneous pancreas and kidney transplantation. Clin Transplant 1995; 9(2): 129-134
@@ -125,6 +133,8 @@ nankivell_spk_US = function(SCr, Age, Sex, Weight, Height, Offset = 0) {
 #'
 #' A vectorised function to calculate eGFR using the Walser formula. By default the equation accepts
 #' serum creatinine in µmol/l but can be changed to mg/dl by setting the units parameter to "US".
+#' It has not been possible to run automated tests to confirm the
+#' accuracy of this function, so please use with caution.
 #'
 #' Reference: Walser M, Drew HH, Guldan JL. Prediction of glomerular filtration rate in advanced
 #' chronic renal failure. Kidney International 1993; 44:2245-1148.
@@ -158,7 +168,8 @@ walser = function(SCr, Age, Weight, Sex, Units = "SI") {
 #' eGFR using the Walser formula (US units)
 #'
 #' A wrapper function for the walser() vectorised function to calculate eGFR using the Walser formula,
-#' using serum creatinine in mg/dl.
+#' using serum creatinine in mg/dl. It has not been possible to run automated tests to confirm the
+#' accuracy of this function, so please use with caution.
 #'
 #' Reference: Walser M, Drew HH, Guldan JL. Prediction of glomerular filtration rate in advanced
 #' chronic renal failure. Kidney International 1993; 44:2245-1148.

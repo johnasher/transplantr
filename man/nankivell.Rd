@@ -26,7 +26,9 @@ a numeric vector of eGFR values
 A vectorised function to calculate eGFR using the Nankivell formula. By default the equation accepts
 serum creatinine in µmol/l but can be changed to mg/dl by setting the units parameter to "US".
 The Urea parameter is serum urea in mmol/l, but if the units parameter is set to "US",
-Blood Urea Nitrogen (BUN) in mg/dl is used instead.
+Blood Urea Nitrogen (BUN) in mg/dl is used instead. It has not been possible to run automated
+tests to confirm the
+accuracy of this function, so please use with caution.
 }
 \details{
 Reference: Nankivell BJ, Gruenwald SM, Allen RD, Chapman JR: Predicting glomerular filtration rate
