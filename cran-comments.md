@@ -1,4 +1,3 @@
-
 ## Submission of new version of CRAN package
 This is a submission of the next version of transplantr package. In this version I have:
 
@@ -6,7 +5,7 @@ This is a submission of the next version of transplantr package. In this version
 
 * Expanded the text in the vignettes
 
-* Provided expanded explanations of abbreviations in DESCRIPTION text, except those abbreviations exclusively used in abbreviated form in the community.
+* As I was advised by the CRAN volunteer when the previous version was accepted, I have provided expanded explanations of abbreviations in DESCRIPTION text, except those abbreviations exclusively used in abbreviated form in the community.
 
 * The theoretical background to the equations in the documentation for each function and also to the vignettes. There are now 27 such functions in the package, and some of the papers describing the background to these have more than 10 authors, so listing all in the DESCRIPTION file would be very impractical. I have kept the comment to the description field of the DESCRIPTION file noting that references are in the vignettes and documentation of each individual function. The vignettes also contain DOI links to individual referenced publications and links to relevant organisation web pages (where the equations are published by transplant organisations rather than in the literature).
 
